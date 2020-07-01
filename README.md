@@ -51,10 +51,10 @@ Do you want to make a backup of your mails?
 <br />
 <p align="center">
   <a href="https://github.com/Iguannaweb/backupmail">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="igw_tamplate/assets/img/backupmail.png" alt="Logo" width="425" height="110">
   </a>
 
-  <h3 align="center">YOUR_TITLE</h3>
+  <h3 align="center">BackupMail</h3>
 
   <p align="center">
     YOUR_SHORT_DESCRIPTION
