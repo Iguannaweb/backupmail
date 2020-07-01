@@ -51,7 +51,7 @@ Do you want to make a backup of your mails?
 <br />
 <p align="center">
   <a href="https://github.com/Iguannaweb/backupmail">
-    <img src="igw_tamplate/assets/img/backupmail.png" alt="Logo" width="425" height="110">
+    <img src="https://backupmail.iguannaweb.com/igw_tamplate/assets/img/backupmail.png" alt="Logo" width="425" height="110">
   </a>
 
   <h3 align="center">BackupMail</h3>
