@@ -1,35 +1,3 @@
-# backupmail
-Do you want to make a backup of your mails?
-
-# Install
-
-# Configuration
-
-# Cron configuration
-
-# Mails sent, notes and drafts
-
-# Task management
-
-# Tags
-
-
-<!--
-*** Thanks for checking out this README Template. If you have a suggestion that would
-*** make this better, please fork the backupmail and create a pull request or simply open
-*** an issue with the tag "enhancement".
-*** Thanks again! Now go create something AMAZING! :D
-***
-***
-***
-*** To avoid retyping too much info. Do a search and replace for the following:
-*** Iguannaweb, backupmail, iguannaweb, info@iguannaweb.com
--->
-
-
-
-
-
 <!-- PROJECT SHIELDS -->
 <!--
 *** I'm using markdown "reference style" links for readability.
@@ -204,3 +172,19 @@ Project Link: [https://github.com/Iguannaweb/backupmail](https://github.com/Igua
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: images/screenshot.png
+
+
+# backupmail
+Do you want to make a backup of your mails?
+
+# Install
+
+# Configuration
+
+# Cron configuration
+
+# Mails sent, notes and drafts
+
+# Task management
+
+# Tags
