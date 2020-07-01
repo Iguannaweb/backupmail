@@ -1,0 +1,7 @@
+{
+    "name": "aalmasaeed2010/adminlte",
+    "description": "AdminLTE",
+    "require": {
+        "almasaeed2010/adminlte": "~3.0"
+    }
+}
