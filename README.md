@@ -27,10 +27,10 @@
   <p align="center">
     I have a lot of mails accounts, I think it's a problem, but that is another question. One day thinking about backups my info I thounght how it will be to backups all my mails in my mail accounts, phisically.
     <br />
-    <a href="https://github.com/Iguannaweb/backupmail"><strong>Explore the docs »</strong></a>
     <br />
-    <br />
-    <a href="https://github.com/Iguannaweb/backupmail">View Demo</a>
+    <a href="#"><strong>Explore the docs »</strong></a> 
+    ·
+    <a href="https://backupmail.iguannaweb.com/">View Demo</a>
     ·
     <a href="https://github.com/Iguannaweb/backupmail/issues">Report Bug</a>
     ·
