@@ -159,15 +159,15 @@ Project Link: [https://github.com/Iguannaweb/backupmail](https://github.com/Igua
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=flat-square
-[contributors-url]: https://github.com/Iguannaweb/backupmailgraphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=flat-square
+[contributors-shield]: https://img.shields.io/github/contributors/iguannaweb/backupmail.svg?style=flat-square
+[contributors-url]: https://github.com/Iguannaweb/backupmail/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/iguannaweb/backupmail.svg?style=flat-square
 [forks-url]: https://github.com/Iguannaweb/backupmail/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=flat-square
+[stars-shield]: https://img.shields.io/github/stars/iguannaweb/backupmail.svg?style=flat-square
 [stars-url]: https://github.com/Iguannaweb/backupmail/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=flat-square
+[issues-shield]: https://img.shields.io/github/issues/iguannaweb/backupmail.svg?style=flat-square
 [issues-url]: https://github.com/Iguannaweb/backupmail/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=flat-square
+[license-shield]: https://img.shields.io/github/license/iguannaweb/backupmail.svg?style=flat-square
 [license-url]: https://github.com/Iguannaweb/backupmail/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/crishnakh
