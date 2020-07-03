@@ -140,7 +140,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Francisco Gálvez - [Write me an email!](mailto:info@iguannaweb.com)
+Francisco Gálvez - [Write me an email!](mailto:info@iguannaweb.com)  
 If you want to contact me, the best way is write an email or open an issue here, I'm not really active on social networks.
 
 
@@ -151,9 +151,9 @@ Project Link: [https://github.com/Iguannaweb/backupmail](https://github.com/Igua
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
-* []()
-* []()
-* []()
+* [You can be in this list!](https://github.com/Iguannaweb/backupmail/issues)
+* [](...)
+
 
 
 
