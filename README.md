@@ -78,15 +78,13 @@ Here's a blank template to get started:
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get a local copy up and running follow these simple steps.
+To get your own backup mail working, you need a server with PHP7 and extension Mailparse installed. Yo need to install composer to fetch dependencies.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-```sh
-npm install npm@latest -g
-```
+* [PHP 7](https://www.php.net/downloads.php)
+* [Mailparse](https://www.php.net/manual/en/book.mailparse.php)
+* [Composer](https://getcomposer.org/doc/00-intro.md)
 
 ### Installation
  
@@ -94,10 +92,11 @@ npm install npm@latest -g
 ```sh
 git clone https://github.com/Iguannaweb/backupmail.git
 ```
-2. Install NPM packages
+2. Install composer dependencies
 ```sh
-npm install
+php composer.phar install
 ```
+
 
 
 
@@ -147,15 +146,11 @@ If you want to contact me, the best way is write an email or open an issue here,
 Project Link: [https://github.com/Iguannaweb/backupmail](https://github.com/Iguannaweb/backupmail)
 
 
-
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
 * [You can be in this list!](https://github.com/Iguannaweb/backupmail/issues)
 * [](...)
-
-
-
 
 
 
@@ -174,19 +169,3 @@ Project Link: [https://github.com/Iguannaweb/backupmail](https://github.com/Igua
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/crishnakh
 [product-screenshot]: images/screenshot.png
-
-
-# backupmail
-Do you want to make a backup of your mails?
-
-# Install
-
-# Configuration
-
-# Cron configuration
-
-# Mails sent, notes and drafts
-
-# Task management
-
-# Tags
