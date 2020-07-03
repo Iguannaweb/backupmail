@@ -101,9 +101,12 @@ php composer.phar install
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+1. First of all you need to protect the access to your domain if it will be public. Create a .htaccess/.htpassword files
+2. Config one mail on the config.sample.php and check the connection.
+3. Start fetching your mails, navigate and tag them all!
+4. Create task or favorite your preferred mails.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+_For more examples, please refer to the [Documentation](https://backupmail.iguannaweb.com?go=docs)_
 
 
 
