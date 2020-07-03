@@ -62,7 +62,7 @@
 
 [![Temporal screenshot][product-screenshot-1]](https://backupmail.iguannaweb.com/)
 
-This is just a temporal screenshot, this is a working progress!
+This is just a temporal screenshot, this is a work in progress!
 
 
 ### Built With
