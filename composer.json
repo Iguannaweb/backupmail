@@ -2,6 +2,7 @@
     "name": "aalmasaeed2010/adminlte",
     "description": "AdminLTE",
     "require": {
-        "almasaeed2010/adminlte": "~3.0"
+        "almasaeed2010/adminlte": "~3.0",
+        "vakata/jstree": "^3.3"
     }
 }
