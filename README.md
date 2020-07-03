@@ -84,6 +84,40 @@ To get your own backup mail working, you need a server with PHP7 and extension M
 * [Mailparse](https://www.php.net/manual/en/book.mailparse.php)
 * [Composer](https://getcomposer.org/doc/00-intro.md)
 
+### Install mailparse extension
+
+#### Ubuntu, Debian & derivatives
+```
+sudo apt install php-cli php-mailparse
+```
+
+#### Others platforms
+```
+sudo apt install php-cli php-pear php-dev php-mbstring
+pecl install mailparse
+```
+
+#### From source
+
+AAAAMMDD should be `php-config --extension-dir`
+```
+git clone https://github.com/php/pecl-mail-mailparse.git
+cd pecl-mail-mailparse
+phpize
+./configure
+sed -i 's/#if\s!HAVE_MBSTRING/#ifndef MBFL_MBFILTER_H/' ./mailparse.c
+make
+sudo mv modules/mailparse.so /usr/lib/php/AAAAMMDD/
+echo "extension=mailparse.so" | sudo tee /etc/php/7.1/mods-available/mailparse.ini
+sudo phpenmod mailparse
+```
+
+#### Windows
+You need to download mailparse DLL from http://pecl.php.net/package/mailparse and add the line "extension=php_mailparse.dll" to php.ini accordingly.
+
+- [Help installing on plesk](https://talk.plesk.com/threads/installing-the-php-extensions-mailparse-mbstring.352973/)
+
+
 ### Installation
  
 1. Clone the backupmail repository
