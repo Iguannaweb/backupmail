@@ -28,13 +28,13 @@
     I have a lot of mails accounts, I think it's a problem, but that is another question. One day thinking about backups my info I thounght how it will be to backups all my mails in my mail accounts, phisically.
     <br />
     <br />
-    <a href="#"><strong>Explore the docs »</strong></a> 
+    <a href="#"><strong>&raquo; Explore the docs &laquo;</strong></a> 
     ·
-    <a href="https://backupmail.iguannaweb.com/">View Demo</a>
+    <a href="https://backupmail.iguannaweb.com/">&raquo; View Demo &laquo;</a>
     ·
-    <a href="https://github.com/Iguannaweb/backupmail/issues">Report Bug</a>
+    <a href="https://github.com/Iguannaweb/backupmail/issues">&raquo; Report Bug &laquo;</a>
     ·
-    <a href="https://github.com/Iguannaweb/backupmail/issues">Request Feature</a>
+    <a href="https://github.com/Iguannaweb/backupmail/issues">&raquo; Request Feature &laquo;</a>
   </p>
 </p>
 
@@ -140,7 +140,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@iguannaweb](https://twitter.com/iguannaweb) - info@iguannaweb.com
+Francisco Gálvez - [Write me an email!](mailto:info@iguannaweb.com)
+If you want to contact me, the best way is write an email or open an issue here, I'm not really active on social networks.
+
 
 Project Link: [https://github.com/Iguannaweb/backupmail](https://github.com/Iguannaweb/backupmail)
 
