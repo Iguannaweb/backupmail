@@ -63,8 +63,6 @@
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`Iguannaweb`, `backupmail`, `iguannaweb`, `info@iguannaweb.com`
 
 
 ### Built With
@@ -88,11 +86,11 @@ To get your own backup mail working, you need a server with PHP7 and extension M
 
 ### Installation
  
-1. Clone the backupmail
+1. Clone the backupmail repository
 ```sh
 git clone https://github.com/Iguannaweb/backupmail.git
 ```
-2. Install composer dependencies
+2. Run composer install to fetch dependencies
 ```sh
 php composer.phar install
 ```
