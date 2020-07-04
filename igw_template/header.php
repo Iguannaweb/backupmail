@@ -44,10 +44,13 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
         <a class="nav-link-logo" href="index.php" role="button"><img src="igw_template/assets/img/backupmail.png" alt="backupmail" height="40" ></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link"><i class="fa fa-envelope"></i> Accounts</a>
+        <a href="configuration.php" class="nav-link"><i class="fa fa-envelope"></i> Accounts</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link"><i class="fas fa-tasks"></i> Cron</a>
+        <a target="_blank" href="cron_mail.php" class="nav-link"><i class="fas fa-tasks"></i> Cron</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="tags.php" class="nav-link"><i class="fas fa-tag"></i> Tags</a>
       </li>
     </ul>
 
