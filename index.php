@@ -91,8 +91,8 @@ define('INCLUDE_CHECK','true');
                 </button>
               </div>
             </div>
-            <div class="card-body p-0">
-              <ul class="nav nav-pills flex-column">
+            <div class="card-body p-0"  id="jstree_tag_div">
+              <!-- ul class="nav nav-pills flex-column">
                 <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="far fa-circle text-danger"></i>
@@ -110,11 +110,68 @@ define('INCLUDE_CHECK','true');
                     Social
                   </a>
                 </li>
-              </ul>
+              </ul -->
+
+				<ul class="nav nav-inbox">
+					<?php
+					$datatags = DBSelect('igw_tags', '*', "WHERE ID_TAG_SUP = '0'",'ORDER BY POSICION ASC');
+
+					$i=0;
+					
+					while($rowt=mysqli_fetch_array($datatags)){
+						echo '<li'; 
+						echo " data-jstree='{ \"icon\" : \"fa".$rowt["ICON_S"]." fa-".$rowt["TAG_ICON"]." fa-lg text-".$rowt["TAG_COLOR"]."\" }'";	
+						echo '><a '; 
+							if($rowt["ID_TAG"]==$_GET["t"]){
+								echo '  class="jstree-clicked"';
+							}else{
+								
+							}
+							echo ' href="index.php?t='.$rowt["ID_TAG"].'&c='.$_GET["c"].'"><i class="jstree-icon fa'.$rowt["ICON_S"].' fa-fw f-s-10 m-r-5 fa-'.$rowt["TAG_ICON"].' text-'.$rowt["TAG_COLOR"].'"></i> '.$rowt["TAG"].' ('.get_tag_count($rowt["ID_TAG"]).')</a>';
+						$datatags_children[$i] = DBSelect('igw_tags', '*', "WHERE ID_TAG_SUP = '".$rowt["ID_TAG"]."'",'ORDER BY POSICION ASC');
+						echo '<ul>';
+						while($rowt_children[$i]=mysqli_fetch_array($datatags_children[$i])){
+						echo '<li'; 
+						echo " data-jstree='{ \"icon\" : \"fa".$rowt_children[$i]["ICON_S"]." fa-".$rowt_children[$i]["TAG_ICON"]." fa-lg text-".$rowt_children[$i]["TAG_COLOR"]."\" }'";	
+						echo '><a '; 
+							if($rowt_children[$i]["ID_TAG"]==$_GET["t"]){
+								echo '  class="jstree-clicked"';
+							}else{
+								
+							}
+							echo ' href="index.php?t='.$rowt_children[$i]["ID_TAG"].'&c='.$_GET["c"].'"><i class="jstree-icon fa'.$rowt_children[$i]["ICON_S"].' fa-fw f-s-10 m-r-5 fa-'.$rowt_children[$i]["TAG_ICON"].' text-'.$rowt_children[$i]["TAG_COLOR"].'"></i> '.$rowt_children[$i]["TAG"].' ('.get_tag_count($rowt_children[$i]["ID_TAG"]).')</a></li>';
+						}
+						echo '</ul>';
+						echo '</li>';
+					}
+					?>
+					
+				</ul>
             </div>
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
+          
+          <div class="card">
+	          <div class="card-header">
+              <h3 class="card-title"><strong>Others mails</strong></h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+	          <div  class="card-body p-0" id="jstree_otros_div">
+				<ul class="nav nav-inbox">
+					<li <?php echo " data-jstree='{ \"icon\" : \"fa fa-envelope fa-lg text-info\" }'"; ?>>
+					<a href="index.php?tipo=sent&c="><i class="fa fa-envelope fa-lg text-info"></i> ENVIADOS</a></li>
+					<li <?php echo " data-jstree='{ \"icon\" : \"fa fa-pencil-alt fa-lg text-grey\" }'"; ?>>
+					<a href="index.php?tipo=draft&c="><i class="fa fa-pencil-alt fa-lg text-grey"></i> BORRADORES</a></li>
+					<li <?php echo " data-jstree='{ \"icon\" : \"fa fa-sticky-note fa-lg text-yellow\" }'"; ?>>
+					<a href="index.php?tipo=notes&c="><i class="fa fa-sticky-note fa-lg text-yellow"></i> NOTAS</a></li>
+				</ul>
+				</div>
+          </div>
         </div>
         <!-- /.col -->
         <div class="col-md-9">

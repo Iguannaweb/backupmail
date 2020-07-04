@@ -13,14 +13,14 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 
-$n_items=25;
-if(isset($_GET["pag"]) && !empty($_GET["pag"])){
+$n_items=50;
+if(isset($_GET["pag"]) && (!empty($_GET["pag"]))){
 	$pag = (int)$_GET["pag"];
-	$inicio = (($pag*25)-25);
-	$final = ($pag*25);
+	$inicio = (($pag*$n_items)-$n_items);
+	$final = ($pag*$n_items);
 }else{
 	$pag = 1;
 	$inicio = 0;
-	$final=25;
+	$final=$n_items;
 }
 ?>
