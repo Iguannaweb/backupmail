@@ -28,6 +28,9 @@
     I have a lot of mails accounts, I think it's a problem, but that is another question. One day thinking about backups my info I thounght how it will be to backups all my mails in my mail accounts, phisically.
     <br />
     <br />
+    <strong>User demo:</strong> admin | <strong>Pass demo:</strong> backupmail
+    <br />
+    <br />
     <a href="#"><strong>&raquo; Explore the docs &laquo;</strong></a> 
     ·
     <a href="https://backupmail.iguannaweb.com/">&raquo; View Demo &laquo;</a>
