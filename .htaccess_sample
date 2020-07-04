@@ -1,0 +1,4 @@
+AuthUserFile /full/path/to/.htpasswd
+AuthType Basic
+AuthName "My BackupMail"
+Require valid-user

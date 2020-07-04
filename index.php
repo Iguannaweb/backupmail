@@ -11,7 +11,8 @@
  * It will download the attachments too.                     *
  * Contact: info@iguannaweb.com                              *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-define(INCLUDE_CHECK,'true');
+define('INCLUDE_CHECK','true');
+
 	include('./igw_template/header.php'); 
 ?>	  
 	  
