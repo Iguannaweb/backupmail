@@ -39,6 +39,9 @@
     <a href="https://github.com/Iguannaweb/backupmail/issues">&raquo; Report Bug &laquo;</a>
     ·
     <a href="https://github.com/Iguannaweb/backupmail/issues">&raquo; Request Feature &laquo;</a>
+    <br />
+    <br />
+    <strong>Send a sample email to:</strong> backupmail@iguannaweb.com
   </p>
 </p>
 
