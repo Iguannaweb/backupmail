@@ -41,7 +41,7 @@ define('INCLUDE_CHECK','true');
 
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Folders</h3>
+              <h3 class="card-title">Inbox's Accounts</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -49,7 +49,7 @@ define('INCLUDE_CHECK','true');
               </div>
             </div>
             <div class="card-body p-0">
-              <ul class="nav nav-pills flex-column">
+              <!-- ul class="nav nav-pills flex-column">
                 <li class="nav-item active">
                   <a href="#" class="nav-link">
                     <i class="fas fa-inbox"></i> Inbox
@@ -77,7 +77,121 @@ define('INCLUDE_CHECK','true');
                     <i class="far fa-trash-alt"></i> Trash
                   </a>
                 </li>
-              </ul>
+              </ul -->
+              	<?php
+					$preferences = array(
+					    "input-charset" => "ISO-8859-1",
+					    "output-charset" => "UTF-8",
+					    "line-length" => 76,
+					    "line-break-chars" => "\n"
+					);
+					$correos_loop=array();
+					foreach($correos_config as $mails){
+						$data = DBSelect('igw_emails', '*', "WHERE MAIL = '".$mails["user_mail"]."' AND FOLDER='INBOX'",'ORDER BY UDATE DESC');
+	
+						$i=0;
+						
+						$icono="igw_template/assets/img/icons8-email-document-16.png";
+						while($row=mysqli_fetch_array($data)){
+							$partes[$i]=explode('/',$row["FILE"]);
+							$anio[$i]=$partes[$i][3];
+							$mes[$i]=$partes[$i][4];
+							
+							$correos_loop["".$mails["user_mail"].""]["".$anio[$i].""]["".$mes[$i].""]["".$row["UDATE"].""]=array(
+								'icon'=>$icono,
+								'id'=>$row["UDATE"],
+								'anio'=>$anio[$i],
+								'mes'=>$mes[$i],
+								'asunto'=>iconv_mime_decode($row["SUBJECT"],0, "UTF-8")
+							);
+							
+							$i++;
+						}
+					}
+					
+					//echo '<pre>';print_r($correos);echo '</pre>';
+				?>
+				<div id="jstree_demo_div">
+				    <?php //listFolderFiles('./mailbackup'); ?>
+				    
+				    <?php
+					foreach($correos_loop as $c=>$correo){
+						$c=str_replace(array('@','.'),'_',$c);
+						echo '<ul>
+							<li '; 
+							if($c==$_GET["c"]){
+								echo '  class="jstree-open"';
+							}else{
+								
+							}
+							echo '><a '; 
+							if($c==$_GET["c"]){
+								echo '  class="jstree-clicked"';
+							}else{
+								
+							}
+							echo ' href="?c='.$c.'">'.$c.'</a>
+							<ul>';
+						
+						foreach($correo as $key=>$anio){
+							echo '<li '; 
+							if(($key==$_GET["y"]) && ($c==$_GET["c"])){
+								echo '  class="jstree-open"';
+							}else{
+								
+							}
+							echo '><a '; 
+							if(($key==$_GET["y"]) && ($c==$_GET["c"])){
+								echo '  class="jstree-clicked"';
+							}else{
+								
+							}
+							echo ' href="?c='.$c.'&y='.$key.'">'.$key.'</a>';
+								echo '<ul>'; 
+								foreach($anio as $kmes=>$mes){
+									echo '<li '; 
+											if(($c==$_GET["c"]) && ($key==$_GET["y"]) && ($kmes==$_GET["m"])){
+												echo '  class="jstree-open"';
+											}else{
+												
+											}
+											echo '><a '; 
+											if(($key==$_GET["y"]) && ($c==$_GET["c"]) && ($kmes==$_GET["m"])){
+												echo '  class="jstree-clicked"';
+											}else{
+												
+											}
+											echo ' href="?c='.$c.'&y='.$key.'&m='.$kmes.'">'.$kmes.'</a>'; 
+											/*if(isset($_GET["m"]) && ((int)$_GET["m"]!=0) && ($key==$_GET["y"]) && ($c==$_GET["c"]) && ($kmes==$_GET["m"])){
+												echo '<ul>'; 
+												foreach($mes as $kmail=>$mail){
+													echo '<li 
+													data-jstree=\'{"icon":"'.$mail["icon"].'"}\'>
+													<a '; 
+													if($mail["id"]==$_GET["id"]){
+														echo '  class="jstree-clicked"';
+													}else{
+														
+													}
+													echo ' href="?c='.$c.'&y='.$mail["anio"].'&m='.$mail["mes"].'&id='.$mail["id"].'">'.$mail["asunto"].'</a>';
+													echo '</li>';
+												}
+												echo '</ul>';
+											}*/
+									echo '</li>';
+								}
+								echo '</ul>';
+							echo '</li>';
+							
+						}
+						echo '</ul>
+							</li>
+						    </ul>';
+						
+					}
+					?>
+					
+				</div>
             </div>
             <!-- /.card-body -->
           </div>
