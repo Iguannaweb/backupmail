@@ -11,6 +11,7 @@
  * It will download the attachments too.                     *
  * Contact: info@iguannaweb.com                              *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+define(INCLUDE_CHECK,'true');
 ?>
 <?php
 include('igw_includes/config/dbc.php');
@@ -369,7 +370,7 @@ else{
 		if($folder !== 'INBOX'){
 		    krsort($list);
 		}
-		echo '<pre>';print_r($list);echo '</pre>';
+		//echo '<pre>';print_r($list);echo '</pre>';
 	
 		$inboxmails = imap_search($inbox, ''.$correos["imap_search"].'');  //, SE_UID //SUBJECT "LA19S"
 		$check = imap_mailboxmsginfo($inbox);
