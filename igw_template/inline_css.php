@@ -34,4 +34,6 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 	    text-overflow: inherit; 
 	}
 	.inbox .list-email>li.list-group-item .email-time { background: transparent !important; }
+	
+	.table td { padding: 5px !important; }
 </style>

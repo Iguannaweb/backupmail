@@ -170,11 +170,11 @@ function DBDelete($table_name, $where_clause='')
 }
 
 function get_tags($UDATE){
-		if($_GET["t"]==0){ $filter="AND et.ID_TAG NOT IN (1,27,2)"; }
+		if($_GET["t"]==0){ $filter="AND et.ID_TAG NOT IN (1,3,2)"; }
 		$etiquetas = DBSelect('igw_emails_tags et, igw_tags t', '*'," WHERE et.ID_TAG=t.ID_TAG AND et.ID_MAIL='".$UDATE."' ".$filter."",'','');
 		
 		while($et = mysqli_fetch_array($etiquetas)){
-			echo '<span data-actiontag="'.$et["ID_TAG"].'" style="cursor: pointer;" data-idmail="'.$UDATE.'" class="label label-'.$et["TAG_COLOR"].'"><i class="fa'.$et["ICON_S"].' fa-'.$et["TAG_ICON"].'"></i> '.$et["TAG"].'</span> ';
+			echo '<span data-actiontag="'.$et["ID_TAG"].'" style="cursor: pointer;" data-idmail="'.$UDATE.'" class="btn btn-'.$et["TAG_COLOR"].' btn-xs"><i class="fa'.$et["ICON_S"].' fa-'.$et["TAG_ICON"].'"></i> '.$et["TAG"].'</span> ';
 		}
 		
 	}
@@ -183,19 +183,19 @@ function get_star($UDATE){
 		$etiquetas = mysqli_fetch_array(DBSelect('igw_emails_tags et, igw_tags t', '*'," WHERE et.ID_TAG=t.ID_TAG AND et.ID_MAIL='".$UDATE."' AND et.ID_TAG=1",'LIMIT 0,1',''));
 		//echo '<pre>';print_r($etiquetas);echo '</pre>';
 		if($etiquetas["ID_TAG"]==1){
-		return '<a href="index.php?a=unstar&u='.$UDATE.'"><i class="fa fa-star fa-lg mr-2 text-yellow"></i></a>';
+		return '<a href="index.php?a=unstar&u='.$UDATE.'"><i class="fa fa-star mr-2 text-warning"></i></a>';
 		}else{
-		return '<a href="index.php?a=star&u='.$UDATE.'"><i class="far fa-star fa-lg mr-2"></i></a>';
+		return '<a href="index.php?a=star&u='.$UDATE.'"><i class="far fa-star mr-2 text-gray"></i></a>';
 		}
 		
 		
 	}
 
 function get_task($UDATE){
-		$etiquetas = mysqli_fetch_array(DBSelect('igw_emails_tags et, igw_tags t', '*'," WHERE et.ID_TAG=t.ID_TAG AND et.ID_MAIL='".$UDATE."' AND et.ID_TAG=27",'LIMIT 0,1',''));
+		$etiquetas = mysqli_fetch_array(DBSelect('igw_emails_tags et, igw_tags t', '*'," WHERE et.ID_TAG=t.ID_TAG AND et.ID_MAIL='".$UDATE."' AND et.ID_TAG=3",'LIMIT 0,1',''));
 		//echo '<pre>';print_r($etiquetas);echo '</pre>';
-		if($etiquetas["ID_TAG"]==27){
-		return '<a href="index.php?a=untag&t='.$etiquetas["ID_TAG"].'&u='.$UDATE.'"><i class="fa fa-tasks fa-lg mr-2 text-warning"></i></a>';
+		if($etiquetas["ID_TAG"]==3){
+		return '<a href="index.php?a=untag&t='.$etiquetas["ID_TAG"].'&u='.$UDATE.'"><i class="fa fa-tasks mr-2 text-warning"></i></a>';
 		}else{
 		return '0';
 		}

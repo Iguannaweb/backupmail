@@ -20,6 +20,13 @@ include('igw_includes/config/pag_config.php');
 include('igw_includes/functions/functions.php');
 include('igw_includes/functions/paginator.class.php');
 require_once './vendor/autoload.php';
+$debug=0;
+if($debug==1){
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL);
+}
+
 $principal='mailbackup';
 
 //ETIQUETAR
@@ -76,7 +83,7 @@ if((($_GET["a"]=="starb") || ($_GET["a"]=="tarea") || ($_GET["a"]=="borrar") || 
 	if($_GET["a"]=="starb"){
 		$id_tag = 1;
 	}elseif($_GET["a"]=="tarea"){
-		$id_tag = 27;
+		$id_tag = 3;
 	}elseif($_GET["a"]=="spam"){
 		$id_tag = 2;
 	}

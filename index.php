@@ -13,7 +13,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 define('INCLUDE_CHECK','true');
 
-	include('./igw_template/header.php'); 
+include('./igw_template/header.php'); 
 ?>	  
 	  
     <!-- Content Header (Page header) -->
@@ -117,7 +117,7 @@ define('INCLUDE_CHECK','true');
 				    <?php
 					foreach($correos_loop as $c=>$correo){
 						$c=str_replace(array('@','.'),'_',$c);
-						echo '<ul>
+						echo '<ul class="nav nav-pills flex-column">
 							<li '; 
 							if($c==$_GET["c"]){
 								echo '  class="jstree-open"';
@@ -234,19 +234,19 @@ define('INCLUDE_CHECK','true');
 					
 					while($rowt=mysqli_fetch_array($datatags)){
 						echo '<li'; 
-						echo " data-jstree='{ \"icon\" : \"fa".$rowt["ICON_S"]." fa-".$rowt["TAG_ICON"]." fa-lg text-".$rowt["TAG_COLOR"]."\" }'";	
+						echo " data-jstree='{ \"icon\" : \"fa".$rowt["ICON_S"]." fa-".$rowt["TAG_ICON"]." text-".$rowt["TAG_COLOR"]."\" }'";	
 						echo '><a '; 
 							if($rowt["ID_TAG"]==$_GET["t"]){
-								echo '  class="jstree-clicked"';
+								echo '  class="nav-item jstree-clicked"';
 							}else{
-								
+								echo '  class="nav-item "';
 							}
 							echo ' href="index.php?t='.$rowt["ID_TAG"].'&c='.$_GET["c"].'"><i class="jstree-icon fa'.$rowt["ICON_S"].' fa-fw f-s-10 m-r-5 fa-'.$rowt["TAG_ICON"].' text-'.$rowt["TAG_COLOR"].'"></i> '.$rowt["TAG"].' ('.get_tag_count($rowt["ID_TAG"]).')</a>';
 						$datatags_children[$i] = DBSelect('igw_tags', '*', "WHERE ID_TAG_SUP = '".$rowt["ID_TAG"]."'",'ORDER BY POSICION ASC');
 						echo '<ul>';
 						while($rowt_children[$i]=mysqli_fetch_array($datatags_children[$i])){
 						echo '<li'; 
-						echo " data-jstree='{ \"icon\" : \"fa".$rowt_children[$i]["ICON_S"]." fa-".$rowt_children[$i]["TAG_ICON"]." fa-lg text-".$rowt_children[$i]["TAG_COLOR"]."\" }'";	
+						echo " data-jstree='{ \"icon\" : \"fa".$rowt_children[$i]["ICON_S"]." fa-".$rowt_children[$i]["TAG_ICON"]." text-".$rowt_children[$i]["TAG_COLOR"]."\" }'";	
 						echo '><a '; 
 							if($rowt_children[$i]["ID_TAG"]==$_GET["t"]){
 								echo '  class="jstree-clicked"';
@@ -277,12 +277,12 @@ define('INCLUDE_CHECK','true');
             </div>
 	          <div  class="card-body p-0" id="jstree_otros_div">
 				<ul class="nav nav-inbox">
-					<li <?php echo " data-jstree='{ \"icon\" : \"fa fa-envelope fa-lg text-info\" }'"; ?>>
-					<a href="index.php?tipo=sent&c="><i class="fa fa-envelope fa-lg text-info"></i> ENVIADOS</a></li>
-					<li <?php echo " data-jstree='{ \"icon\" : \"fa fa-pencil-alt fa-lg text-grey\" }'"; ?>>
-					<a href="index.php?tipo=draft&c="><i class="fa fa-pencil-alt fa-lg text-grey"></i> BORRADORES</a></li>
-					<li <?php echo " data-jstree='{ \"icon\" : \"fa fa-sticky-note fa-lg text-yellow\" }'"; ?>>
-					<a href="index.php?tipo=notes&c="><i class="fa fa-sticky-note fa-lg text-yellow"></i> NOTAS</a></li>
+					<li <?php echo " data-jstree='{ \"icon\" : \"fa fa-envelope text-info\" }'"; ?>>
+					<a href="index.php?tipo=sent&c="><i class="fa fa-envelope text-info"></i> ENVIADOS</a></li>
+					<li <?php echo " data-jstree='{ \"icon\" : \"fa fa-pencil-alt text-grey\" }'"; ?>>
+					<a href="index.php?tipo=draft&c="><i class="fa fa-pencil-alt text-grey"></i> BORRADORES</a></li>
+					<li <?php echo " data-jstree='{ \"icon\" : \"fa fa-sticky-note text-yellow\" }'"; ?>>
+					<a href="index.php?tipo=notes&c="><i class="fa fa-sticky-note text-yellow"></i> NOTAS</a></li>
 				</ul>
 				</div>
           </div>
@@ -441,22 +441,22 @@ define('INCLUDE_CHECK','true');
 					elseif($list["ARCHIVE"]=="1"){ echo 'style="background: #ebf3ff;"'; }
 					echo '>';
 				
-					echo '<td>';
+					echo '<td style="width: 24px;">';
 					if(get_task($list["UDATE"])!="0"){
 						echo '<div class="email-checkbox">'.get_task($list["UDATE"]).'</div>';
 					}else{
 						echo '<div class="email-checkbox">'.get_star($list["UDATE"]).'</div>';
 					}
 					echo '</td>';
-					echo '<td class="mailbox-star">';
+					echo '<td class="mailbox-star" style="width: 24px;">';
 					if($list["ARCHIVE"]!="0"){
-						echo '<div class="email-checkbox"><a href="index.php?a=unarchive&u='.$list["UDATE"].'"><i class="fa fa-archive fa-lg mr-2 text-warning"></i></a></div>';
+						echo '<div class="email-checkbox"><a href="index.php?a=unarchive&u='.$list["UDATE"].'"><i class="fa fa-archive mr-2 text-warning"></i></a></div>';
 					}elseif($list["DELETED"]!="0"){
-						echo '<div class="email-checkbox"><a href="index.php?a=undelete&u='.$list["UDATE"].'"><i class="fa fa-trash fa-lg mr-2 text-red"></i></a></div>';
+						echo '<div class="email-checkbox"><a href="index.php?a=undelete&u='.$list["UDATE"].'"><i class="fa fa-trash mr-2 text-red"></i></a></div>';
 					}
 					echo '</td>';
 					
-					echo '<td>';
+					echo '<td  style="width: 24px;">';
 					echo '<div class="email-checkbox">
 						<div class="custom-control custom-checkbox">
 							<input type="checkbox" class="custom-control-input" data-checked="email-checkbox" id="emailCheckbox'.$list["UDATE"].'" name="'.$list["UDATE"].'">
@@ -464,10 +464,10 @@ define('INCLUDE_CHECK','true');
 						</div>
 					</div>
 					</td>
-					<td class="mailbox-name">
+					<td class="mailbox-name"  style="width: 35%;">
 					<div class="email-checkbox ml-2">';
 					if(($_GET["c"]=="")){
-						echo '<span class="label label-info m-r-2"><i class="fas fa-envelope"></i> '.$list["MAIL"].'</span> ';
+						echo '<span class="btn btn-info btn-xs m-r-2"><i class="fas fa-envelope"></i> '.$list["MAIL"].'</span> ';
 					}
 					
 					echo '<span class="email-tags">';
@@ -480,8 +480,8 @@ define('INCLUDE_CHECK','true');
 							<span class="email-sender">'.$from.' ['.$from_address[0]["address"].']</span>
 						</a>
 					</td>
-					<td class="mailbox-subject">'.iconv_mime_decode($list["SUBJECT"],0, "UTF-8").'</td>
-                    <td class="mailbox-attachment">'; 
+					<td class="mailbox-subject"  style="width: 45%;">'.iconv_mime_decode($list["SUBJECT"],0, "UTF-8").'</td>
+                    <td class="mailbox-attachment"  style="width: 24px;">'; 
 							if(count($attachments)>=1){ echo '<i class="fas fa-paperclip"></i> '; }
 							echo '</td>
                     <td class="mailbox-date">'.date('d/m/Y H:i:s',$list["UDATE"]).'</td>
@@ -527,7 +527,135 @@ define('INCLUDE_CHECK','true');
     <!-- /.content -->
   <?php } ?>
   
+  
+  <?php 
+													
+													if(isset($_GET["c"]) && ($_GET["c"]!='') && isset($_GET["y"]) && ((int)$_GET["y"]!=0) && isset($_GET["m"]) && ((int)$_GET["m"]!=0) && isset($_GET["id"]) && ((int)$_GET["id"]!=0)){
+						?>
+						
+					
+		 <div class="col-md-9">
+          <div class="card card-primary card-outline">
+            <div class="card-header">
+              <h3 class="card-title">Reading mail </h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+	           <?php
+		       	if($_GET["tipo"]=="notes"){ $folder_tipo='_notes';}
+				elseif($_GET["tipo"]=="sent"){ $folder_tipo="_sents"; }
+				elseif($_GET["tipo"]=="draft"){ $folder_tipo="_drafts"; }
+					$path = './mailbackup'.$folder_tipo.'/'.$_GET["c"].'/'.$_GET["y"].'/'.$_GET["m"].'/MSG_ID_'.$_GET["id"].'.eml';
+					$parser = new PhpMimeMailParser\Parser();
+					$parser->setPath($path);
+					
+					
+					$to = $parser->getHeader('to');
+					$to_address = $parser->getAddresses('to');
+					$delivered_to = $parser->getHeader('delivered-to');
+					$from = $parser->getHeader('from');
+					$from_address = $parser->getAddresses('from');
+					$subject = $parser->getHeader('subject');
+					$text = $parser->getMessageBody('text');
+					$html = $parser->getMessageBody('html');
+					$htmlEmbedded = $parser->getMessageBody('htmlEmbedded');
+
+					$attachments = $parser->getAttachments();
+
+		       
+		       ?>
+              <div class="mailbox-read-info">
+                <a href="javascript:;" class="float-left">
+				<img class="media-object rounded-corner" alt="" src="<?php echo ''.get_gravatar($from_address[0]["address"]).''; ?>" />
+				</a>
+				<h5><?php echo ''.iconv_mime_decode($subject,0, "UTF-8").''; ?></h5>
+				<h6><strong>To:</strong> <?php echo ''.$to.' '.$to_address[0]["address"].''; ?><br>
+				<strong>From:</strong> <?php echo ''.$from.' '.$from_address[0]["address"].''; ?>
+                  <span class="mailbox-read-time float-right"><i class="fa fa-clock fa-fw"></i> <?php echo ''.date('d/m/Y H:i:s',$_GET["id"]).''; ?></span></h6>
+              </div>
+              <!-- /.mailbox-read-info -->
+              <!-- div class="mailbox-controls with-border text-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Delete">
+                    <i class="far fa-trash-alt"></i></button>
+                  <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Reply">
+                    <i class="fas fa-reply"></i></button>
+                  <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Forward">
+                    <i class="fas fa-share"></i></button>
+                </div>
+                <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Print">
+                  <i class="fas fa-print"></i></button>
+              </div -->
+              <!-- /.mailbox-controls -->
+              <div class="mailbox-read-message">
+                <?php
+							
+						if(!file_exists('./mailbackup'.$folder_tipo.'/'.$_GET["c"].'/'.$_GET["y"].'/'.$_GET["m"].'/MSG_ID_'.$_GET["id"].'/')){
+							mkdir('./mailbackup'.$folder_tipo.'/'.$_GET["c"].'/'.$_GET["y"].'/'.$_GET["m"].'/MSG_ID_'.$_GET["id"].'/');
+						}
+						$save_dir = './mailbackup'.$folder_tipo.'/'.$_GET["c"].'/'.$_GET["y"].'/'.$_GET["m"].'/MSG_ID_'.$_GET["id"].'/'; 
+						$j=1;
+						
+						
+							
+						if($htmlEmbedded!=""){
+						echo '<hr><iframe src="./mail_reader.php?tipo='.$_GET["tipo"].'&c='.$_GET["c"].'&y='.$_GET["y"].'&m='.$_GET["m"].'&id='.$_GET["id"].'&t=htmlplus" style="border:0px #ffffff none;" name="myiFrame" scrolling="yes" frameborder="0" marginheight="0px" marginwidth="0px" height="400px" width="100%" allowfullscreen></iframe><br>';
+						}else{
+						echo '<hr><strong>Mensaje TEXTO:</strong><br><iframe src="./mail_reader.php?tipo='.$_GET["tipo"].'&c='.$_GET["c"].'&y='.$_GET["y"].'&m='.$_GET["m"].'&id='.$_GET["id"].'&t=text" style="border:0px #ffffff none;" name="myiFrame" scrolling="yes" frameborder="0" marginheight="0px" marginwidth="0px" height="400px" width="100%" allowfullscreen></iframe><br>';
+						}
+					?>
+              </div>
+              <!-- /.mailbox-read-message -->
+            </div>
+            <?php
+	        echo '<div class="card-footer bg-white">
+			<ul class="mailbox-attachments d-flex align-items-stretch clearfix">';
+			foreach ($attachments as $attachment) {
+			   
+			    if(file_exists('./mailbackup'.$folder_tipo.'/'.$_GET["c"].'/'.$_GET["y"].'/'.$_GET["m"].'/MSG_ID_'.$_GET["id"].'/'.$attachment->getFilename().'')){
+				}else{
+					$filename = $attachment->getFilename(); 
+					// write the file to the directory you want to save it in 
+					//Parser class give error
+					//$attachment->save('./mailbackup'.$folder_tipo.'/'.$_GET["c"].'/'.$_GET["y"].'/'.$_GET["m"].'/MSG_ID_'.$_GET["id"].'/', Parser::ATTACHMENT_DUPLICATE_SUFFIX);
+				}
+				echo '<li>
+                  <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
+
+                  <div class="mailbox-attachment-info">
+                    <a href="./mailbackup'.$folder_tipo.'/'.$_GET["c"].'/'.$_GET["y"].'/'.$_GET["m"].'/MSG_ID_'.$_GET["id"].'/'.$attachment->getFilename().'" class="mailbox-attachment-name"><i class="fas fa-paperclip"></i> '.$attachment->getFilename().'</a>
+                        <span class="mailbox-attachment-size clearfix mt-1">
+                          <!-- span>1,245 KB</span -->
+                          <a href="./mailbackup'.$folder_tipo.'/'.$_GET["c"].'/'.$_GET["y"].'/'.$_GET["m"].'/MSG_ID_'.$_GET["id"].'/'.$attachment->getFilename().'" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
+                        </span>
+                  </div>
+                </li>';
+			$j++;
+			}
+			echo '</ul>
+			</div>';
+	        ?>
+           
+            <!-- /.card-footer -->
+            <div class="card-footer">
+              <!-- div class="float-right">
+                <button type="button" class="btn btn-default"><i class="fas fa-reply"></i> Reply</button>
+                <button type="button" class="btn btn-default"><i class="fas fa-share"></i> Forward</button>
+              </div>
+              <button type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> Delete</button>
+              <button type="button" class="btn btn-default"><i class="fas fa-print"></i> Print</button -->
+            </div>
+            <!-- /.card-footer -->
+          </div>
+          <!-- /.card -->
+        </div>
+        
+        <?php								
+														
+		}
+													
+	?>
+  
   <?php
-	define(INCLUDE_CHECK,'true');
 	include('./igw_template/footer.php'); 
 ?>
