@@ -135,6 +135,9 @@ git clone https://github.com/Iguannaweb/backupmail.git
 ```sh
 php composer.phar install
 ```
+3. Create a mysql database and import the file _backupmail.sampledb.sql_
+
+4. Modify _dbc.sample.php_ with the database credentials and rename to **dbc.php**
 
 
 
