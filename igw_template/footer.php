@@ -21,10 +21,10 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
   <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      <?php echo 'BackupMail v1.0.0'; ?>
+      <?php echo '<a title="BackupMail - Backup all your mails as eml files" href="https://github.com/Iguannaweb/backupmail">BackupMail <img alt="GitHub milestone" src="https://img.shields.io/github/milestones/progress-percent/Iguannaweb/backupmail/1"></a>'; ?>
     </div>
     <!-- Default to the left -->
-    <strong> &copy; <?php echo date('Y');?> <a href="https://www.iguannaweb.com">Brought to you by iguannaweb</a>.</strong> All rights reserved.
+    <strong> &copy; <?php echo date('Y');?> <a href="https://www.iguannaweb.com">Brought to you by iguannaweb</a>.</strong>.
   </footer>
 </div>
 <!-- ./wrapper -->
