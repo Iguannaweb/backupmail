@@ -113,10 +113,10 @@ include('./igw_template/header.php'); ?>
 						$i=0;
 						
 						while($rowt=mysqli_fetch_array($datatags)){
-							echo '<li><a href="tags.php?t='.$rowt["ID_TAG"].'&a=edit"><i class="fa'.$rowt["ICON_S"].' fa-fw f-s-10 m-r-5 fa-'.$rowt["TAG_ICON"].' text-'.$rowt["TAG_COLOR"].'"></i> '.$rowt["POSICION"].' - '.$rowt["TAG"].' ('.get_tag_count($rowt["ID_TAG"]).')</a></li>';
+							echo '<li class="nav-item"><a class="nav-link" href="tags.php?t='.$rowt["ID_TAG"].'&a=edit"><i class="fa'.$rowt["ICON_S"].' fa-fw f-s-10 m-r-5 fa-'.$rowt["TAG_ICON"].' text-'.$rowt["TAG_COLOR"].'"></i> '.$rowt["POSICION"].' - '.$rowt["TAG"].' ('.get_tag_count($rowt["ID_TAG"]).')</a></li>';
 							$datatags_children[$i] = DBSelect('igw_tags', '*', "WHERE ID_TAG_SUP = '".$rowt["ID_TAG"]."'",'ORDER BY POSICION ASC');
 							while($rowt_children[$i]=mysqli_fetch_array($datatags_children[$i])){
-							echo '<li class="m-l-10"><a href="tags.php?t='.$rowt_children[$i]["ID_TAG"].'&a=edit"><i class="fa'.$rowt_children[$i]["ICON_S"].' fa-fw f-s-10 m-r-5 fa-'.$rowt_children[$i]["TAG_ICON"].' text-'.$rowt_children[$i]["TAG_COLOR"].'"></i> '.$rowt_children[$i]["POSICION"].' - '.$rowt_children[$i]["TAG"].' ('.get_tag_count($rowt_children[$i]["ID_TAG"]).')</a></li>';
+							echo '<li class="nav-item m-l-10"><a class="nav-link" href="tags.php?t='.$rowt_children[$i]["ID_TAG"].'&a=edit"><i class="fa'.$rowt_children[$i]["ICON_S"].' fa-fw f-s-10 m-r-5 fa-'.$rowt_children[$i]["TAG_ICON"].' text-'.$rowt_children[$i]["TAG_COLOR"].'"></i> '.$rowt_children[$i]["POSICION"].' - '.$rowt_children[$i]["TAG"].' ('.get_tag_count($rowt_children[$i]["ID_TAG"]).')</a></li>';
 							}
 						}
 					?>

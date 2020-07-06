@@ -278,11 +278,11 @@ include('./igw_template/header.php');
 	          <div  class="card-body p-0" id="jstree_otros_div">
 				<ul class="nav nav-inbox">
 					<li <?php echo " data-jstree='{ \"icon\" : \"fa fa-envelope text-info\" }'"; ?>>
-					<a href="index.php?tipo=sent&c="><i class="fa fa-envelope text-info"></i> ENVIADOS</a></li>
+					<a href="index.php?tipo=sent&c="><i class="fa fa-envelope text-info"></i> SENTS</a></li>
 					<li <?php echo " data-jstree='{ \"icon\" : \"fa fa-pencil-alt text-grey\" }'"; ?>>
-					<a href="index.php?tipo=draft&c="><i class="fa fa-pencil-alt text-grey"></i> BORRADORES</a></li>
+					<a href="index.php?tipo=draft&c="><i class="fa fa-pencil-alt text-grey"></i> DRAFTS</a></li>
 					<li <?php echo " data-jstree='{ \"icon\" : \"fa fa-sticky-note text-yellow\" }'"; ?>>
-					<a href="index.php?tipo=notes&c="><i class="fa fa-sticky-note text-yellow"></i> NOTAS</a></li>
+					<a href="index.php?tipo=notes&c="><i class="fa fa-sticky-note text-yellow"></i> NOTES</a></li>
 				</ul>
 				</div>
           </div>

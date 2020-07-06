@@ -73,9 +73,9 @@ CREATE TABLE `igw_tags` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `igw_tags` (`ID_TAG`, `ID_TAG_SUP`, `MAIL`, `TAG`, `TAG_COLOR`, `TAG_ICON`, `STATUS`, `POSICION`, `ICON_S`) VALUES
-(1, 0, '0', 'IMPORTANTES', 'yellow', 'star', 1, 1, ''),
-(2, 0, '0', 'SPAM', 'inverse', 'thumbs-down', 1, 99, ''),
-(3, 0, '0', 'TAREAS', 'warning', 'tasks', 1, 1, '');
+(1, 0, '0', 'Star', 'yellow', 'star', 1, 1, ''),
+(2, 0, '0', 'Spam', 'inverse', 'thumbs-down', 1, 99, ''),
+(3, 0, '0', 'Task', 'warning', 'tasks', 1, 1, '');
 
 --
 -- Índices para tablas volcadas
