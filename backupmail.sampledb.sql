@@ -1,31 +1,15 @@
--- phpMyAdmin SQL Dump
--- version 5.0.2
--- https://www.phpmyadmin.net/
---
--- Servidor: localhost:3306
--- Tiempo de generación: 05-07-2020 a las 01:11:13
--- Versión del servidor: 10.1.44-MariaDB-0ubuntu0.18.04.1
--- Versión de PHP: 7.3.16
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `mailbackup`
---
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `igw_emails`
---
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Copyright (C) 2020 Francisco Gálvez Prada                 *
+ * This file is part of the project BackupMail               *
+ * Contribute on https://github.com/Iguannaweb/backupmail    *
+ *                                                           *
+ * BACKUPMAIL                                                * 
+ * This is a simple solution to backup all your mails.       *
+ * It will organize your mails by account, year, month and   *
+ * it will create a separate eml file for every mail.        *
+ * It will download the attachments too.                     *
+ * Contact: info@iguannaweb.com                              *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 CREATE TABLE `igw_emails` (
   `ID_MAIL` int(10) NOT NULL,
@@ -42,11 +26,6 @@ CREATE TABLE `igw_emails` (
   `UPD_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `igw_emails_tags`
---
 
 CREATE TABLE `igw_emails_tags` (
   `ID_MAIL_TAG` int(10) NOT NULL,
@@ -55,10 +34,6 @@ CREATE TABLE `igw_emails_tags` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `igw_tags`
---
 
 CREATE TABLE `igw_tags` (
   `ID_TAG` int(10) NOT NULL,
@@ -77,51 +52,22 @@ INSERT INTO `igw_tags` (`ID_TAG`, `ID_TAG_SUP`, `MAIL`, `TAG`, `TAG_COLOR`, `TAG
 (2, 0, '0', 'Spam', 'inverse', 'thumbs-down', 1, 99, ''),
 (3, 0, '0', 'Task', 'warning', 'tasks', 1, 1, '');
 
---
--- Índices para tablas volcadas
---
 
---
--- Indices de la tabla `igw_emails`
---
 ALTER TABLE `igw_emails`
   ADD PRIMARY KEY (`ID_MAIL`);
 
---
--- Indices de la tabla `igw_emails_tags`
---
 ALTER TABLE `igw_emails_tags`
   ADD PRIMARY KEY (`ID_MAIL_TAG`);
 
---
--- Indices de la tabla `igw_tags`
---
 ALTER TABLE `igw_tags`
   ADD PRIMARY KEY (`ID_TAG`);
 
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `igw_emails`
---
 ALTER TABLE `igw_emails`
   MODIFY `ID_MAIL` int(10) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT de la tabla `igw_emails_tags`
---
 ALTER TABLE `igw_emails_tags`
   MODIFY `ID_MAIL_TAG` int(10) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT de la tabla `igw_tags`
---
 ALTER TABLE `igw_tags`
   MODIFY `ID_TAG` int(10) NOT NULL AUTO_INCREMENT;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
