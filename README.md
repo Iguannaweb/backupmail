@@ -67,9 +67,15 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Temporal screenshot][product-screenshot-1]](https://backupmail.iguannaweb.com/)
+[![Temporal HOME PAGE screenshot][product-screenshot-1]](https://backupmail.iguannaweb.com/)
 
-This is just a temporal screenshot, this is a work in progress!
+This is just a temporal home page screenshot.
+
+[![Temporal TAG PAGE screenshot][product-screenshot-2]](https://backupmail.iguannaweb.com/)
+
+This is just a temporal tag page screenshot.
+
+This is a work in progress!
 
 
 ### Built With

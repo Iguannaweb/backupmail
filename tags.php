@@ -128,7 +128,7 @@ include('./igw_template/header.php'); ?>
         </div>
         <!-- /.col -->
         <div class="col-md-9">
-          <div class="card card-primary card-outline">
+          <div class="card card-secondary card-outline">
             <div class="card-header">
               <h3 class="card-title">
 	              <?php if(!isset($_GET["a"])){ ?><i class="fas fa-tag"></i> Add new tag<?php } ?>
@@ -151,13 +151,13 @@ include('./igw_template/header.php'); ?>
 					    <input type="hidden" name="action" value="crear"/>
 					    <div class="row">
 							<div class="col-sm-6">
-								<strong>Nombre etiqueta</strong>
-								<input class="form-control" type="text" name="TAG" id="TAG" placeholder="Etiqueta" required="required"/>
+								<strong>Tag name</strong>
+								<input class="form-control" type="text" name="TAG" id="TAG" placeholder="Tag name" required="required"/>
 							</div>
 							<div class="col-sm-6">
-								<strong>Etiqueta padre</strong>
+								<strong>Parent tag</strong>
 								<select class="form-control" name="ID_TAG_SUP" id="ID_TAG_SUP">
-									<option value="0">Selecciona...</option>
+									<option value="0">Select...</option>
 									<?php
 										$datatags = DBSelect('igw_tags', '*', "WHERE ID_TAG_SUP = '0'",'ORDER BY POSICION ASC');
 					
@@ -180,15 +180,15 @@ include('./igw_template/header.php'); ?>
 					    
 					    <div class="row">
 						    <div class="col-sm-4">
-								<strong>Color etiqueta</strong>
-								<input class="form-control" type="text" name="TAG_COLOR" id="TAG_COLOR" placeholder="Color Etiqueta" required="required"/>
+								<strong>Tag Color</strong>
+								<input class="form-control" type="text" name="TAG_COLOR" id="TAG_COLOR" placeholder="Tag color" required="required"/>
 							</div>
 						    <div class="col-sm-4">
-								<strong>Icono etiqueta</strong>
-								<input class="form-control" type="text" name="TAG_ICON" id="TAG_ICON" placeholder="Icono Etiqueta" required="required"/>
+								<strong>Tag Icon</strong>
+								<input class="form-control" type="text" name="TAG_ICON" id="TAG_ICON" placeholder="Tag icon" required="required"/>
 							</div>
 							<div class="col-sm-4">
-								<strong>Corrector icono etiqueta</strong>
+								<strong>Icon fa(x)</strong>
 								<select class="form-control" name="ICON_S" id="ICON_S">
 									<option value="">NORMAL</option>
 									<option value="s">SOLID</option>
@@ -199,22 +199,22 @@ include('./igw_template/header.php'); ?>
 					    
 					    <div class="row">
 						    <div class="col-sm-6">
-							    <strong>Posición etiqueta</strong>
-								<input class="form-control" type="text" name="POSICION" id="POSICION" placeholder="Posición"/>
+							    <strong>Tag position</strong>
+								<input class="form-control" type="text" name="POSICION" id="POSICION" placeholder="Tag position"/>
 						    </div>
 						    
 						    <div class="col-sm-6">
-							    <strong>Estado etiqueta</strong>
+							    <strong>Tag status</strong>
 								<select class="form-control" name="STATUS" id="STATUS">
-									<option value="1">Activa</option>
-									<option value="0">Inactiva</option>
+									<option value="1">Active</option>
+									<option value="0">Inactive</option>
 								</select>
 						    </div>
 					    </div>
 					    <div class="row">
 						    <div class="col-sm-12">
 							    <div>&nbsp;</div>
-							    <input type="submit" class="pull-right btn btn-inverse" value="Crear">
+							    <input type="submit" class="pull-right btn btn-secondary" value="Create tag">
 						    </div>
 					    </div>
 				    </form>
@@ -245,13 +245,13 @@ include('./igw_template/header.php'); ?>
 					    <input type="hidden" name="ID_TAG" value="<?php echo $datatags_e["ID_TAG"]; ?>"/>
 					    <div class="row">
 							<div class="col-sm-6">
-								<strong>Nombre etiqueta</strong>
-								<input class="form-control" type="text" name="TAG" id="TAG" placeholder="Etiqueta" value="<?php echo $datatags_e["TAG"]; ?>" required="required"/>
+								<strong>Tag name</strong>
+								<input class="form-control" type="text" name="TAG" id="TAG" placeholder="Tag name" value="<?php echo $datatags_e["TAG"]; ?>" required="required"/>
 							</div>
 							<div class="col-sm-6">
-								<strong>Etiqueta padre</strong>
+								<strong>Parent tag</strong>
 								<select class="form-control" name="ID_TAG_SUP" id="ID_TAG_SUP">
-									<option value="0">Selecciona...</option>
+									<option value="0">Select...</option>
 									<?php
 										$datatags = DBSelect('igw_tags', '*', "WHERE ID_TAG_SUP = '0'",'ORDER BY POSICION ASC');
 					
@@ -278,15 +278,15 @@ include('./igw_template/header.php'); ?>
 					    
 					    <div class="row">
 						    <div class="col-sm-4">
-								<strong>Color etiqueta</strong>
-								<input class="form-control" type="text" name="TAG_COLOR" id="TAG_COLOR" value="<?php echo $datatags_e["TAG_COLOR"]; ?>" placeholder="Color Etiqueta" required="required"/>
+								<strong>Tag Color</strong>
+								<input class="form-control" type="text" name="TAG_COLOR" id="TAG_COLOR" value="<?php echo $datatags_e["TAG_COLOR"]; ?>" placeholder="Tag Color" required="required"/>
 							</div>
 						    <div class="col-sm-4">
-								<strong>Icono etiqueta</strong>
-								<input class="form-control" type="text" name="TAG_ICON" id="TAG_ICON" value="<?php echo $datatags_e["TAG_ICON"]; ?>" placeholder="Icono Etiqueta" required="required"/>
+								<strong>Tag Icon</strong>
+								<input class="form-control" type="text" name="TAG_ICON" id="TAG_ICON" value="<?php echo $datatags_e["TAG_ICON"]; ?>" placeholder="Tag Icon" required="required"/>
 							</div>
 							<div class="col-sm-4">
-								<strong>Corrector icono etiqueta</strong>
+								<strong>Icon fa(x)</strong>
 								<select class="form-control" name="ICON_S" id="ICON_S">
 									<option value="">NORMAL</option>
 									<option value="s" <?php if($datatags_e["ICON_S"]=="s"){ echo 'selected="selected"'; } ?>>SOLID</option>
@@ -297,12 +297,12 @@ include('./igw_template/header.php'); ?>
 					    
 					    <div class="row">
 						    <div class="col-sm-6">
-							    <strong>Posición etiqueta</strong>
-								<input class="form-control" type="text" name="POSICION" value="<?php echo $datatags_e["POSICION"]; ?>" id="POSICION" placeholder="Posición"/>
+							    <strong>Tag position</strong>
+								<input class="form-control" type="text" name="POSICION" value="<?php echo $datatags_e["POSICION"]; ?>" id="POSICION" placeholder="Tag position"/>
 						    </div>
 						    
 						    <div class="col-sm-6">
-							    <strong>Estado etiqueta</strong>
+							    <strong>Tag status</strong>
 								<select class="form-control" name="STATUS" id="STATUS">
 									<option value="1" <?php if($datatags_e["STATUS"]=="1"){ echo 'selected="selected"'; } ?>>Activa</option>
 									<option value="0" <?php if($datatags_e["STATUS"]=="0"){ echo 'selected="selected"'; } ?>>Inactiva</option>
@@ -312,7 +312,7 @@ include('./igw_template/header.php'); ?>
 					    <div class="row">
 						    <div class="col-sm-12">
 							    <div>&nbsp;</div>
-							    <input type="submit" class="pull-right btn btn-inverse" value="Editar">
+							    <input type="submit" class="pull-right btn btn-secondary" value="Edit tag">
 						    </div>
 					    </div>
 				    </form>
