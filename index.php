@@ -36,7 +36,7 @@ include('./igw_template/header.php');
     <!-- Main content -->
     <section class="content">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-4">
           <!--a href="#" class="btn btn-primary btn-block mb-3">Compose</a -->
 
           <div class="card">
@@ -337,7 +337,7 @@ include('./igw_template/header.php');
 				
 			?>
         <!-- /.col -->
-        <div class="col-md-9">
+        <div class="col-md-9 col-sm-8">
           <div class="card card-primary card-outline">
             <div class="card-header">
               <h3 class="card-title">Inbox</h3>
@@ -464,7 +464,7 @@ include('./igw_template/header.php');
 						</div>
 					</div>
 					</td>
-					<td class="mailbox-name"  style="width: 35%;">
+					<td style="width: 25%;">
 					<div class="email-checkbox ml-2">';
 					if(($_GET["c"]=="")){
 						echo '<span class="btn btn-info btn-xs m-r-2"><i class="fas fa-envelope"></i> '.$list["MAIL"].'</span> ';
@@ -474,6 +474,8 @@ include('./igw_template/header.php');
 					echo get_tags($list["UDATE"]);
 					echo '</span>
 					</div>
+					</td>
+					<td class="mailbox-name"  style="width: 35%;">
 					<a href="index.php?&c='.$partes_file[2].'&y='.$partes_file[3].'&m='.$partes_file[4].'&id='.$list["UDATE"].'" class="email-user">
 						<img class="media-object rounded-corner img-circle" alt="" src="'.get_gravatar($from_address[0]["address"],20).'" />
 					</a> <a href="index.php?tipo='.$_GET["tipo"].'&c='.$partes_file[2].'&y='.$partes_file[3].'&m='.$partes_file[4].'&id='.$list["UDATE"].'">
@@ -611,13 +613,13 @@ include('./igw_template/header.php');
 	        echo '<div class="card-footer bg-white">
 			<ul class="mailbox-attachments d-flex align-items-stretch clearfix">';
 			foreach ($attachments as $attachment) {
-			   
+			   	echo $attachment->getFilename();
 			    if(file_exists('./mailbackup'.$folder_tipo.'/'.$_GET["c"].'/'.$_GET["y"].'/'.$_GET["m"].'/MSG_ID_'.$_GET["id"].'/'.$attachment->getFilename().'')){
 				}else{
 					$filename = $attachment->getFilename(); 
 					// write the file to the directory you want to save it in 
 					//Parser class give error
-					//$attachment->save('./mailbackup'.$folder_tipo.'/'.$_GET["c"].'/'.$_GET["y"].'/'.$_GET["m"].'/MSG_ID_'.$_GET["id"].'/', Parser::ATTACHMENT_DUPLICATE_SUFFIX);
+					$attachment->save('./mailbackup'.$folder_tipo.'/'.$_GET["c"].'/'.$_GET["y"].'/'.$_GET["m"].'/MSG_ID_'.$_GET["id"].'/'); //, Parser::ATTACHMENT_DUPLICATE_SUFFIX
 				}
 				echo '<li>
                   <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>

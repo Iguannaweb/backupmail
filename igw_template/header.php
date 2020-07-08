@@ -361,7 +361,7 @@ if(($_GET["a"]=="untag") && ((int)$_GET["mail"]!=0) && ((int)$_GET["t"]!=0)){
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.8/themes/default/style.min.css" />
   <?php include('./igw_template/inline_css.php'); ?>
 </head>
-<body class="hold-transition sidebar-mini  accent-navy">
+<body class="hold-transition sidebar-mini  accent-navy  text-sm">
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -369,7 +369,7 @@ if(($_GET["a"]=="untag") && ((int)$_GET["mail"]!=0) && ((int)$_GET["t"]!=0)){
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link-logo" href="index.php" role="button"><img src="igw_template/assets/img/backupmail.png" alt="backupmail" height="40" ></a>
+        <a class="nav-link-logo" href="index.php" role="button"><img src="igw_template/assets/img/backupmail.png" alt="backupmail" height="30" ></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="configuration.php" class="nav-link"><i class="fa fa-envelope"></i> Accounts</a>
