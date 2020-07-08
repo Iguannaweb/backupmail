@@ -73,7 +73,7 @@ class Paginator{
 
 		if($this->num_pages > 10)
 		{
-			$this->return = ($this->current_page != 1 And $this->items_total >= 10) ? "<a class=\"btn btn-white  btn-sm\" href=\"$_SERVER[PHP_SELF]?page=$prev_page&ipp=$this->items_per_page$this->querystring#startdata\">&laquo; Ant</a> ":"<span class=\"btn  btn-sm btn-inverse\" href=\"#\">&laquo; Ant</span> ";
+			$this->return = ($this->current_page != 1 And $this->items_total >= 10) ? "<a class=\"btn btn-secondary  btn-sm\" href=\"$_SERVER[PHP_SELF]?page=$prev_page&ipp=$this->items_per_page$this->querystring#startdata\">&laquo; Ant</a> ":"<span class=\"btn  btn-sm btn-inverse\" href=\"#\">&laquo; Ant</span> ";
 
 			$this->start_range = $this->current_page - floor($this->mid_range/2);
 			$this->end_range = $this->current_page + floor($this->mid_range/2);
@@ -92,25 +92,25 @@ class Paginator{
 
 			for($i=1;$i<=$this->num_pages;$i++)
 			{
-				if($this->range[0] > 2 And $i == $this->range[0]) $this->return .= " <span class=\"btn  btn-sm btn-white\">...</span> ";
+				if($this->range[0] > 2 And $i == $this->range[0]) $this->return .= " <span class=\"btn  btn-sm btn-secondary\">...</span> ";
 				// loop through all pages. if first, last, or in range, display
 				if($i==1 Or $i==$this->num_pages Or in_array($i,$this->range))
 				{
-					$this->return .= ($i == $this->current_page And $_GET['page'] != 'All') ? "<a title=\"Ir a la pag $i de $this->num_pages\" class=\"btn  btn-sm btn-info\" href=\"#\">$i</a> ":"<a class=\"btn  btn-sm btn-white\" title=\"Ir a la pag $i de $this->num_pages\" href=\"$_SERVER[PHP_SELF]?page=$i&ipp=$this->items_per_page$this->querystring#startdata\">$i</a> ";
+					$this->return .= ($i == $this->current_page And $_GET['page'] != 'All') ? "<a title=\"Ir a la pag $i de $this->num_pages\" class=\"btn  btn-sm btn-info\" href=\"#\">$i</a> ":"<a class=\"btn  btn-sm btn-secondary\" title=\"Ir a la pag $i de $this->num_pages\" href=\"$_SERVER[PHP_SELF]?page=$i&ipp=$this->items_per_page$this->querystring#startdata\">$i</a> ";
 				}
-				if($this->range[$this->mid_range-1] < $this->num_pages-1 And $i == $this->range[$this->mid_range-1]) $this->return .= " <span class=\"btn  btn-sm btn-white\">...</span> ";
+				if($this->range[$this->mid_range-1] < $this->num_pages-1 And $i == $this->range[$this->mid_range-1]) $this->return .= " <span class=\"btn  btn-sm btn-secondary\">...</span> ";
 			}
-			$this->return .= (($this->current_page != $this->num_pages And $this->items_total >= 10) And ($_GET['page'] != 'All')) ? "<a class=\"btn  btn-sm btn-white\" href=\"$_SERVER[PHP_SELF]?page=$next_page&ipp=$this->items_per_page$this->querystring#startdata\">Sig &raquo;</a>\n":"<span class=\"btn  btn-sm btn-inverse\" href=\"#\">&raquo; Sig</span>\n";
-			$this->return .= ($_GET['page'] == 'All') ? "<a class=\"btn  btn-sm btn-success\" style=\"margin-left:10px\" href=\"#\">All</a> \n":"<a class=\"btn  btn-sm btn-white\" style=\"margin-left:10px\" href=\"$_SERVER[PHP_SELF]?page=1&ipp=All$this->querystring#startdata\">Todos</a> \n";
+			$this->return .= (($this->current_page != $this->num_pages And $this->items_total >= 10) And ($_GET['page'] != 'All')) ? "<a class=\"btn  btn-sm btn-secondary\" href=\"$_SERVER[PHP_SELF]?page=$next_page&ipp=$this->items_per_page$this->querystring#startdata\">Sig &raquo;</a>\n":"<span class=\"btn  btn-sm btn-inverse\" href=\"#\">&raquo; Sig</span>\n";
+			$this->return .= ($_GET['page'] == 'All') ? "<a class=\"btn  btn-sm btn-success\" style=\"margin-left:10px\" href=\"#\">All</a> \n":"<a class=\"btn  btn-sm btn-secondary\" style=\"margin-left:10px\" href=\"$_SERVER[PHP_SELF]?page=1&ipp=All$this->querystring#startdata\">Todos</a> \n";
 		}
 		else
 		{
 			for($i=1;$i<=$this->num_pages;$i++)
 			{
 				//$this->return .= ($i == $this->current_page) ? "<a class=\"current\" href=\"#\">$i</a> ":"<a class=\"paginate\" href=\"$_SERVER[PHP_SELF]?page=$i&ipp=$this->items_per_page$this->querystring#startdata\">$i</a> ";
-				$this->return .= ($i == $this->current_page) ? "<a class=\"btn  btn-sm btn-info\" href=\"$_SERVER[PHP_SELF]?page=$i&ipp=$this->items_per_page$this->querystring#startdata\">$i</a> ":"<a class=\"btn  btn-sm btn-white\" href=\"$_SERVER[PHP_SELF]?page=$i&ipp=$this->items_per_page$this->querystring#startdata\">$i</a> ";
+				$this->return .= ($i == $this->current_page) ? "<a class=\"btn  btn-sm btn-info\" href=\"$_SERVER[PHP_SELF]?page=$i&ipp=$this->items_per_page$this->querystring#startdata\">$i</a> ":"<a class=\"btn  btn-sm btn-secondary\" href=\"$_SERVER[PHP_SELF]?page=$i&ipp=$this->items_per_page$this->querystring#startdata\">$i</a> ";
 			}
-			$this->return .= "<a class=\"btn  btn-sm btn-white\" href=\"$_SERVER[PHP_SELF]?page=1&ipp=All$this->querystring#startdata\">Todos</a> \n";
+			$this->return .= "<a class=\"btn  btn-sm btn-secondary\" href=\"$_SERVER[PHP_SELF]?page=1&ipp=All$this->querystring#startdata\">Todos</a> \n";
 		}
 		$this->low = ($this->current_page-1) * $this->items_per_page;
 		$this->high = ($_GET['ipp'] == 'All') ? $this->items_total:($this->current_page * $this->items_per_page)-1;
@@ -123,7 +123,7 @@ class Paginator{
 		$ipp_array = array(10,25,50,100,'All');
 		$ipp_arrayb = array(10,25,50,100,'Todos');
 		foreach($ipp_array as $ipp_opt)	$items .= ($ipp_opt == $this->items_per_page) ? "<option selected value=\"$ipp_opt\">$ipp_opt</option>\n":"<option value=\"$ipp_opt\">$ipp_opt</option>\n";
-		return "&nbsp;<span class=\"btn  btn-sm btn-white\">Lineas:</span><select style=\"width: 80px; display: inline;\" class=\"btn  btn-sm btn-white form-control\" onchange=\"window.location='$_SERVER[PHP_SELF]?page=1&ipp='+this[this.selectedIndex].value+'$this->querystring#startdata';return false\">$items</select>\n";
+		return "&nbsp;<span class=\"btn  btn-sm btn-secondary\">Lineas:</span><select style=\"width: 80px; display: inline;\" class=\"btn  btn-sm btn-secondary form-control\" onchange=\"window.location='$_SERVER[PHP_SELF]?page=1&ipp='+this[this.selectedIndex].value+'$this->querystring#startdata';return false\">$items</select>\n";
 	}
 
 	function display_jump_menu()
@@ -132,7 +132,7 @@ class Paginator{
 		{
 			$option .= ($i==$this->current_page) ? "<option value=\"$i\" selected>$i</option>\n":"<option value=\"$i\">$i</option>\n";
 		}
-		return "&nbsp;<span class=\"btn  btn-sm btn-white\">Pag:</span><select style=\"width: 80px; display: inline;\" class=\"btn  btn-sm btn-white form-control\" onchange=\"window.location='$_SERVER[PHP_SELF]?page='+this[this.selectedIndex].value+'&ipp=$this->items_per_page$this->querystring#startdata';return false\">$option</select>\n";
+		return "&nbsp;<span class=\"btn  btn-sm btn-secondary\">Pag:</span><select style=\"width: 80px; display: inline;\" class=\"btn  btn-sm btn-secondary form-control\" onchange=\"window.location='$_SERVER[PHP_SELF]?page='+this[this.selectedIndex].value+'&ipp=$this->items_per_page$this->querystring#startdata';return false\">$option</select>\n";
 	}
 
 	function display_pages()

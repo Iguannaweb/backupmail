@@ -338,7 +338,7 @@ include('./igw_template/header.php');
 			?>
         <!-- /.col -->
         <div class="col-md-9 col-sm-8">
-          <div class="card card-primary card-outline">
+          <div class="card card-navy card-outline">
             <div class="card-header">
               <h3 class="card-title">Inbox</h3>
 
@@ -346,7 +346,7 @@ include('./igw_template/header.php');
                 <div class="input-group input-group-sm">
                   <input type="text" class="form-control" placeholder="Search Mail">
                   <div class="input-group-append">
-                    <div class="btn btn-primary">
+                    <div class="btn btn-secondary">
                       <i class="fas fa-search"></i>
                     </div>
                   </div>
