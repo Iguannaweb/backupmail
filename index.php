@@ -613,7 +613,7 @@ include('./igw_template/header.php');
 	        echo '<div class="card-footer bg-white">
 			<ul class="mailbox-attachments d-flex align-items-stretch clearfix">';
 			foreach ($attachments as $attachment) {
-			   	echo $attachment->getFilename();
+
 			    if(file_exists('./mailbackup'.$folder_tipo.'/'.$_GET["c"].'/'.$_GET["y"].'/'.$_GET["m"].'/MSG_ID_'.$_GET["id"].'/'.$attachment->getFilename().'')){
 				}else{
 					$filename = $attachment->getFilename(); 
