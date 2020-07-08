@@ -20,7 +20,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/Iguannaweb/backupmail">
-    <img src="https://backupmail.iguannaweb.com/igw_template/assets/img/backupmail.png" alt="Logo" width="425" height="110">
+    <img src="/igw_template/assets/img/backupmail.png" alt="Logo" width="425" height="110">
   </a>
 
   <h3 align="center">What is BackupMail?</h3>
