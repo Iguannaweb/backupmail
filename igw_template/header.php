@@ -466,7 +466,7 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="fas fa-cogs"></i>
+          <i class="fas fa-bar-chart"></i>
           <!-- span class="badge badge-warning navbar-badge">15</span -->
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -489,6 +489,9 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
           <!--div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a -->
         </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="index.php?go=docs" role="button"><i class="fas fa-book"></i></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="index.php?logoff" role="button"><i class="fas fa-sign-out-alt"></i></a>

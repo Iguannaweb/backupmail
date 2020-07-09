@@ -145,14 +145,16 @@ php composer.phar install
 
 4. Modify _dbc.sample.php_ with the database credentials and rename to **dbc.php**
 
+5. Login to access with user **admin** and password **backupmail**
+
 
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-1. First of all you need to protect the access to your domain if it will be public. Create a .htaccess/.htpassword files
-2. Config one mail on the config.mail.sample.php, rename to config.mail.php and check the connection con ./cron_mail.php.
+1. First of all you need to protect the access to your domain. if it will be public. Create a .htaccess/.htpassword files to add an extra layer of security. 
+2. Config one mail on the **mail.config.sample.php**, rename to **mail.config.php** and check the connection con ./cron_mail.php.
 3. Start fetching your mails, navigate and tag them all!
 4. Create task or favorite your preferred mails.
 
