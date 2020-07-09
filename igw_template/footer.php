@@ -13,7 +13,9 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 ?>
-
+<?php
+if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) && ($activo['tipo']=="ADM")){
+?>
 </div>
   <!-- /.content-wrapper -->
 
@@ -28,7 +30,9 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
   </footer>
 </div>
 <!-- ./wrapper -->
-
+<?php
+}
+?> 
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
@@ -37,6 +41,10 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 <script src="vendor/almasaeed2010/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="vendor/almasaeed2010/adminlte/dist/js/adminlte.min.js"></script>
+
+<?php
+if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) && ($activo['tipo']=="ADM")){
+?>
 <!-- Page Script -->
 <script>
   $(function () {
@@ -79,5 +87,8 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 <!-- AdminLTE for demo purposes -->
 <script src="vendor/almasaeed2010/adminlte/dist/js/demo.js"></script>
 <?php include('./igw_template/js_footer.php'); ?>
+<?php
+}
+?>
 </body>
 </html>

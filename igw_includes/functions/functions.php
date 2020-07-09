@@ -335,4 +335,18 @@ function generateRandomString($length = 3) {
 function stripAccents($stripAccents){
   return strtr($stripAccents,'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ','aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
 }
+
+function new_password_generator($hash,$encode,$cost,$echo=0){
+	
+	$options = [
+	    'cost' => $cost,
+	];
+	if($echo==0){
+		return password_hash($hash,$encode, $options);
+	}else{
+		echo password_hash($hash,$encode, $options);
+	}
+	
+	
+}
 ?>

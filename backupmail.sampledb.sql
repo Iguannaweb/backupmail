@@ -10,6 +10,48 @@
  * It will download the attachments too.                     *
  * Contact: info@iguannaweb.com                              *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+CREATE TABLE `igw_adm` (
+  `id_adm` int(10) NOT NULL,
+  `id_member` int(10) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `apellidos` varchar(255) NOT NULL,
+  `tlf` varchar(15) NOT NULL,
+  `tlf_movil` varchar(15) NOT NULL,
+  `correo` varchar(155) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+INSERT INTO `igw_adm` (`id_adm`, `id_member`, `nombre`, `apellidos`, `tlf`, `tlf_movil`, `correo`) VALUES
+(1, 1, 'Admin', 'BackupMail', '000000000', '000000000', 'backupmail@iguannaweb.com');
+-- --------------------------------------------------------
+
+CREATE TABLE `igw_members` (
+  `id` int(11) NOT NULL,
+  `usr` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `pass` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `tipo` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'ALM',
+  `activo` int(1) NOT NULL DEFAULT '0',
+  `dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+INSERT INTO `igw_members` (`id`, `usr`, `pass`, `email`, `tipo`, `activo`, `dt`) VALUES
+(1, 'admin', '$2y$10$p8gycOSlpRuKEYntcLIoie8rDyXQbc/FctL0ll.2j4LUV7w6RN1re', 'backupmail@iguannaweb.com', 'ADM', 1, '0000-00-00 00:00:00');
+-- --------------------------------------------------------
+
+ALTER TABLE `igw_adm`
+  ADD PRIMARY KEY (`id_adm`);
+
+ALTER TABLE `igw_members`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `usr` (`usr`);
+
+ALTER TABLE `igw_adm`
+  MODIFY `id_adm` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+ALTER TABLE `igw_members`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 
 CREATE TABLE `igw_emails` (
   `ID_MAIL` int(10) NOT NULL,

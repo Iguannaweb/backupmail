@@ -14,20 +14,24 @@
 if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 ?>
 <?php
-include('igw_includes/config/dbc.php');
-include('igw_includes/config/mail.config.php');
-include('igw_includes/config/pag_config.php');
-include('igw_includes/functions/functions.php');
-include('igw_includes/functions/paginator.class.php');
-require_once './vendor/autoload.php';
-$debug=0;
-if($debug==1){
+$debug="0";
+if($debug=="1"){
 	ini_set('display_errors', 1);
 	ini_set('display_startup_errors', 1);
 	error_reporting(E_ALL);
 }
+include('igw_includes/login/session.php');
+include('igw_includes/config/dbc.php');
+include('igw_includes/config/mail.config.php');
+include('igw_includes/config/pag_config.php');
+include('igw_includes/functions/functions.php');
+include('igw_includes/login/login.php');
+include('igw_includes/functions/paginator.class.php');
+require_once './vendor/autoload.php';
 
 $principal='mailbackup';
+include('igw_includes/login/extra_parameters.php');
+if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) && ($activo['tipo']=="ADM")){
 
 //ETIQUETAR
 if(($_GET["a"]=="tag") && ((int)$_GET["t"]!=0) && ($_GET["mails"]!="")){
@@ -338,6 +342,8 @@ if(($_GET["a"]=="untag") && ((int)$_GET["mail"]!=0) && ((int)$_GET["t"]!=0)){
 	
 }
 
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -361,6 +367,9 @@ if(($_GET["a"]=="untag") && ((int)$_GET["mail"]!=0) && ((int)$_GET["t"]!=0)){
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.8/themes/default/style.min.css" />
   <?php include('./igw_template/inline_css.php'); ?>
 </head>
+<?php
+if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) && ($activo['tipo']=="ADM")){
+?>
 <body class="hold-transition sidebar-mini  accent-navy  text-sm">
 <div class="wrapper">
 
@@ -481,10 +490,18 @@ if(($_GET["a"]=="untag") && ((int)$_GET["mail"]!=0) && ((int)$_GET["t"]!=0)){
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a -->
         </div>
       </li>
-      
+      <li class="nav-item">
+        <a class="nav-link" href="index.php?logoff" role="button"><i class="fas fa-sign-out-alt"></i></a>
+      </li>
     </ul>
   </nav>
   <!-- /.navbar -->
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+  <?php
+	 }else{
+		 echo '<body class="hold-transition login-page">';
+	 }
+	
+?> 
