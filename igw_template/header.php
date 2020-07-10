@@ -364,6 +364,11 @@ if(($_GET["a"]=="untag") && ((int)$_GET["mail"]!=0) && ((int)$_GET["t"]!=0)){
   <link rel="stylesheet" href="igw_template/assets/css/custom.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- Alets -->
+  <link rel="stylesheet" href="vendor/almasaeed2010/adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="vendor/almasaeed2010/adminlte/plugins/toastr/toastr.min.css">
+  <!-- JS tree -->
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.8/themes/default/style.min.css" />
   <?php include('./igw_template/inline_css.php'); ?>
 </head>

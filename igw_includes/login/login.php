@@ -16,12 +16,7 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 <?php
 
 /*COMPROBAMOS COOKIE RECORDAR*/
-if(isset($_SESSION['id']) && !isset($_COOKIE['tzRemember']) && ($_COOKIE['tzRemember']!=1)){ // && !$_SESSION['rememberMe']
-	$form_reg = array(
-	    'id_usr' => clear($_SESSION['id']),
-	    'seccion' => clear('Login'),
-	    'accion' => clear('Deja el sistema automaticamente '.$_SESSION['usr'].'')
-	);	
+if(isset($_SESSION['id']) && !isset($_COOKIE['tzRemember']) && ($_COOKIE['tzRemember']!=1)){ // && !$_SESSION['rememberMe']	
 	$_SESSION = array();
 	session_destroy();
 }
@@ -85,9 +80,9 @@ if(isset($_POST['submit']) && ($_POST['action']=='Login')){
 			$_SESSION['tipo'] = $row['tipo'];
 			//$_SESSION['activo'] = $row['activo'];
 			$_SESSION['rememberMe'] = $_POST['rememberMe'];
-			
+
 			// Store some data in the session
-			setcookie('tzRemember',$_POST['rememberMe']);
+			setcookie('tzRemember',$_POST['rememberMe'], strtotime( '+30 days' ));
 			
 		}
 		else { $err[]='Sorry, wrong username/password<br />'; }
