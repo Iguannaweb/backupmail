@@ -1,37 +1,20 @@
 
-<div class="py-5 border-top">
+<div class="footer py-4 border-top bg-dark">
   <div class="container">
 
-    <p class="h5 mb-3">{{ site.title | escape }}</p>
+    <!-- p class="h5 mb-3">{{ site.title | escape }}</p -->
 
     <div class="row">
 
       <div class="col-sm">
-        <ul class="list-unstyled">
-          <li>
-            {%- if site.author -%}
-              {{ site.author | escape }}
-            {%- else -%}
-              {{ site.title | escape }}
-            {%- endif -%}
-          </li>
-          {%- if site.email -%}
-            <li>
-              <a href="mailto:{{ site.email }}">
-                {{ site.email }}
-              </a>
-            </li>
-          {%- endif -%}
-        </ul>
+        {%- if site.author -%} {{ site.author | escape }} {%- else -%} {{ site.title | escape }} {%- endif -%}
+        &nbsp;|&nbsp; {%- if site.email -%}<a href="mailto:{{ site.email }}">{{ site.email }}</a>{%- endif -%}
       </div>
 
 
       <div class="col-sm text-right">
-        <p>{{- site.description | escape -}}</p>
-
-        <p>
-          <a href="https://nicolas-van.github.io/bootstrap-4-github-pages/">Powered by <strong>Bootstrap 4 Github Pages</strong></a>
-        </p>
+        <!-- p>{{- site.description | escape -}}</p -->
+		<a href="https://nicolas-van.github.io/bootstrap-4-github-pages/">Powered by <strong>Bootstrap 4 <i class="fab fa-github"></i> Pages</strong></a>
       </div>
 
     </div>
