@@ -56,6 +56,7 @@
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Usage](#usage)
+* [Cron](#cron)
 * [Roadmap](#roadmap)
 * [Contributing](#contributing)
 * [License](#license)
@@ -164,7 +165,16 @@ php composer.phar install
 
 _For more examples, please refer to the [Documentation](https://backupmail.iguannaweb.com?go=docs)_
 
-
+<!-- CONFIG CRON -->
+## Cron
+1. From terminal write this
+```sh
+crontab -e
+``` 
+2. Write down this to backup your mails every hour
+```sh
+0 * * * * curl https://yourdomain.com/cron_mail.php
+```
 
 <!-- ROADMAP -->
 ## Roadmap
