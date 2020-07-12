@@ -604,6 +604,8 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
 							
 						if($htmlEmbedded!=""){
 						echo '<hr><iframe src="./mail_reader.php?tipo='.$_GET["tipo"].'&c='.$_GET["c"].'&y='.$_GET["y"].'&m='.$_GET["m"].'&id='.$_GET["id"].'&t=htmlplus" style="border:0px #ffffff none;" name="myiFrame" scrolling="yes" frameborder="0" marginheight="0px" marginwidth="0px" height="400px" width="100%" allowfullscreen></iframe><br>';
+						}elseif($html!=""){
+						echo '<hr><iframe src="./mail_reader.php?tipo='.$_GET["tipo"].'&c='.$_GET["c"].'&y='.$_GET["y"].'&m='.$_GET["m"].'&id='.$_GET["id"].'&t=html" style="border:0px #ffffff none;" name="myiFrame" scrolling="yes" frameborder="0" marginheight="0px" marginwidth="0px" height="400px" width="100%" allowfullscreen></iframe><br>';
 						}else{
 						echo '<hr><strong>Mensaje TEXTO:</strong><br><iframe src="./mail_reader.php?tipo='.$_GET["tipo"].'&c='.$_GET["c"].'&y='.$_GET["y"].'&m='.$_GET["m"].'&id='.$_GET["id"].'&t=text" style="border:0px #ffffff none;" name="myiFrame" scrolling="yes" frameborder="0" marginheight="0px" marginwidth="0px" height="400px" width="100%" allowfullscreen></iframe><br>';
 						}

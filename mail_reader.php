@@ -18,7 +18,9 @@ require_once './vendor/autoload.php';
 if($_GET["tipo"]=="notes"){ $folder_tipo='_notes';}
 elseif($_GET["tipo"]=="sent"){ $folder_tipo="_sents"; }
 elseif($_GET["tipo"]=="draft"){ $folder_tipo="_drafts"; }
+else{ $folder_tipo = '';}
 $path = './mailbackup'.$folder_tipo.'/'.$_GET["c"].'/'.(int)$_GET["y"].'/'.$_GET["m"].'/MSG_ID_'.(int)$_GET["id"].'.eml';
+
 $parser = new PhpMimeMailParser\Parser();
 
 // 1. Specify a file path (string)
@@ -38,7 +40,7 @@ if($_GET["t"]=="htmlplus"){
 	echo ''.$htmlEmbedded.'';
 }elseif($_GET["t"]=="html"){
 	echo ''.$html.'';
-}elseif($_GET["t"]=="txt"){
+}elseif($_GET["t"]=="text"){
 	echo ''.nl2br($text).'';
 }
 ?>
