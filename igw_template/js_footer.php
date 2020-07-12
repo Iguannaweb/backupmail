@@ -89,7 +89,7 @@
 		var handleEmailCheckboxChecked = function() {
 			$(document).on('change', '[data-checked=email-checkbox]', function() {
 				var targetLabel = $(this).closest('label');
-				var targetEmailList = $(this).closest('li');
+				var targetEmailList = $(this).closest('td');
 				if ($(this).prop('checked')) {
 					$(targetLabel).addClass('active');
 					$(targetEmailList).addClass('selected');
@@ -164,11 +164,11 @@
 			"use strict";
 			$(document).on('change', '[data-change=email-select-all]', function() {
 				if (!$(this).is(':checked')) {
-					$('.list-email .email-checkbox input[type="checkbox"]').prop('checked', false);
+					$('.table-striped .email-checkbox input[type="checkbox"]').prop('checked', false);
 				} else {
-					$('.list-email .email-checkbox input[type="checkbox"]').prop('checked', true);
+					$('.table-striped .email-checkbox input[type="checkbox"]').prop('checked', true);
 				}
-				$('.list-email .email-checkbox input[type="checkbox"]').trigger('change');
+				$('.table-striped .email-checkbox input[type="checkbox"]').trigger('change');
 			});
 		};
 		

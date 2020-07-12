@@ -14,7 +14,18 @@
 define(INCLUDE_CHECK,'true');
 ?>
 <?php
+include('igw_includes/login/session.php');
+include('igw_includes/config/dbc.php');
+include('igw_includes/config/mail.config.php');
+include('igw_includes/config/pag_config.php');
+include('igw_includes/functions/functions.php');
+include('igw_includes/login/login.php');
+include('igw_includes/functions/paginator.class.php');
 require_once './vendor/autoload.php';
+
+include('igw_includes/login/extra_parameters.php');
+if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) && ($activo['tipo']=="ADM")){
+	
 if($_GET["tipo"]=="notes"){ $folder_tipo='_notes';}
 elseif($_GET["tipo"]=="sent"){ $folder_tipo="_sents"; }
 elseif($_GET["tipo"]=="draft"){ $folder_tipo="_drafts"; }
@@ -42,5 +53,7 @@ if($_GET["t"]=="htmlplus"){
 	echo ''.$html.'';
 }elseif($_GET["t"]=="text"){
 	echo ''.nl2br($text).'';
+}
+
 }
 ?>

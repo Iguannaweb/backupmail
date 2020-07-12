@@ -15,3 +15,9 @@ body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .main-fo
     transition: margin-left .3s ease-in-out;
     margin-left: 0px !important;
 }
+
+.custom-control-label {
+    margin-left: 15px;
+}
+
+.m-l-10 { margin-left: 10px;}

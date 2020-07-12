@@ -37,7 +37,7 @@ include('./igw_template/header.php'); ?>
 
     <!-- Main content -->
     <section class="content">
-      <div class="row">
+      
 	     <?php
 			if($_POST["action"]=="crear"){
 				$form_data = array(
@@ -50,17 +50,17 @@ include('./igw_template/header.php'); ?>
 				    'ICON_S' => clear($_POST["ICON_S"])
 				);
 				if(DBInsert('igw_tags', $form_data)){
-					echo '<div class="alert alert-success fade show">
+					echo '<div class="row"><div class="col-md-12"><div class="alert alert-success fade show">
 						  <span class="close" data-dismiss="alert">×</span>
 						  <strong>¡Felicidades!</strong>
 						  Se ha creado la nueva etiqueta 
-						</div>';
+						</div></div></div>';
 				}else{
-					echo '<div class="alert alert-danger fade show">
+					echo '<div class="row"><div class="col-md-12"><div class="alert alert-danger fade show">
 						  <span class="close" data-dismiss="alert">×</span>
 						  <strong>¡Error!</strong>
 						  Hubo un problema al crear la etiqueta. 
-						</div>';
+						</div></div></div>';
 				}
 			
 			}
@@ -78,21 +78,22 @@ include('./igw_template/header.php'); ?>
 				//echo '<pre>';print_r($form_data);echo '</pre>';
 				//echo ''.clear((int)$_POST["ID_TAG"]).'';
 				if(DBUpdate('igw_tags', $form_data,"WHERE ID_TAG='".clear((int)$_POST["ID_TAG"])."'")){
-					echo '<div class="alert alert-success fade show">
+					echo '<div class="row"><div class="col-md-12"><div class="alert alert-success fade show">
 						  <span class="close" data-dismiss="alert">×</span>
 						  <strong>¡Felicidades!</strong>
 						  Se ha creado la nueva etiqueta 
-						</div>';
+						</div></div></div>';
 				}else{
-					echo '<div class="alert alert-danger fade show">
+					echo '<div class="row"><div class="col-md-12"><div class="alert alert-danger fade show">
 						  <span class="close" data-dismiss="alert">×</span>
 						  <strong>¡Error!</strong>
 						  Hubo un problema al crear la etiqueta. 
-						</div>';
+						</div></div></div>';
 				}
 			
 			}
 			?>
+        <div class="row">
         <div class="col-md-3">
 
           <div class="card">

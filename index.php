@@ -43,7 +43,7 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
 
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Inbox's Accounts</h3>
+              <h3 class="card-title"><strong>Inbox's Accounts</strong></h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -200,7 +200,7 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
           <!-- /.card -->
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Labels</h3>
+              <h3 class="card-title"><strong>Tags</strong></h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -359,17 +359,18 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
             <!-- /.card-header -->
             <div class="card-body p-0">
               <div class="mailbox-controls">
-					<!-- begin btn-group -->
-					<div class="btn-group">
-				<div class="custom-control btn btn-default btn-sm custom-checkbox  checkbox-toggle">
-					<input type="checkbox" class="ml-2 custom-control-input" data-checked="email-checkbox" id="emailSelectAll" data-change="email-select-all" />
-					<label class="custom-control-label" for="emailSelectAll"></label>
-				</div>
-						<button class="btn btn-default btn-sm" data-toggle="dropdown">
-							Ver todos <span class="caret m-l-3"></span>
+	              <div class="btn-group">
+		              <div class="custom-control btn btn-default btn-sm custom-checkbox  checkbox-toggle">
+						<input type="checkbox" class="ml-2 custom-control-input" data-checked="email-checkbox" id="emailSelectAll" data-change="email-select-all" />
+						<label class="custom-control-label" for="emailSelectAll"></label>
+					</div>
+		              <button class="btn btn-default btn-sm" data-toggle="dropdown">
+							<i class="fa fa-filter mr-2"></i>Filter <span class="caret m-l-3"></span>
 						</button>
 						<div class="dropdown-menu">
 							<?php
+							echo '<a href="#" data-idtag="#" class="tag-filter dropdown-item"><i class="fas fa-fw f-s-10 m-r-5 fa-tag"></i> No filter</a>';
+							
 							$datatags = DBSelect('igw_tags', '*', "WHERE ID_TAG_SUP = '0'",'ORDER BY POSICION ASC');
 					
 								$i=0;
@@ -384,6 +385,13 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
 							?>
 							
 						</div>
+		              
+	              </div>
+	              
+					<!-- begin btn-group -->
+					<div class="btn-group">
+				
+						
 						
 						<button class="btn btn-sm btn-default hide" data-email-action="importante"><i class="fa fa-star mr-2"></i> <span class="d-none d-xl-inline"></span></button>
 						<button class="btn btn-sm btn-default hide" data-email-action="tarea"><i class="fa fa-tasks mr-2"></i> <span class="d-none d-xl-inline"></span></button>
@@ -392,7 +400,7 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
 						<button class="btn btn-sm btn-default hide" data-email-action="spam"><i class="fa fa-thumbs-down mr-2"></i> <span class="d-none d-xl-inline"></span></button>
 						
 						<button class="btn btn-default btn-sm hide" data-email-action="etiquetar" data-toggle="dropdown">
-							Etiquetar <span class="caret m-l-3"></span>
+							<i class="fa fa-tag mr-2"></i>Tag <span class="caret m-l-3"></span>
 						</button>
 						<div class="dropdown-menu">
 							<a href="javascript:;" class="dropdown-item"><i class="fa fa-circle f-s-9 fa-fw mr-2"></i> All</a>
@@ -443,7 +451,15 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
 					elseif($list["ARCHIVE"]=="1"){ echo 'style="background: #ebf3ff;"'; }
 					echo '>';
 				
-					echo '<td style="width: 24px;">';
+					echo '<td  style="width: 24px;">';
+					echo '<div class="email-checkbox">
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" data-checked="email-checkbox" id="emailCheckbox'.$list["UDATE"].'" name="'.$list["UDATE"].'">
+							<label class="custom-control-label" for="emailCheckbox'.$list["UDATE"].'"></label>
+						</div>
+					</div>
+					</td>
+					<td style="width: 24px;">';
 					if(get_task($list["UDATE"])!="0"){
 						echo '<div class="email-checkbox">'.get_task($list["UDATE"]).'</div>';
 					}else{
@@ -458,14 +474,7 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
 					}
 					echo '</td>';
 					
-					echo '<td  style="width: 24px;">';
-					echo '<div class="email-checkbox">
-						<div class="custom-control custom-checkbox">
-							<input type="checkbox" class="custom-control-input" data-checked="email-checkbox" id="emailCheckbox'.$list["UDATE"].'" name="'.$list["UDATE"].'">
-							<label class="custom-control-label" for="emailCheckbox'.$list["UDATE"].'"></label>
-						</div>
-					</div>
-					</td>
+					echo '
 					<td style="width: 25%;">
 					<div class="email-checkbox ml-2">';
 					if(($_GET["c"]=="")){

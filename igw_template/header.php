@@ -476,27 +476,30 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-header">Your stats</span>
+          
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-users mr-2"></i> Accounts
+            <?php $accounts = mysqli_num_rows(DBSelect('igw_emails', '*', "",'GROUP BY MAIL','')); ?>
+            <span class="float-right text-muted text-sm"><?php echo $accounts; ?></span>
+          </a>
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
             <i class="fas fa-envelope mr-2"></i> Mails saved
-            <span class="float-right text-muted text-sm">0.000</span>
+            <?php $mails = mysqli_num_rows(DBSelect('igw_emails', '*', "",'','')); ?>
+            <span class="float-right text-muted text-sm"><?php echo $mails; ?></span>
           </a>
-          <div class="dropdown-divider"></div>
+          <!-- div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
             <i class="fas fa-attachment mr-2"></i> Attachments
-            <span class="float-right text-muted text-sm">0.000</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> Accounts
             <span class="float-right text-muted text-sm">4</span>
-          </a>
+          </a -->
           <!--div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a -->
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.php?go=docs" role="button"><i class="fas fa-book"></i></a>
+        <a class="nav-link" target="_blank" title="Docs in github pages ;)" href="https://iguannaweb.github.io/backupmail/" role="button"><i class="fas fa-book"></i></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="index.php?logoff" role="button"><i class="fas fa-sign-out-alt"></i></a>
