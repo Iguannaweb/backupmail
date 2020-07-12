@@ -26,7 +26,7 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
       <?php echo '<a title="BackupMail - Backup all your mails as eml files" href="https://github.com/Iguannaweb/backupmail">BackupMail <img alt="GitHub milestone" src="https://img.shields.io/github/milestones/progress-percent/Iguannaweb/backupmail/1"></a>'; ?>
     </div>
     <!-- Default to the left -->
-    <strong> &copy; <?php echo date('Y');?> <a href="https://www.iguannaweb.com">Brought to you by iguannaweb</a>.</strong>.
+    <strong> &copy; <?php echo date('Y');?> <a href="https://www.iguannaweb.com">Brought to you by iguannaweb</a>.</strong>
   </footer>
 </div>
 <!-- ./wrapper -->
