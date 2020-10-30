@@ -386,7 +386,7 @@ else{
 				
 				 $overview = imap_fetch_overview($inbox,$email_number,0);
 				 $headers = imap_fetchheader($inbox, $email_number, FT_PREFETCHTEXT);
-				 $body = imap_body($inbox, $email_number);
+				 $body = imap_body($inbox, $email_number,FT_PEEK);
 		
 					$randomstr[$i]=generateRandomString();
 					$randomstr2[$i]=generateRandomString();
