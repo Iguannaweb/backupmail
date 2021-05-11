@@ -386,6 +386,9 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
         <a class="nav-link-logo" href="index.php" role="button"><img src="igw_template/assets/img/backupmail.png" alt="backupmail" height="30" ></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
+        <a href="administrators.php" class="nav-link"><i class="fa fa-users"></i> Users</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
         <a href="configuration.php" class="nav-link"><i class="fa fa-envelope"></i> Accounts</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
@@ -410,7 +413,7 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- Messages Dropdown Menu -->
+      <?php /* <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-envelope"></i>
@@ -497,7 +500,7 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
           <!--div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a -->
         </div>
-      </li>
+      </li> */ ?>
       <li class="nav-item">
         <a class="nav-link" target="_blank" title="Docs in github pages ;)" href="https://iguannaweb.github.io/backupmail/" role="button"><i class="fas fa-book"></i></a>
       </li>
