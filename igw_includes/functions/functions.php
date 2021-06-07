@@ -349,4 +349,6 @@ function new_password_generator($hash,$encode,$cost,$echo=0){
 	
 	
 }
+
+
 ?>

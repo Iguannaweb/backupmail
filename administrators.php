@@ -38,59 +38,137 @@ include('./igw_template/header.php'); ?>
     <!-- Main content -->
     <section class="content">
 		<?php
-			/*if($_POST["action"]=="crear"){
+			if($_POST["action"]=="crear"){
+				//¿Existe el usuario? 
+				$datauser_exist = mysqli_fetch_array(DBSelect('igw_members', '*', "WHERE usr = '".clear($_POST["username"])."'",'LIMIT 0,1'));
+				
+				if(isset($_POST["password1"]) && isset($_POST["password2"]) && ($_POST["password1"]==$_POST["password2"]) && ($datauser_exist["usr"]=="") && !empty($_POST["username"])){
+					
+				$opciones = [
+				    'cost' => 11,
+				    'salt' => openssl_random_pseudo_bytes(22),
+				];
+				$password_hash=password_hash($_POST["password1"], PASSWORD_BCRYPT, $opciones);
 				$form_data = array(
-				    'ID_TAG_SUP' => clear((int)$_POST["ID_TAG_SUP"]),
-				    'TAG' => clear($_POST["TAG"]),
-				    'TAG_COLOR' => clear($_POST["TAG_COLOR"]),
-				    'TAG_ICON' => clear($_POST["TAG_ICON"]),
-				    'STATUS' => clear((int)$_POST["STATUS"]),
-				    'POSICION' => clear((int)$_POST["POSICION"]),
-				    'ICON_S' => clear($_POST["ICON_S"])
+				    'usr' => clear($_POST["username"]),
+				    'pass' => clear($password_hash),
+				    'email' => clear($_POST["email"]),
+				    'tipo' => clear('ADM'),
+				    'activo' => clear('1'),
+				    'dt' => clear(date('Y-m-d H:i:s'))
 				);
-				if(DBInsert('igw_tags', $form_data)){
-					echo '<div class="row"><div class="col-md-12"><div class="alert alert-success fade show">
-						  <span class="close" data-dismiss="alert">×</span>
-						  <strong>¡Felicidades!</strong>
-						  Se ha creado la nueva etiqueta 
-						</div></div></div>';
+				
+				
+				if(DBInsert('igw_members', $form_data)){
+						$last = mysqli_fetch_array(DBSelect('igw_members', '*', "",'ORDER BY id DESC','LIMIT 0,1'));
+						
+						$form_data = array(
+							'id_member' => clear((int)$last["id"]),
+						    'nombre' => clear($_POST["user_name"]),
+						    'apellidos' => clear($_POST["user_surname"]),
+						    'tlf' => clear($_POST["telephone"]),
+						    'tlf_movil' => clear($_POST["mobile"]),
+						    'correo' => clear($_POST["email"]),
+						);
+						
+						
+						if(DBInsert('igw_adm', $form_data)){
+							echo '<div class="row"><div class="col-md-12"><div class="alert alert-success fade show">
+								  <span class="close" data-dismiss="alert">×</span>
+								  <strong>¡Felicidades!</strong>
+								  Se ha creado la nueva cuenta de administrador 
+								</div></div></div>';
+						}else{
+							echo '<div class="row"><div class="col-md-12"><div class="alert alert-danger fade show">
+								  <span class="close" data-dismiss="alert">×</span>
+								  <strong>¡Error!</strong>
+								  Hubo un problema al crear la nueva cuenta de administrador. 
+								</div></div></div>';
+						}
 				}else{
 					echo '<div class="row"><div class="col-md-12"><div class="alert alert-danger fade show">
 						  <span class="close" data-dismiss="alert">×</span>
 						  <strong>¡Error!</strong>
-						  Hubo un problema al crear la etiqueta. 
+						  Hubo un problema al crear la nueva cuenta de administrador. 
 						</div></div></div>';
 				}
+				
+				}else{
+					echo '<div class="row"><div class="col-md-12"><div class="alert alert-danger fade show">
+						  <span class="close" data-dismiss="alert">×</span>
+						  <strong>¡Error!</strong>
+						  Hubo un problema al crear la nueva cuenta de administrador. Por favor, revisa que las contraseñas sean iguales.
+						</div></div></div>';
+				}
+					
+				
+				
 			
 			}
 			
 			if($_POST["action"]=="editar"){
+				
+				if(isset($_POST["password1"]) && isset($_POST["password2"]) && ($_POST["password1"]==$_POST["password2"])){
+					
+				$opciones = [
+				    'cost' => 11,
+				    'salt' => openssl_random_pseudo_bytes(22),
+				];
+				$password_hash=password_hash($_POST["password1"], PASSWORD_BCRYPT, $opciones);
 				$form_data = array(
-				    'ID_TAG_SUP' => clear((int)$_POST["ID_TAG_SUP"]),
-				    'TAG' => clear($_POST["TAG"]),
-				    'TAG_COLOR' => clear($_POST["TAG_COLOR"]),
-				    'TAG_ICON' => clear($_POST["TAG_ICON"]),
-				    'STATUS' => clear((int)$_POST["STATUS"]),
-				    'POSICION' => clear((int)$_POST["POSICION"]),
-				    'ICON_S' => clear($_POST["ICON_S"])
+				    'usr' => clear($_POST["username"]),
+				    'pass' => clear($password_hash),
+				    'email' => clear($_POST["email"]),
+				    'activo' => clear((int)$_POST["activo"]),
+				    'dt' => clear(date('Y-m-d H:i:s'))
 				);
+				
+				}else{
+				
+				$form_data = array(
+				    'usr' => clear($_POST["username"]),
+				    'email' => clear($_POST["email"]),
+				    'activo' => clear('1'),
+				    'dt' => clear(date('Y-m-d H:i:s'))
+				);
+				
+				}
+				
 				//echo '<pre>';print_r($form_data);echo '</pre>';
 				//echo ''.clear((int)$_POST["ID_TAG"]).'';
-				if(DBUpdate('igw_tags', $form_data,"WHERE ID_TAG='".clear((int)$_POST["ID_TAG"])."'")){
-					echo '<div class="row"><div class="col-md-12"><div class="alert alert-success fade show">
-						  <span class="close" data-dismiss="alert">×</span>
-						  <strong>¡Felicidades!</strong>
-						  Se ha creado la nueva etiqueta 
-						</div></div></div>';
+				if(DBUpdate('igw_members', $form_data,"WHERE id='".clear((int)$_POST["id"])."'")){
+					$form_data = array(
+							'id_member' => clear((int)$_POST["id"]),
+						    'nombre' => clear($_POST["user_name"]),
+						    'apellidos' => clear($_POST["user_surname"]),
+						    'tlf' => clear($_POST["telephone"]),
+						    'tlf_movil' => clear($_POST["mobile"]),
+						    'correo' => clear($_POST["email"]),
+						);
+					if(DBUpdate('igw_adm', $form_data,"WHERE id_member='".clear((int)$_POST["id"])."'")){
+						echo '<div class="row"><div class="col-md-12"><div class="alert alert-success fade show">
+							  <span class="close" data-dismiss="alert">×</span>
+							  <strong>¡Felicidades!</strong>
+							  Se ha editado la cuenta correctamente 
+							</div></div></div>';
+					}else{
+						echo '<div class="row"><div class="col-md-12"><div class="alert alert-danger fade show">
+							  <span class="close" data-dismiss="alert">×</span>
+							  <strong>¡Error!</strong>
+							  Hubo un problema al editar la cuenta. 
+							</div></div></div>';
+					}
+						
+						
 				}else{
 					echo '<div class="row"><div class="col-md-12"><div class="alert alert-danger fade show">
 						  <span class="close" data-dismiss="alert">×</span>
 						  <strong>¡Error!</strong>
-						  Hubo un problema al crear la etiqueta. 
+						  Hubo un problema al editar la cuenta. 
 						</div></div></div>';
 				}
 			
-			}*/
+			}
 			?>
         <div class="row">
         <div class="col-md-3">
@@ -108,13 +186,13 @@ include('./igw_template/header.php'); ?>
               <ul class="nav nav-pills flex-column">
 	              
 	              <?php
-						$datatags = DBSelect('igw_members', '*', "",'ORDER BY usr ASC');
+						$datauser = DBSelect('igw_members', '*', "",'ORDER BY usr ASC');
 	
 						$i=0;
 						
-						while($rowt=mysqli_fetch_array($datatags)){
-							$datatags_children[$i] = mysqli_fetch_array(DBSelect('igw_adm', '*', "WHERE id_member = '".$rowt["id"]."'",' LIMIT 0,1'));
-							echo '<li class="nav-item"><a class="nav-link" href="administrators.php?u='.$rowt["id"].'&a=edit"><i class="fa fa-user"></i> '.$datatags_children[$i]["nombre"].' '.$datatags_children[$i]["apellidos"].' ('.$rowt["usr"].')</a></li>';
+						while($rowt=mysqli_fetch_array($datauser)){
+							$datauser_children[$i] = mysqli_fetch_array(DBSelect('igw_adm', '*', "WHERE id_member = '".$rowt["id"]."'",' LIMIT 0,1'));
+							echo '<li class="nav-item"><a class="nav-link" href="administrators.php?u='.$rowt["id"].'&a=edit"><i class="fa fa-user"></i> '.$datauser_children[$i]["nombre"].' '.$datauser_children[$i]["apellidos"].' ('.$rowt["usr"].')</a></li>';
 							
 						}
 					?>
@@ -165,16 +243,16 @@ include('./igw_template/header.php'); ?>
             ?>
 				<div class="panel panel-inverse" data-sortable-id="ui-widget-1">
 				  <div class="panel-body">
-				    <form method="post" action="tags.php">
+				    <form method="post" action="administrators.php">
 					    <input type="hidden" name="action" value="crear"/>
 					    <div class="row">
 							<div class="col-sm-6">
 								<strong>Name</strong>
-								<input class="form-control" type="text" name="user_name" id="user_name" placeholder="Your name" required="required"/>
+								<input class="form-control" type="text" name="user_name" id="user_name" placeholder="Your name" />
 							</div>
 							<div class="col-sm-6">
 								<strong>Surname</strong>
-								<input class="form-control" type="text" name="user_surname" id="user_surname" placeholder="Your surname" required="required"/>
+								<input class="form-control" type="text" name="user_surname" id="user_surname" placeholder="Your surname"/>
 							</div>
 							
 					    </div>
@@ -182,15 +260,15 @@ include('./igw_template/header.php'); ?>
 					    <div class="row">
 						    <div class="col-sm-4">
 								<strong>Telephone</strong>
-								<input class="form-control" type="text" name="telephone" id="telephone" placeholder="Phone" required="required"/>
+								<input class="form-control" type="text" name="telephone" id="telephone" placeholder="Phone" />
 							</div>
 						    <div class="col-sm-4">
 								<strong>Mobile telephone</strong>
-								<input class="form-control" type="text" name="mobile" id="mobile" placeholder="Mobile phone" required="required"/>
+								<input class="form-control" type="text" name="mobile" id="mobile" placeholder="Mobile phone" />
 							</div>
 							<div class="col-sm-4">
 								<strong>E-mail</strong>
-								<input class="form-control" type="text" name="email" id="email" placeholder="Email address" required="required"/>
+								<input class="form-control" type="text" name="email" id="email" placeholder="Email address" />
 							</div>
 					    </div>
 					    
@@ -201,11 +279,11 @@ include('./igw_template/header.php'); ?>
 							</div>
 							<div class="col-sm-4">
 								<strong>New Password</strong>
-								<input class="form-control" type="text" name="password1" id="password1" placeholder="" />
+								<input class="form-control" type="text" name="password1" id="password1" placeholder=""  required="required"/>
 							</div>
 							<div class="col-sm-4">
 								<strong>Repeat Password</strong>
-								<input class="form-control" type="text" name="password2" id="password2" placeholder="" />
+								<input class="form-control" type="text" name="password2" id="password2" placeholder=""  required="required"/>
 							</div>
 					    </div>
 					    
@@ -246,74 +324,60 @@ include('./igw_template/header.php'); ?>
 				<div class="panel panel-inverse" data-sortable-id="ui-widget-1">
 				  
 				  <div class="panel-body">
-				    <form method="post" action="tags.php?t=<?php echo (int)$_GET["t"]; ?>&a=edit">
+				    <form method="post" action="administrators.php?u=<?php echo (int)$_GET["u"]; ?>&a=edit">
 					    <input type="hidden" name="action" value="editar"/>
-					    <input type="hidden" name="ID_TAG" value="<?php echo $datatags_e["ID_TAG"]; ?>"/>
+					    <input type="hidden" name="id" value="<?php echo $datauser_e["id"]; ?>"/>
+					   
+					    
+					    
 					    <div class="row">
-							<div class="col-sm-6">
-								<strong>Tag name</strong>
-								<input class="form-control" type="text" name="TAG" id="TAG" placeholder="Tag name" value="<?php echo $datatags_e["TAG"]; ?>" required="required"/>
+							<div class="col-sm-4">
+								<strong>Name</strong>
+								<input class="form-control" type="text" name="user_name" id="user_name" placeholder="Your name" value="<?php echo $datauser_ed["nombre"]; ?>"/>
 							</div>
-							<div class="col-sm-6">
-								<strong>Parent tag</strong>
-								<select class="form-control" name="ID_TAG_SUP" id="ID_TAG_SUP">
-									<option value="0">Select...</option>
-									<?php
-										$datatags = DBSelect('igw_tags', '*', "WHERE ID_TAG_SUP = '0'",'ORDER BY POSICION ASC');
-					
-										$i=0;
-										
-										while($rowt=mysqli_fetch_array($datatags)){
-											echo '<option value="'.$rowt["ID_TAG"].'" '; 
-											if($datatags_e["ID_TAG_SUP"]==$rowt["ID_TAG"]){ echo 'selected="selected"'; }
-											echo '>'.$rowt["TAG"].'</option>';
-											$datatags_children[$i] = DBSelect('igw_tags', '*', "WHERE ID_TAG_SUP = '".$rowt["ID_TAG"]."'",'ORDER BY POSICION ASC');
-											while($rowt_children[$i]=mysqli_fetch_array($datatags_children[$i])){
-											
-											echo '<option value="'.$rowt_children[$i]["ID_TAG"].'"'; 
-											if($datatags_e["ID_TAG_SUP"]==$rowt_children[$i]["ID_TAG"]){ echo 'selected="selected"'; }
-											echo '> -- '.$rowt_children[$i]["TAG"].'</option>';
-											}
-										}
-									?>
-									
+							<div class="col-sm-4">
+								<strong>Surname</strong>
+								<input class="form-control" type="text" name="user_surname" id="user_surname" placeholder="Your surname" value="<?php echo $datauser_ed["apellidos"]; ?>"/>
+							</div>
+							
+							<div class="col-sm-4">
+							    <strong>Estado de usuario</strong>
+								<select class="form-control" name="activo" id="activo">
+									<option value="1" <?php if($datauser_e["activo"]=="1"){ echo 'selected="selected"'; } ?>>Activa</option>
+									<option value="0" <?php if($datauser_e["activo"]=="0"){ echo 'selected="selected"'; } ?>>Inactiva</option>
 								</select>
-							</div>
+						    </div>
 							
 					    </div>
 					    
 					    <div class="row">
 						    <div class="col-sm-4">
-								<strong>Tag Color</strong>
-								<input class="form-control" type="text" name="TAG_COLOR" id="TAG_COLOR" value="<?php echo $datatags_e["TAG_COLOR"]; ?>" placeholder="Tag Color" required="required"/>
+								<strong>Telephone</strong>
+								<input class="form-control" type="text" name="telephone" id="telephone" placeholder="Phone"  value="<?php echo $datauser_ed["tlf"]; ?>"/>
 							</div>
 						    <div class="col-sm-4">
-								<strong>Tag Icon</strong>
-								<input class="form-control" type="text" name="TAG_ICON" id="TAG_ICON" value="<?php echo $datatags_e["TAG_ICON"]; ?>" placeholder="Tag Icon" required="required"/>
+								<strong>Mobile telephone</strong>
+								<input class="form-control" type="text" name="mobile" id="mobile" placeholder="Mobile phone"  value="<?php echo $datauser_ed["tlf_movil"]; ?>"/>
 							</div>
 							<div class="col-sm-4">
-								<strong>Icon fa(x)</strong>
-								<select class="form-control" name="ICON_S" id="ICON_S">
-									<option value="">NORMAL</option>
-									<option value="s" <?php if($datatags_e["ICON_S"]=="s"){ echo 'selected="selected"'; } ?>>SOLID</option>
-									<option value="b" <?php if($datatags_e["ICON_S"]=="b"){ echo 'selected="selected"'; } ?>>BRAND</option>
-								</select>
+								<strong>E-mail</strong>
+								<input class="form-control" type="text" name="email" id="email" placeholder="Email address"  value="<?php echo $datauser_e["email"]; ?>" />
 							</div>
 					    </div>
 					    
 					    <div class="row">
-						    <div class="col-sm-6">
-							    <strong>Tag position</strong>
-								<input class="form-control" type="text" name="POSICION" value="<?php echo $datatags_e["POSICION"]; ?>" id="POSICION" placeholder="Tag position"/>
-						    </div>
-						    
-						    <div class="col-sm-6">
-							    <strong>Tag status</strong>
-								<select class="form-control" name="STATUS" id="STATUS">
-									<option value="1" <?php if($datatags_e["STATUS"]=="1"){ echo 'selected="selected"'; } ?>>Activa</option>
-									<option value="0" <?php if($datatags_e["STATUS"]=="0"){ echo 'selected="selected"'; } ?>>Inactiva</option>
-								</select>
-						    </div>
+							<div class="col-sm-4">
+								<strong>Username</strong>
+								<input class="form-control" type="text" name="username" id="username" placeholder="Your login name" required="required" value="<?php echo $datauser_e["usr"]; ?>"/>
+							</div>
+							<div class="col-sm-4">
+								<strong>New Password</strong>
+								<input class="form-control" type="text" name="password1" id="password1" placeholder=""  />
+							</div>
+							<div class="col-sm-4">
+								<strong>Repeat Password</strong>
+								<input class="form-control" type="text" name="password2" id="password2" placeholder=""  />
+							</div>
 					    </div>
 					    <div class="row">
 						    <div class="col-sm-6">
