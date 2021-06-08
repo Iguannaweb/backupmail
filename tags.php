@@ -15,7 +15,7 @@ define(INCLUDE_CHECK,'true');
 ?>
 <?php 
 include('./igw_template/header.php'); ?>
-
+<?php if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) && ($activo['tipo']=="ADM")){ ?>
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -92,6 +92,8 @@ include('./igw_template/header.php'); ?>
 				}
 			
 			}
+			
+			
 			?>
         <div class="row">
         <div class="col-md-3">
@@ -338,5 +340,5 @@ include('./igw_template/header.php'); ?>
   </div>			
 			
 							
-			
+<?php } ?>		
 <?php include('./igw_template/footer.php'); ?>

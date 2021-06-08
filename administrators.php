@@ -15,7 +15,7 @@ define(INCLUDE_CHECK,'true');
 ?>
 <?php 
 include('./igw_template/header.php'); ?>
-
+<?php if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) && ($activo['tipo']=="ADM")){ ?>
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -169,7 +169,26 @@ include('./igw_template/header.php'); ?>
 				}
 			
 			}
+			
+			if($_GET["sms"]=="OK"){
+				
+			echo '<div class="row"><div class="col-md-12"><div class="alert alert-success fade show">
+							  <span class="close" data-dismiss="alert">×</span>
+							  <strong>¡Felicidades!</strong>
+							  La cuenta se ha borrado correctamente 
+							</div></div></div>';
+			}elseif($_GET["sms"]=="ERROR"){
+				echo '<div class="row"><div class="col-md-12"><div class="alert alert-danger fade show">
+					  <span class="close" data-dismiss="alert">×</span>
+					  <strong>¡Error!</strong>
+					  Hubo un problema al borrar la cuenta. 
+					</div></div></div>';
+			}
+				
+			
+			
 			?>
+			
         <div class="row">
         <div class="col-md-3">
 
@@ -204,17 +223,24 @@ include('./igw_template/header.php'); ?>
         </div>
         <!-- /.col -->
         <div class="col-md-9">
+	        <?php if($_GET["a"]=="edit"){ 
+					
+					$datauser_e = mysqli_fetch_array(DBSelect('igw_members', '*', "WHERE id = '".(int)$_GET["u"]."'",'LIMIT 0,1'));
+					$datauser_ed = mysqli_fetch_array(DBSelect('igw_adm', '*', "WHERE id_member = '".(int)$_GET["u"]."'",'LIMIT 0,1'));
+					}
+					
+				?>
           <div class="card card-secondary card-outline">
             <div class="card-header">
+	          <?php if($_GET["a"]=="edit"){ ?><a onclick="return confirm('¿Estás seguro que quieres borrar este usuario?');" href="./administrators.php?u=<?php echo $datauser_e["id"]; ?>&a=delete" class="text-red float-right">Delete this user</a> <?php } ?>
               <h3 class="card-title">
 	              <?php if(!isset($_GET["a"])){ ?><i class="fas fa-user"></i> Add new user<?php } ?>
 	              <?php if($_GET["a"]=="edit"){ 
 					
-					$datauser_e = mysqli_fetch_array(DBSelect('igw_members', '*', "WHERE id = '".(int)$_GET["u"]."'",'LIMIT 0,1'));
-					$datauser_ed = mysqli_fetch_array(DBSelect('igw_adm', '*', "WHERE id_member = '".(int)$_GET["u"]."'",'LIMIT 0,1'));
+					
 					
 				?>
-				<i class="fas fa-user"></i> Edit a user
+				<i class="fas fa-user"></i> Edit a user 
 				<?php } ?>
 	          </h3>
               <!-- /.card-tools -->
@@ -407,5 +433,5 @@ include('./igw_template/header.php'); ?>
   </div>			
 			
 							
-			
+<?php } ?>		
 <?php include('./igw_template/footer.php'); ?>

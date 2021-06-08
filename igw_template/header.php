@@ -344,6 +344,7 @@ if(($_GET["a"]=="untag") && ((int)$_GET["mail"]!=0) && ((int)$_GET["t"]!=0)){
 
 
 }
+include('igw_includes/actions/delete.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
