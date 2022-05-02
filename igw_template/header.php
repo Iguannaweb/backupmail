@@ -14,7 +14,6 @@
 if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 ?>
 <?php
-$debug="0";
 if($debug=="1"){
 	ini_set('display_errors', 1);
 	ini_set('display_startup_errors', 1);
@@ -31,319 +30,7 @@ require_once './vendor/autoload.php';
 
 $principal='mailbackup';
 include('igw_includes/login/extra_parameters.php');
-if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) && ($activo['tipo']=="ADM")){
-
-//ETIQUETAR
-if(($_GET["a"]=="tag") && ((int)$_GET["t"]!=0) && ($_GET["mails"]!="")){
-
-	$mensajes = explode('|', $_GET["mails"]);
-	$id_tag = (int)$_GET["t"];
-	/*echo 'Se quieren tagear con la id '.$id_tag.' los mensajes:';
-	echo '<pre>';print_r($mensajes);echo '</pre>';*/
-	
-	$i=0;
-	foreach($mensajes as $m){
-		if((int)$m !=0){
-			$form_data[$i] = array(
-			    'ID_MAIL' => $m,
-			    'ID_TAG' => $id_tag
-			);
-			DBInsert('igw_emails_tags', $form_data[$i]);
-		
-		}
-		
-		$i++;
-	}
-	$url='';
-	if($_GET["page"]!=""){
-		$url.='&page='.$_GET["page"].'';
-	}
-	if($_GET["ipp"]!=""){
-		$url.='&ipp='.$_GET["ipp"].'';
-	}
-	
-	if($_GET["m"]!=""){
-		$url.='&m='.$_GET["m"].'';
-	}
-	if($_GET["y"]!=""){
-		$url.='&y='.$_GET["y"].'';
-	}
-	if($_GET["c"]!=""){
-		$url.='&c='.$_GET["c"].'';
-	}
-	
-	if($_GET["t"]!=""){
-		$url.='&t='.$_GET["t"].'';
-	}
-
-	header('Location: index.php?1=1'.$url.'');
-	die();
-	
-}
-
-if((($_GET["a"]=="starb") || ($_GET["a"]=="tarea") || ($_GET["a"]=="borrar") || ($_GET["a"]=="archivar") || ($_GET["a"]=="spam")) && ($_GET["mails"]!="")){
-	
-	$mensajes = explode('|', $_GET["mails"]);
-	if($_GET["a"]=="starb"){
-		$id_tag = 1;
-	}elseif($_GET["a"]=="tarea"){
-		$id_tag = 3;
-	}elseif($_GET["a"]=="spam"){
-		$id_tag = 2;
-	}
-	
-	/*echo 'Se quieren tagear con la id '.$id_tag.' los mensajes:';
-	echo '<pre>';print_r($mensajes);echo '</pre>';*/
-	
-	$i=0;
-	if(($_GET["a"]=="starb") || ($_GET["a"]=="tarea") || ($_GET["a"]=="spam")){
-		foreach($mensajes as $m){
-			if((int)$m !=0){
-				$form_data[$i] = array(
-				    'ID_MAIL' => $m,
-				    'ID_TAG' => $id_tag
-				);
-				DBInsert('igw_emails_tags', $form_data[$i]);
-			
-			}
-			
-			$i++;
-		}
-	}elseif($_GET["a"]=="archivar"){
-		foreach($mensajes as $m){
-			if((int)$m !=0){
-				$form_data[$i] = array(
-				    'ARCHIVE' => 1
-				);
-				DBUpdate('igw_emails', $form_data[$i],"WHERE UDATE='".$m."'");
-			
-			}
-			
-			$i++;
-		}
-	}elseif($_GET["a"]=="borrar"){
-		foreach($mensajes as $m){
-			if((int)$m !=0){
-				$form_data[$i] = array(
-				    'DELETED' => 1
-				);
-				DBUpdate('igw_emails', $form_data[$i],"WHERE UDATE='".$m."'");
-			
-			}
-			
-			$i++;
-		}
-	}
-		
-	
-	
-	$url='';
-	if($_GET["page"]!=""){
-		$url.='&page='.$_GET["page"].'';
-	}
-	if($_GET["ipp"]!=""){
-		$url.='&ipp='.$_GET["ipp"].'';
-	}
-	
-	if($_GET["m"]!=""){
-		$url.='&m='.$_GET["m"].'';
-	}
-	if($_GET["y"]!=""){
-		$url.='&y='.$_GET["y"].'';
-	}
-	if($_GET["c"]!=""){
-		$url.='&c='.$_GET["c"].'';
-	}
-	
-	if($_GET["t"]!=""){
-		$url.='&t='.$_GET["t"].'';
-	}
-
-	header('Location: index.php?1=1'.$url.'');
-	die();
-	
-}
-
-//PONER ESTRELLA
-if(($_GET["a"]=="star") && ((int)$_GET["u"]!=0)){
-	$id_tag = 1;
-	/*echo 'Se quieren tagear con la id '.$id_tag.' los mensajes:';
-	echo '<pre>';print_r($mensajes);echo '</pre>';*/
-	
-		if((int)$_GET["u"] !=0){
-			$form_data[$i] = array(
-			    'ID_MAIL' => clear((int)$_GET["u"]),
-			    'ID_TAG' => $id_tag
-			);
-			DBInsert('igw_emails_tags', $form_data[$i]);
-		
-		}
-
-	$url='';
-	if($_GET["page"]!=""){
-		$url.='&page='.$_GET["page"].'';
-	}
-	if($_GET["ipp"]!=""){
-		$url.='&ipp='.$_GET["ipp"].'';
-	}
-	
-	if($_GET["m"]!=""){
-		$url.='&m='.$_GET["m"].'';
-	}
-	if($_GET["y"]!=""){
-		$url.='&y='.$_GET["y"].'';
-	}
-	if($_GET["c"]!=""){
-		$url.='&c='.$_GET["c"].'';
-	}
-	if($_GET["t"]!=""){
-		$url.='&t='.$_GET["t"].'';
-	}
-
-	header('Location: index.php?1=1'.$url.'');
-	die();
-	
-}
-
-//QUITAR ESTRELLA
-if(($_GET["a"]=="unstar") && ((int)$_GET["u"]!=0)){
-		if((int)$_GET["u"]!=0){
-			DBDelete('igw_emails_tags', "WHERE ID_MAIL='".clear((int)$_GET["u"])."' AND ID_TAG=1");
-		}
-
-	$url='';
-	if($_GET["page"]!=""){
-		$url.='&page='.$_GET["page"].'';
-	}
-	if($_GET["ipp"]!=""){
-		$url.='&ipp='.$_GET["ipp"].'';
-	}
-	
-	if($_GET["m"]!=""){
-		$url.='&m='.$_GET["m"].'';
-	}
-	if($_GET["y"]!=""){
-		$url.='&y='.$_GET["y"].'';
-	}
-	if($_GET["c"]!=""){
-		$url.='&c='.$_GET["c"].'';
-	}
-	if($_GET["t"]!=""){
-		$url.='&t='.$_GET["t"].'';
-	}
-
-	header('Location: index.php?1=1'.$url.'');
-	die();
-	
-}
-
-//QUITAR ARCHIVO
-if(($_GET["a"]=="unarchive") && ((int)$_GET["u"]!=0)){
-		if((int)$_GET["u"]!=0){
-			$form_data[$i] = array(
-			    'ARCHIVE' => 0
-			);
-			DBUpdate('igw_emails', $form_data[$i],"WHERE UDATE='".(int)$_GET["u"]."'");
-		
-		}
-
-	$url='';
-	if($_GET["page"]!=""){
-		$url.='&page='.$_GET["page"].'';
-	}
-	if($_GET["ipp"]!=""){
-		$url.='&ipp='.$_GET["ipp"].'';
-	}
-	
-	if($_GET["m"]!=""){
-		$url.='&m='.$_GET["m"].'';
-	}
-	if($_GET["y"]!=""){
-		$url.='&y='.$_GET["y"].'';
-	}
-	if($_GET["c"]!=""){
-		$url.='&c='.$_GET["c"].'';
-	}
-	if($_GET["t"]!=""){
-		$url.='&t='.$_GET["t"].'';
-	}
-	
-	header('Location: index.php?1=1'.$url.'');
-	die();
-	
-}
-
-//QUITAR DELETE
-if(($_GET["a"]=="undelete") && ((int)$_GET["u"]!=0)){
-		if((int)$_GET["u"]!=0){
-			$form_data[$i] = array(
-			    'DELETED' => 0
-			);
-			DBUpdate('igw_emails', $form_data[$i],"WHERE UDATE='".(int)$_GET["u"]."'");
-		
-		}
-
-	$url='';
-	if($_GET["page"]!=""){
-		$url.='&page='.$_GET["page"].'';
-	}
-	if($_GET["ipp"]!=""){
-		$url.='&ipp='.$_GET["ipp"].'';
-	}
-	
-	if($_GET["m"]!=""){
-		$url.='&m='.$_GET["m"].'';
-	}
-	if($_GET["y"]!=""){
-		$url.='&y='.$_GET["y"].'';
-	}
-	if($_GET["c"]!=""){
-		$url.='&c='.$_GET["c"].'';
-	}
-	
-	if($_GET["t"]!=""){
-		$url.='&t='.$_GET["t"].'';
-	}
-
-	header('Location: index.php?1=1'.$url.'');
-	die();
-	
-}
-
-//QUITAR TASK
-if(($_GET["a"]=="untag") && ((int)$_GET["mail"]!=0) && ((int)$_GET["t"]!=0)){
-		if((int)$_GET["mail"]!=0){
-			DBDelete('igw_emails_tags', "WHERE ID_MAIL='".clear((int)$_GET["mail"])."' AND ID_TAG=".(int)$_GET["t"]."");
-		}
-
-	$url='';
-	if($_GET["page"]!=""){
-		$url.='&page='.$_GET["page"].'';
-	}
-	if($_GET["ipp"]!=""){
-		$url.='&ipp='.$_GET["ipp"].'';
-	}
-	
-	if($_GET["m"]!=""){
-		$url.='&m='.$_GET["m"].'';
-	}
-	if($_GET["y"]!=""){
-		$url.='&y='.$_GET["y"].'';
-	}
-	if($_GET["c"]!=""){
-		$url.='&c='.$_GET["c"].'';
-	}
-	if($_GET["t"]!=""){
-		$url.='&t='.$_GET["t"].'';
-	}
-
-	header('Location: index.php?1=1'.$url.'');
-	die();
-	
-}
-
-
-}
+include('igw_includes/actions/actions.php');
 include('igw_includes/actions/delete.php');
 ?>
 <!DOCTYPE html>
@@ -414,7 +101,10 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <?php /* <!-- Messages Dropdown Menu -->
+	
+      <?php 
+	  //TODO: EMAILS NOTIFICATIONS
+	  /* <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-envelope"></i>
@@ -472,6 +162,7 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
           <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
         </div>
       </li>
+	  //TODO: EMAIL STATS
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
@@ -502,6 +193,18 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a -->
         </div>
       </li> */ ?>
+	  <li class="nav-item d-block d-sm-none">
+		  <a href="administrators.php" class="nav-link"><i class="fa fa-users"></i></a>
+		</li>
+		<li class="nav-item d-block d-sm-none">
+		  <a href="configuration.php" class="nav-link"><i class="fa fa-envelope"></i></a>
+		</li>
+		<li class="nav-item d-block d-sm-none">
+		  <a target="_blank" href="cron_mail.php" class="nav-link"><i class="fas fa-tasks"></i></a>
+		</li>
+		<li class="nav-item d-block d-sm-none">
+		  <a href="tags.php" class="nav-link"><i class="fas fa-tag"></i></a>
+		</li>
       <li class="nav-item">
         <a class="nav-link" target="_blank" title="Docs in github pages ;)" href="https://iguannaweb.github.io/backupmail/" role="button"><i class="fas fa-book"></i></a>
       </li>

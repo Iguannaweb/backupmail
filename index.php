@@ -24,7 +24,6 @@ $page_name='Inbox';
 $parent_page_name='Home';
 $parent_page_link='./index.php';
 include('./igw_template/page-header.php'); 
-
 ?>	  
     <!-- Main content -->
     <section class="content">
@@ -39,7 +38,7 @@ include('./igw_template/page-header.php');
 <?php
 }else{
 //LOGIN
-include('./igw_template/login-form.php');
+include('./igw_template/login_form.php');
 }
 //FOOTER
 include('./igw_template/footer.php'); 
