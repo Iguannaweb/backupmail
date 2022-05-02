@@ -12,6 +12,7 @@
  * Contact: info@iguannaweb.com                              *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
+//INFO: TRANSLATED EN
 ?>
 <?php
 if($debug=="1"){
@@ -21,6 +22,7 @@ if($debug=="1"){
 }
 include('igw_includes/login/session.php');
 include('igw_includes/config/dbc.php');
+include('igw_languages/'.$lang.'.php');
 include('igw_includes/config/mail.config.php');
 include('igw_includes/config/pag_config.php');
 include('igw_includes/functions/functions.php');
@@ -40,7 +42,7 @@ include('igw_includes/actions/delete.php');
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <title>BackupMail by IguannaWeb</title>
+  <title><?php echo $lang_index_title; ?></title>
   
   <!-- favicon -->
   <link rel="shortcut icon" type="image/png" href="igw_template/assets/img/favicon.png"/>
@@ -74,16 +76,16 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
         <a class="nav-link-logo" href="index.php" role="button"><img src="igw_template/assets/img/backupmail.png" alt="backupmail" height="30" ></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="administrators.php" class="nav-link"><i class="fa fa-users"></i> Users</a>
+        <a href="administrators.php" class="nav-link" title="<?php echo $lang_index_menu_user_title; ?>"><i class="fa fa-users"></i> <?php echo $lang_index_menu_user; ?></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="configuration.php" class="nav-link"><i class="fa fa-envelope"></i> Accounts</a>
+        <a href="configuration.php" class="nav-link" title="<?php echo $lang_index_menu_account_title; ?>"><i class="fa fa-envelope"></i> <?php echo $lang_index_menu_account; ?></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a target="_blank" href="cron_mail.php" class="nav-link"><i class="fas fa-tasks"></i> Cron</a>
+        <a target="_blank" href="cron_mail.php" class="nav-link" title="<?php echo $lang_index_menu_cron_title; ?>"><i class="fas fa-tasks"></i> <?php echo $lang_index_menu_cron; ?></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="tags.php" class="nav-link"><i class="fas fa-tag"></i> Tags</a>
+        <a href="tags.php" class="nav-link" title="<?php echo $lang_index_menu_tag_title; ?>"><i class="fas fa-tag"></i> <?php echo $lang_index_menu_tag; ?></a>
       </li>
     </ul>
 
@@ -205,11 +207,11 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
 		<li class="nav-item d-block d-sm-none">
 		  <a href="tags.php" class="nav-link"><i class="fas fa-tag"></i></a>
 		</li>
-      <li class="nav-item">
-        <a class="nav-link" target="_blank" title="Docs in github pages ;)" href="https://iguannaweb.github.io/backupmail/" role="button"><i class="fas fa-book"></i></a>
+      <li class="nav-item d-none d-sm-block">
+        <a class="nav-link" target="_blank" title="<?php echo $lang_index_menu_doc_title; ?>" href="https://iguannaweb.github.io/backupmail/" role="button"><i class="fas fa-book"></i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.php?logoff" role="button"><i class="fas fa-sign-out-alt"></i></a>
+        <a class="nav-link" href="index.php?logoff" title="<?php echo $lang_index_menu_logoff_title; ?>" role="button"><i class="fas fa-sign-out-alt"></i></a>
       </li>
     </ul>
   </nav>

@@ -19,6 +19,7 @@ $db_user		= 'db_user';
 $db_pass		= 'db_pass';
 $db_database	= 'db_name';
 $debug          = '0';
+$lang           = 'en_US';
 
 $link = mysqli_connect($db_host,$db_user,$db_pass,$db_database);
 mysqli_set_charset($link, "utf8");
