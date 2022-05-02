@@ -15,7 +15,7 @@ define(INCLUDE_CHECK,'true');
 ?>
 <?php 
 include('./igw_template/header.php'); ?>
-
+<?php if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) && ($activo['tipo']=="ADM")){ ?>
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -37,11 +37,25 @@ include('./igw_template/header.php'); ?>
 
     <!-- Main content -->
     <section class="content">
-	
+	<strong>File config:</strong> ./igw_includes/config/mail.config.php<br>
+	<pre>
+	array(
+		'folder' => 'folder_name', //folder where the files will be save
+		'user_mail' => 'your_mail', //Email user
+		'password_mail' => 'your_pass', //Email password
+		'imap_connect' => '{imap.server.com:993/imap/ssl/novalidate-cert}', //Imap parametters this works for gmail
+		'imap_folder' => 'Imap_inbox_folder', //IMAP folder to check INBOX?
+		'imap_folder_archive' => 'Imap_archive_folder', //IMAP folder to archive
+		'imap_search' => 'Imap_parameter_to_search', //IMAP parameter to search
+		'imap_notes' => 'Imap_notes_folder', //folder to save notes
+		'imap_sent' => 'Imap_sent_folder', //Folder to save sents emails
+		'imap_draft' => 'Imap_drafts_folder', //Folder to save drafts
+	)
+	</pre>
 	</section>
     <!-- /.content -->
   </div>			
 			
 							
-			
+<?php } ?>			
 <?php include('./igw_template/footer.php'); ?>
