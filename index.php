@@ -22,6 +22,7 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
 //NEW: PAGE HEADER
 $page_name='Inbox';
 $parent_page_name='Home';
+$page_name_short='Inbox';
 $parent_page_link='./index.php';
 include('./igw_template/page-header.php'); 
 ?>	  

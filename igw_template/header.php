@@ -73,7 +73,7 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link-logo" href="index.php" role="button"><img src="igw_template/assets/img/backupmail.png" alt="backupmail" height="30" ></a>
+        <a class="nav-link-logo" href="index.php" title="<?php echo $lang_index_title_logo; ?>" role="button"><img src="igw_template/assets/img/backupmail.png" alt="<?php echo $lang_index_alt_logo; ?>" height="30" ></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="administrators.php" class="nav-link" title="<?php echo $lang_index_menu_user_title; ?>"><i class="fa fa-users"></i> <?php echo $lang_index_menu_user; ?></a>

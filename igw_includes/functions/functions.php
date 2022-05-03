@@ -174,7 +174,7 @@ function get_tags($UDATE){
 		$etiquetas = DBSelect('igw_emails_tags et, igw_tags t', '*'," WHERE et.ID_TAG=t.ID_TAG AND et.ID_MAIL='".$UDATE."' ".$filter."",'','');
 		
 		while($et = mysqli_fetch_array($etiquetas)){
-			echo '<span data-actiontag="'.$et["ID_TAG"].'" style="cursor: pointer;" data-idmail="'.$UDATE.'" class="btn btn-'.$et["TAG_COLOR"].' btn-xs"><i class="fa'.$et["ICON_S"].' fa-'.$et["TAG_ICON"].'"></i> '.$et["TAG"].'</span> ';
+			echo '<div data-actiontag="'.$et["ID_TAG"].'" style="cursor: pointer;" data-idmail="'.$UDATE.'" class="btn btn-'.$et["TAG_COLOR"].' btn-xs"><i class="fa'.$et["ICON_S"].' fa-'.$et["TAG_ICON"].'" style="display: inline;"></i>'.$et["TAG"].'</div> ';
 		}
 		
 	}

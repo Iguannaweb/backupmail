@@ -12,7 +12,7 @@
  * Contact: info@iguannaweb.com                              *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
-
+//INFO: TRANSLATED EN
 ?>
  <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -24,7 +24,7 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 	  <div class="col-sm-6">
 		<ol class="breadcrumb float-sm-right">
 		  <li class="breadcrumb-item"><a href="<?php echo $parent_page_link; ?>"><?php echo $parent_page_name; ?></a></li>
-		  <li class="breadcrumb-item active"><?php echo $page_name; ?></li>
+		  <li class="breadcrumb-item active"><?php echo $page_name_short; ?></li>
 		</ol>
 	  </div>
 	</div>

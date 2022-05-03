@@ -54,9 +54,9 @@ if(($_GET["a"]=="tag") && ((int)$_GET["t"]!=0) && ($_GET["mails"]!="")){
 		$url.='&c='.$_GET["c"].'';
 	}
 	
-	if($_GET["t"]!=""){
+	/*if($_GET["t"]!=""){
 		$url.='&t='.$_GET["t"].'';
-	}
+	}*/
 
 	header('Location: index.php?1=1'.$url.'');
 	die();

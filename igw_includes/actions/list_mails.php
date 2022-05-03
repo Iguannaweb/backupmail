@@ -66,7 +66,9 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 <div class="col-md-9 col-sm-8">
   <div class="card card-navy card-outline">
 	<div class="card-header">
-	  <h3 class="card-title">Inbox</h3>
+	  <h3 class="card-title">Inbox <?php if(($_GET["c"]!="")){
+		  echo '<span class="btn btn-info btn-xs m-r-2"><i class="fas fa-envelope"></i>'.$_GET["c"].'</span> ';
+	  } ?></h3>
 
 	  <div class="card-tools">
 		<div class="input-group input-group-sm">
@@ -199,10 +201,10 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 			echo '</td>';
 			
 			echo '
-			<td style="width: 25%;">
+			<td>
 			<div class="email-checkbox ml-2">';
 			if(($_GET["c"]=="")){
-				echo '<span class="btn btn-info btn-xs m-r-2"><i class="fas fa-envelope"></i> '.$list["MAIL"].'</span> ';
+				echo '<div class="btn btn-info btn-xs m-r-2"><i class="fas fa-envelope" style="display: inline;"></i>'.$list["MAIL"].'</div> ';
 			}
 			
 			echo '<span class="email-tags">';
@@ -210,14 +212,14 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 			echo '</span>
 			</div>
 			</td>
-			<td class="mailbox-name"  style="width: 35%;">
+			<td class="mailbox-name"  style="width: 80%;">
 			<a href="index.php?&c='.$partes_file[2].'&y='.$partes_file[3].'&m='.$partes_file[4].'&id='.$list["UDATE"].'" class="email-user">
 				<img class="media-object rounded-corner img-circle" alt="" src="'.get_gravatar($from_address[0]["address"],20).'" />
 			</a> <a href="index.php?tipo='.$_GET["tipo"].'&c='.$partes_file[2].'&y='.$partes_file[3].'&m='.$partes_file[4].'&id='.$list["UDATE"].'">
-					<span class="email-sender">'.$from.' ['.$from_address[0]["address"].']</span>
-				</a>
+					<span class="email-sender"><strong>'.$from.' ['.$from_address[0]["address"].']</strong></span>
+				</a><br>'.iconv_mime_decode($list["SUBJECT"],0, "UTF-8").'
 			</td>
-			<td class="mailbox-subject"  style="width: 45%;">'.iconv_mime_decode($list["SUBJECT"],0, "UTF-8").'</td>
+			<!--td class="mailbox-subject"  style="width: 45%;">'.iconv_mime_decode($list["SUBJECT"],0, "UTF-8").'</td -->
 			<td class="mailbox-attachment"  style="width: 24px;">'; 
 					if(count($attachments)>=1){ echo '<i class="fas fa-paperclip"></i> '; }
 					echo '</td>

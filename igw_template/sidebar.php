@@ -12,14 +12,15 @@
  * Contact: info@iguannaweb.com                              *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
+//INFO: TRANSLATED EN
 ?>
 
 <div class="col-md-3 col-sm-4">
-  <!--a href="#" class="btn btn-primary btn-block mb-3">Compose</a -->
+  <a href="#" class="btn btn-primary btn-block mb-3"><?php echo $lang_sidebar_compose_btn; ?></a>
 
   <div class="card">
 	<div class="card-header">
-	  <h3 class="card-title"><strong>Inbox's Accounts</strong></h3>
+	  <h3 class="card-title"><strong><?php echo $lang_sidebar_title_emails; ?></strong></h3>
 
 	  <div class="card-tools">
 		<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -176,7 +177,7 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
   <!-- /.card -->
   <div class="card">
 	<div class="card-header">
-	  <h3 class="card-title"><strong>Tags</strong></h3>
+	  <h3 class="card-title"><strong><?php echo $lang_sidebar_title_tags; ?></strong></h3>
 
 	  <div class="card-tools">
 		<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -246,7 +247,7 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
   
   <div class="card">
 	  <div class="card-header">
-	  <h3 class="card-title"><strong>Others mails</strong></h3>
+	  <h3 class="card-title"><strong><?php echo $lang_sidebar_title_other; ?></strong></h3>
 
 	  <div class="card-tools">
 		<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -256,11 +257,11 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 	  <div  class="card-body p-0" id="jstree_otros_div">
 		<ul class="nav nav-inbox">
 			<li <?php echo " data-jstree='{ \"icon\" : \"fa fa-envelope text-info\" }'"; ?>>
-			<a href="index.php?tipo=sent&c="><i class="fa fa-envelope text-info"></i> SENTS</a></li>
+			<a href="index.php?tipo=sent&c="><i class="fa fa-envelope text-info"></i> <?php echo $lang_sidebar_title_other_sents; ?></a></li>
 			<li <?php echo " data-jstree='{ \"icon\" : \"fa fa-pencil-alt text-grey\" }'"; ?>>
-			<a href="index.php?tipo=draft&c="><i class="fa fa-pencil-alt text-grey"></i> DRAFTS</a></li>
+			<a href="index.php?tipo=draft&c="><i class="fa fa-pencil-alt text-grey"></i> <?php echo $lang_sidebar_title_other_drafts; ?></a></li>
 			<li <?php echo " data-jstree='{ \"icon\" : \"fa fa-sticky-note text-yellow\" }'"; ?>>
-			<a href="index.php?tipo=notes&c="><i class="fa fa-sticky-note text-yellow"></i> NOTES</a></li>
+			<a href="index.php?tipo=notes&c="><i class="fa fa-sticky-note text-yellow"></i> <?php echo $lang_sidebar_title_other_notes; ?></a></li>
 		</ul>
 		</div>
   </div>

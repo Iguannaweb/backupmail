@@ -12,9 +12,13 @@
  * Contact: info@iguannaweb.com                              *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
+//INFO: HOME
 
 //Title
 $lang_index_title="BackupMail by IguannaWeb";
+$lang_index_title_logo="BackupMail by IguannaWeb";
+$lang_index_alt_logo="BackupMail";
+
 //Top Menu
 $lang_index_menu_user='Users';
 $lang_index_menu_user_title='Manage users';
@@ -28,3 +32,12 @@ $lang_index_menu_doc='Doc';
 $lang_index_menu_doc_title='Docs in github pages ;)';
 $lang_index_menu_logoff='Logoff';
 $lang_index_menu_logoff_title='Sign out from your account';
+
+//Sidebar
+$lang_sidebar_compose_btn='Compose';
+$lang_sidebar_title_emails='Inbox\'s Accounts';
+$lang_sidebar_title_tags='Tags';
+$lang_sidebar_title_other='Others mails';
+$lang_sidebar_title_other_sents='Sents';
+$lang_sidebar_title_other_drafts='Drafts';
+$lang_sidebar_title_other_notes='Notes';

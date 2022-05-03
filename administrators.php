@@ -18,22 +18,14 @@ include('./igw_template/header.php'); ?>
 <?php if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) && ($activo['tipo']=="ADM")){ ?>
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Admins configurations</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Admins</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
+    <?php
+	   //NEW: PAGE HEADER
+	   $page_name='Admins configurations';
+	   $parent_page_name='Home';
+	   $page_name_short='Admins';
+	   $parent_page_link='./index.php';
+	   include('./igw_template/page-header.php');
+	   ?>
 
     <!-- Main content -->
     <section class="content">
@@ -177,7 +169,8 @@ include('./igw_template/header.php'); ?>
 							  <strong>¡Felicidades!</strong>
 							  La cuenta se ha borrado correctamente 
 							</div></div></div>';
-			}elseif($_GET["sms"]=="ERROR"){
+			}
+			elseif($_GET["sms"]=="ERROR"){
 				echo '<div class="row"><div class="col-md-12"><div class="alert alert-danger fade show">
 					  <span class="close" data-dismiss="alert">×</span>
 					  <strong>¡Error!</strong>
