@@ -52,7 +52,7 @@ if($_GET["tipo"]=="DRAFT"){
 				if($folder !== 'INBOX'){
 				    krsort($list);
 				}
-				echo '<pre>';print_r($list);echo '</pre>';
+				//echo '<pre>';print_r($list);echo '</pre>';
 			
 				$inboxmails = imap_search($inbox, ''.$correos["imap_search"].'');  //, SE_UID //SUBJECT "LA19S"
 				$check = imap_mailboxmsginfo($inbox);
@@ -266,7 +266,7 @@ elseif($_GET["tipo"]=="NOTES"){
 			if($folder !== 'INBOX'){
 			    krsort($list);
 			}
-			echo '<pre>';print_r($list);echo '</pre>';
+			//echo '<pre>';print_r($list);echo '</pre>';
 		
 			$inboxmails = imap_search($inbox, ''.$correos["imap_search"].'');  //, SE_UID //SUBJECT "LA19S"
 			$check = imap_mailboxmsginfo($inbox);

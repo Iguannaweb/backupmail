@@ -85,74 +85,77 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 	<!-- /.card-header -->
 	<div class="card-body p-0">
 	  <div class="mailbox-controls">
-		  <div class="btn-group">
-			  <div class="custom-control btn btn-default btn-sm custom-checkbox  checkbox-toggle">
-				<input type="checkbox" class="ml-2 custom-control-input" data-checked="email-checkbox" id="emailSelectAll" data-change="email-select-all" />
-				<label class="custom-control-label" for="emailSelectAll"></label>
-			</div>
-			  <button class="btn btn-default btn-sm" data-toggle="dropdown">
-					<i class="fa fa-filter mr-2"></i>Filter <span class="caret m-l-3"></span>
-				</button>
-				<div class="dropdown-menu">
-					<?php
-					echo '<a href="#" data-idtag="#" class="tag-filter dropdown-item"><i class="fas fa-fw f-s-10 m-r-5 fa-tag"></i> No filter</a>';
-					
-					$datatags = DBSelect('igw_tags', '*', "WHERE ID_TAG_SUP = '0'",'ORDER BY POSICION ASC');
-			
-						$i=0;
-						
-						while($rowt=mysqli_fetch_array($datatags)){
-							echo '<a href="#" conclick="console.log($(this).attr(\'data-idtag\'));" data-idtag="'.$rowt["ID_TAG"].'" class="tag-filter dropdown-item"><i class="fa'.$rowt["ICON_S"].' fa-fw f-s-10 m-r-5 fa-'.$rowt["TAG_ICON"].' text-'.$rowt["TAG_COLOR"].'"></i> '.$rowt["TAG"].'</a>';
-							$datatags_children[$i] = DBSelect('igw_tags', '*', "WHERE ID_TAG_SUP = '".$rowt["ID_TAG"]."'",'ORDER BY POSICION ASC');
-							while($rowt_children[$i]=mysqli_fetch_array($datatags_children[$i])){
-							echo '<a href="#" conclick="console.log($(this).attr(\'data-idtag\'));" data-idtag="'.$rowt_children[$i]["ID_TAG"].'" class="tag-filter dropdown-item m-l-10"><i class="fa'.$rowt_children[$i]["ICON_S"].' fa-fw f-s-10 m-r-5 fa-'.$rowt_children[$i]["TAG_ICON"].' text-'.$rowt_children[$i]["TAG_COLOR"].'"></i> '.$rowt_children[$i]["TAG"].'</a>';
-							}
-						}
-					?>
-					
+		  <div class="row">
+		  	<div class="col-md-6 col-sm-6">
+		  		<div class="btn-group">
+			  	<div class="custom-control btn btn-default btn-sm custom-checkbox  checkbox-toggle">
+					<input type="checkbox" class="ml-2 custom-control-input" data-checked="email-checkbox" id="emailSelectAll" data-change="email-select-all" />
+					<label class="custom-control-label" for="emailSelectAll"></label>
 				</div>
-			  
-		  </div>
-		  
-			<!-- begin btn-group -->
-			<div class="btn-group">
-		
-				
-				
-				<button class="btn btn-sm btn-default hide" data-email-action="importante"><i class="fa fa-star mr-2"></i> <span class="d-none d-xl-inline"></span></button>
-				<button class="btn btn-sm btn-default hide" data-email-action="tarea"><i class="fa fa-tasks mr-2"></i> <span class="d-none d-xl-inline"></span></button>
-				<button class="btn btn-sm btn-default hide" data-email-action="borrar"><i class="fa fa-trash mr-2"></i> <span class="d-none d-xl-inline"></span></button>
-				<button class="btn btn-sm btn-default hide" data-email-action="archivar"><i class="fa fa-archive mr-2"></i> <span class="d-none d-xl-inline"></span></button>
-				<button class="btn btn-sm btn-default hide" data-email-action="spam"><i class="fa fa-thumbs-down mr-2"></i> <span class="d-none d-xl-inline"></span></button>
-				
-				<button class="btn btn-default btn-sm hide" data-email-action="etiquetar" data-toggle="dropdown">
-					<i class="fa fa-tag mr-2"></i>Tag <span class="caret m-l-3"></span>
-				</button>
-				<div class="dropdown-menu">
-					<a href="javascript:;" class="dropdown-item"><i class="fa fa-circle f-s-9 fa-fw mr-2"></i> All</a>
-					<?php
-					$datatags = DBSelect('igw_tags', '*', "WHERE ID_TAG_SUP = '0'",'ORDER BY POSICION ASC');
-			
-						$i=0;
+			  	<button class="btn btn-default btn-sm" data-toggle="dropdown">
+						<i class="fa fa-filter mr-2"></i>Filter <span class="caret m-l-3"></span>
+					</button>
+					<div class="dropdown-menu">
+						<?php
+						echo '<a href="#" data-idtag="#" class="tag-filter dropdown-item"><i class="fas fa-fw f-s-10 m-r-5 fa-tag"></i> No filter</a>';
 						
-						while($rowt=mysqli_fetch_array($datatags)){
-							echo '<a href="#" conclick="console.log($(this).attr(\'data-idtagadd\'));" data-idtag="'.$rowt["ID_TAG"].'" class="tag-filter dropdown-item"><i class="fa'.$rowt["ICON_S"].' fa-fw f-s-10 m-r-5 fa-'.$rowt["TAG_ICON"].' text-'.$rowt["TAG_COLOR"].'"></i> '.$rowt["TAG"].'</a>';
-							$datatags_children[$i] = DBSelect('igw_tags', '*', "WHERE ID_TAG_SUP = '".$rowt["ID_TAG"]."'",'ORDER BY POSICION ASC');
-							while($rowt_children[$i]=mysqli_fetch_array($datatags_children[$i])){
-							echo '<a href="#" conclick="console.log($(this).attr(\'data-idtagadd\'));" data-idtag="'.$rowt_children[$i]["ID_TAG"].'" class="tag-filter dropdown-item m-l-10"><i class="fa'.$rowt_children[$i]["ICON_S"].' fa-fw f-s-10 m-r-5 fa-'.$rowt_children[$i]["TAG_ICON"].' text-'.$rowt_children[$i]["TAG_COLOR"].'"></i> '.$rowt_children[$i]["TAG"].'</a>';
+						$datatags = DBSelect('igw_tags', '*', "WHERE ID_TAG_SUP = '0'",'ORDER BY POSICION ASC');
+				
+							$i=0;
+							
+							while($rowt=mysqli_fetch_array($datatags)){
+								echo '<a href="#" conclick="console.log($(this).attr(\'data-idtag\'));" data-idtag="'.$rowt["ID_TAG"].'" class="tag-filter dropdown-item"><i class="fa'.$rowt["ICON_S"].' fa-fw f-s-10 m-r-5 fa-'.$rowt["TAG_ICON"].' text-'.$rowt["TAG_COLOR"].'"></i> '.$rowt["TAG"].'</a>';
+								$datatags_children[$i] = DBSelect('igw_tags', '*', "WHERE ID_TAG_SUP = '".$rowt["ID_TAG"]."'",'ORDER BY POSICION ASC');
+								while($rowt_children[$i]=mysqli_fetch_array($datatags_children[$i])){
+								echo '<a href="#" conclick="console.log($(this).attr(\'data-idtag\'));" data-idtag="'.$rowt_children[$i]["ID_TAG"].'" class="tag-filter dropdown-item m-l-10"><i class="fa'.$rowt_children[$i]["ICON_S"].' fa-fw f-s-10 m-r-5 fa-'.$rowt_children[$i]["TAG_ICON"].' text-'.$rowt_children[$i]["TAG_COLOR"].'"></i> '.$rowt_children[$i]["TAG"].'</a>';
+								}
 							}
-						}
-					?>
-				</div>	
-				<button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
-			</div>
-			<!-- end btn-group -->
+						?>
 						
-		
-		<div class="float-right">
-		  <?php echo $pages->display_pages(); ?>
-		</div>
-		<!-- /.float-right -->
+					</div>
+			  	
+		  </div>
+	
+		  		<!-- begin btn-group -->
+		  		<div class="btn-group">
+			
+					
+					
+					<button class="btn btn-sm btn-default hide" data-email-action="importante"><i class="fa fa-star mr-2"></i> <span class="d-none d-xl-inline"></span></button>
+					<button class="btn btn-sm btn-default hide" data-email-action="tarea"><i class="fa fa-tasks mr-2"></i> <span class="d-none d-xl-inline"></span></button>
+					<button class="btn btn-sm btn-default hide" data-email-action="borrar"><i class="fa fa-trash mr-2"></i> <span class="d-none d-xl-inline"></span></button>
+					<button class="btn btn-sm btn-default hide" data-email-action="archivar"><i class="fa fa-archive mr-2"></i> <span class="d-none d-xl-inline"></span></button>
+					<button class="btn btn-sm btn-default hide" data-email-action="spam"><i class="fa fa-thumbs-down mr-2"></i> <span class="d-none d-xl-inline"></span></button>
+					
+					<button class="btn btn-default btn-sm hide" data-email-action="etiquetar" data-toggle="dropdown">
+						<i class="fa fa-tag mr-2"></i> <span class="caret m-l-3"></span>
+					</button>
+					<div class="dropdown-menu">
+						<a href="javascript:;" class="dropdown-item"><i class="fa fa-circle f-s-9 fa-fw mr-2"></i> All</a>
+						<?php
+						$datatags = DBSelect('igw_tags', '*', "WHERE ID_TAG_SUP = '0'",'ORDER BY POSICION ASC');
+				
+							$i=0;
+							
+							while($rowt=mysqli_fetch_array($datatags)){
+								echo '<a href="#" conclick="console.log($(this).attr(\'data-idtagadd\'));" data-idtag="'.$rowt["ID_TAG"].'" class="tag-filter dropdown-item"><i class="fa'.$rowt["ICON_S"].' fa-fw f-s-10 m-r-5 fa-'.$rowt["TAG_ICON"].' text-'.$rowt["TAG_COLOR"].'"></i> '.$rowt["TAG"].'</a>';
+								$datatags_children[$i] = DBSelect('igw_tags', '*', "WHERE ID_TAG_SUP = '".$rowt["ID_TAG"]."'",'ORDER BY POSICION ASC');
+								while($rowt_children[$i]=mysqli_fetch_array($datatags_children[$i])){
+								echo '<a href="#" conclick="console.log($(this).attr(\'data-idtagadd\'));" data-idtag="'.$rowt_children[$i]["ID_TAG"].'" class="tag-filter dropdown-item m-l-10"><i class="fa'.$rowt_children[$i]["ICON_S"].' fa-fw f-s-10 m-r-5 fa-'.$rowt_children[$i]["TAG_ICON"].' text-'.$rowt_children[$i]["TAG_COLOR"].'"></i> '.$rowt_children[$i]["TAG"].'</a>';
+								}
+							}
+						?>
+					</div>	
+					<button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
+			</div>
+		  		<!-- end btn-group -->
+		  	</div>				
+			
+		  	<div class="col-md-6 col-sm-12">
+		    	<div class="pull-right"><?php echo $pages->display_pages(); ?></div>
+		  	</div>
+		  	<!-- /.float-right -->
+	      </div>
 	  </div>
 	  <div class="table-responsive mailbox-messages">
 		<table class="table table-hover table-striped">

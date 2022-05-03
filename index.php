@@ -31,7 +31,7 @@ include('./igw_template/page-header.php');
       <div class="row">
 		<?php include('./igw_template/sidebar.php'); ?>
         <?php include('./igw_includes/actions/list_mails.php'); ?>
-		<?php include('./igw_includes/actions/read_mails.php'); ?>		
+		<?php include('./igw_includes/actions/read_mail.php'); ?>		
       </div>
       <!-- /.row -->
     </section>
