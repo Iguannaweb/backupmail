@@ -237,6 +237,35 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 				echo '</ul>';
 				echo '</li>';
 			}
+			
+			//Archived
+			echo '<li'; 
+			echo " data-jstree='{ \"icon\" : \"fa fa-archive text-warning\" }'";	
+			echo '><a '; 
+				if($_GET["st"]=="archived"){
+					echo '  class="nav-item jstree-clicked"';
+				}else{
+					echo '  class="nav-item "';
+				}
+				echo ' href="index.php?st=archived&c='.$_GET["c"].'"><i class="jstree-icon fa fa-fw f-s-10 m-r-5 fa-archive text-warning"></i> '.$lang_sidebar_archived_tag.'</a>';
+				//('.get_archive_count().')
+
+			
+			echo '</li>';
+			//Deleted
+			echo '<li'; 
+			echo " data-jstree='{ \"icon\" : \"fa fa-trash text-danger\" }'";	
+			echo '><a '; 
+				if($_GET["st"]=="trash"){
+					echo '  class="nav-item jstree-clicked"';
+				}else{
+					echo '  class="nav-item "';
+				}
+				echo ' href="index.php?st=trash&c='.$_GET["c"].'"><i class="jstree-icon fa fa-fw f-s-10 m-r-5 fa-trash text-danger"></i> '.$lang_sidebar_trash_tag.'</a>';
+				//('.get_archive_count().')
+			
+			
+			echo '</li>';
 			?>
 			
 		</ul>

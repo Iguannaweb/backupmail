@@ -39,6 +39,12 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 			)';
 		}
 		
+		if(clear($_GET["st"])=="archived"){
+			$tagurl = " AND ARCHIVE='1'";
+		}elseif(clear($_GET["st"])=="trash"){
+			$tagurl = " AND DELETED='1'";
+		}
+		
 		if(($_GET["c"]!="") && ((int)$_GET["y"]!=0) && ((int)$_GET["m"]!=0)){
 			$buscar= "WHERE FILE LIKE '%mailbackup".$variable_notes."/".$_GET["c"]."/".$_GET["y"]."/".$_GET["m"]."/MSG_ID_%' ".$tagurl." ".$variable_tipo."";
 		}elseif(($_GET["c"]!="") && ((int)$_GET["y"]!=0) && ((int)$_GET["m"]==0)){

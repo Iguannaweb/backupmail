@@ -40,6 +40,8 @@ $lang_index_menu_logoff_title='Sign out from your account';
 $lang_sidebar_compose_btn='Compose';
 $lang_sidebar_title_emails='Inbox\'s Accounts';
 $lang_sidebar_title_tags='Tags';
+$lang_sidebar_archived_tag="Archived";
+$lang_sidebar_trash_tag="Trash";
 $lang_sidebar_title_other='Others mails';
 $lang_sidebar_title_other_sents='Sents';
 $lang_sidebar_title_other_drafts='Drafts';
@@ -51,6 +53,7 @@ $lang_content_title_sent="Email sent";
 $lang_content_title_drafts="Drafts";
 $lang_content_title_notes="Notes";
 $lang_content_title_tag="Tagged with";
+
 
 //Content footer
 $lang_content_footer_a="to";
