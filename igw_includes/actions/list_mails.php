@@ -66,9 +66,11 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 <div class="col-md-9 col-sm-8">
   <div class="card card-navy card-outline">
 	<div class="card-header">
-	  <h3 class="card-title">Inbox <?php if(($_GET["c"]!="")){
-		  echo '<span class="btn btn-info btn-xs m-r-2"><i class="fas fa-envelope"></i>'.$_GET["c"].'</span> ';
-	  } ?></h3>
+	  	<h3 class="card-title"><?php echo $lang_content_title_inbox; ?> 
+			<?php if(($_GET["c"]!="")){
+		    	echo '<span class="btn btn-info btn-xs m-r-2"><i class="fas fa-envelope"></i>'.$_GET["c"].'</span> ';
+	  		} ?>
+		</h3>
 
 	  <div class="card-tools">
 		<div class="input-group input-group-sm">
@@ -152,7 +154,7 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 		  	</div>				
 			
 		  	<div class="col-md-6 col-sm-12">
-		    	<div class="pull-right"><?php echo $pages->display_pages(); ?></div>
+		    	<div style="float: right;"><?php echo $pages->display_pages(); ?></div>
 		  	</div>
 		  	<!-- /.float-right -->
 	      </div>
@@ -242,12 +244,13 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 	  <!-- /.mail-box-messages -->
 	</div>
 	<!-- /.card-body -->
-	<div class="card-footer p-0">
+	<div class="card-footer p-1">
 	  <div class="mailbox-controls">
 		<div class="float-left text-inverse f-w-600"><?php 
-			$partes = explode(',',str_replace('LIMIT ','',$pages->limit));
-			echo $partes[0].' a '.($partes[0]+$partes[1]).'';
-			echo ' de '.$admtotal['total']; ?> Correos
+			$partes_d = explode(',',str_replace('LIMIT ','',$pages->limit));
+			if((int)$partes_d['0']=='0'){ echo '1'; }else{ echo (int)$partes_d['0']; }
+			echo ' '.$lang_content_footer_a.' '.((int)$partes_d['0']+(int)$partes_d['1']).'';
+			echo ' '.$lang_content_footer_of.' '.(int)$admtotal['total']; ?> <?php echo $lang_content_footer_items; ?>
 		</div>
 	   
 		<div class="float-right">
