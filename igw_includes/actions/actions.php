@@ -252,7 +252,9 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
 		if($_GET["t"]!=""){
 			$url.='&t='.$_GET["t"].'';
 		}
-		
+		if($_GET["st"]!=""){
+			$url.='&st='.$_GET["st"].'';
+		}
 		header('Location: index.php?1=1'.$url.'');
 		die();
 		
@@ -284,6 +286,9 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
 		}
 		if($_GET["c"]!=""){
 			$url.='&c='.$_GET["c"].'';
+		}
+		if($_GET["st"]!=""){
+			$url.='&st='.$_GET["st"].'';
 		}
 		
 		if($_GET["t"]!=""){

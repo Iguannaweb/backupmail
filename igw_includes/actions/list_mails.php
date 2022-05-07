@@ -18,7 +18,7 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 	if(
 	((int)$_GET["id"]==0) 
 	){ 
-		
+		//What type of emails are you listing?
 		if($_GET["tipo"]=="notes"){
 			$variable_notes="_notes";
 			$variable_tipo="AND FOLDER='NOTES'";
@@ -33,18 +33,25 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 			$variable_tipo="AND FOLDER='INBOX'";
 		}
 		
+		//Do you selected a tag?
+		//Future: Two tag selection?
 		if((int)$_GET["t"]!="0"){
 			$tagurl = ' AND UDATE IN (
 				SELECT ID_MAIL FROM `igw_emails_tags` WHERE `ID_TAG` = '.(int)$_GET["t"].'
 			)';
 		}
 		
+		//Show special tags or hide them on the list
 		if(clear($_GET["st"])=="archived"){
 			$tagurl = " AND ARCHIVE='1'";
 		}elseif(clear($_GET["st"])=="trash"){
 			$tagurl = " AND DELETED='1'";
+		}else{
+			$tagurl = " AND DELETED='0' AND ARCHIVE='0'";
 		}
 		
+		//Did you select a mail account, year or month?
+		//Why not a day filter?
 		if(($_GET["c"]!="") && ((int)$_GET["y"]!=0) && ((int)$_GET["m"]!=0)){
 			$buscar= "WHERE FILE LIKE '%mailbackup".$variable_notes."/".$_GET["c"]."/".$_GET["y"]."/".$_GET["m"]."/MSG_ID_%' ".$tagurl." ".$variable_tipo."";
 		}elseif(($_GET["c"]!="") && ((int)$_GET["y"]!=0) && ((int)$_GET["m"]==0)){
@@ -58,6 +65,7 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 		}
 		
 		
+		//Query!
 		$admtotal = mysqli_fetch_array(DBSelect('igw_emails', 'COUNT(*) AS total', "".$buscar."",'ORDER BY UDATE DESC'));
 		$pages = new Paginator;  
 		$pages->items_total = $admtotal['total'];  
@@ -80,7 +88,7 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 
 	  <div class="card-tools">
 		<div class="input-group input-group-sm">
-		  <input type="text" class="form-control" placeholder="Search Mail">
+		  <input type="text" class="form-control" placeholder="<?php echo $lang_content_title_search; ?>">
 		  <div class="input-group-append">
 			<div class="btn btn-secondary">
 			  <i class="fas fa-search"></i>
@@ -205,9 +213,9 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 			echo '</td>';
 			echo '<td class="mailbox-star" style="width: 24px;">';
 			if($list["ARCHIVE"]!="0"){
-				echo '<div class="email-checkbox"><a href="index.php?a=unarchive&u='.$list["UDATE"].'"><i class="fa fa-archive mr-2 text-warning"></i></a></div>';
+				echo '<div class="email-checkbox"><a href="index.php?a=unarchive&st=archived&u='.$list["UDATE"].'"><i class="fa fa-archive mr-2 text-warning"></i></a></div>';
 			}elseif($list["DELETED"]!="0"){
-				echo '<div class="email-checkbox"><a href="index.php?a=undelete&u='.$list["UDATE"].'"><i class="fa fa-trash mr-2 text-red"></i></a></div>';
+				echo '<div class="email-checkbox"><a href="index.php?a=undelete&st=trash&u='.$list["UDATE"].'"><i class="fa fa-trash mr-2 text-red"></i></a></div>';
 			}
 			echo '</td>';
 			

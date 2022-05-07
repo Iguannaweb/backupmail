@@ -53,6 +53,7 @@ $lang_content_title_sent="Email sent";
 $lang_content_title_drafts="Drafts";
 $lang_content_title_notes="Notes";
 $lang_content_title_tag="Tagged with";
+$lang_content_title_search="Search...";
 
 
 //Content footer

@@ -67,7 +67,7 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
     })
 
     //Handle starring for glyphicon and font awesome
-    $('.mailbox-star').click(function (e) {
+    /*$('.mailbox-star').click(function (e) {
       e.preventDefault()
       //detect type
       var $this = $(this).find('a > i')
@@ -84,11 +84,11 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
         $this.toggleClass('fa-star')
         $this.toggleClass('fa-star-o')
       }
-    })
+    })*/
   })
 </script>
 <script type="text/javascript">
-  $(function() {
+  /*$(function() {
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
@@ -239,8 +239,8 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
         body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
       })
     });
-  });
-
+  });*/
+  
 </script>
 <!-- AdminLTE for demo purposes -->
 <script src="vendor/almasaeed2010/adminlte/dist/js/demo.js"></script>
