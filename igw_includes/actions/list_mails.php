@@ -35,19 +35,17 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 		
 		//Do you selected a tag?
 		//Future: Two tag selection?
-		if((int)$_GET["t"]!="0"){
-			$tagurl = ' AND UDATE IN (
-				SELECT ID_MAIL FROM `igw_emails_tags` WHERE `ID_TAG` = '.(int)$_GET["t"].'
+		if((int)$_GET["t"]!=0){
+			$tagurl = ' AND `UDATE` IN (
+				SELECT `ID_MAIL` FROM `igw_emails_tags` WHERE `ID_TAG` = '.(int)$_GET["t"].'
 			)';
-		}
-		
 		//Show special tags or hide them on the list
-		if(clear($_GET["st"])=="archived"){
-			$tagurl = " AND ARCHIVE='1'";
+		}elseif(clear($_GET["st"])=="archived"){
+			$tagurl .= " AND ARCHIVE='1'";
 		}elseif(clear($_GET["st"])=="trash"){
-			$tagurl = " AND DELETED='1'";
+			$tagurl .= " AND DELETED='1'";
 		}else{
-			$tagurl = " AND DELETED='0' AND ARCHIVE='0'";
+			$tagurl .= " AND DELETED='0' AND ARCHIVE='0'";
 		}
 		
 		//Did you select a mail account, year or month?
