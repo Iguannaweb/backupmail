@@ -8,7 +8,7 @@ title:
   <hr class="my-4">
   <p>This is a beta solution to make this work.</p>
   <p class="lead">
-    <a class="btn btn-primary btn-lg" href="/installation.html" role="button">See installation guide</a>
+    <a class="btn btn-primary btn-lg" href="/backupmail/installation.html" role="button">See installation guide</a>
   </p>
 </div>
 
