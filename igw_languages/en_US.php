@@ -35,6 +35,8 @@ $lang_index_menu_doc='Doc';
 $lang_index_menu_doc_title='Docs in github pages ;)';
 $lang_index_menu_logoff='Logoff';
 $lang_index_menu_logoff_title='Sign out from your account';
+$lang_index_menu_stat_title='Analytics for your mails';
+$lang_index_menu_stat='Stats';
 
 //Sidebar
 $lang_sidebar_compose_btn='Compose';

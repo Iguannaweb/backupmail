@@ -87,6 +87,9 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
       <li class="nav-item d-none d-sm-inline-block">
         <a href="tags.php" class="nav-link" title="<?php echo $lang_index_menu_tag_title; ?>"><i class="fas fa-tag"></i> <?php echo $lang_index_menu_tag; ?></a>
       </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="stats.php" class="nav-link" title="<?php echo $lang_index_menu_stat_title; ?>"><i class="fas fa-chart-bar"></i> <?php echo $lang_index_menu_stat; ?></a>
+      </li>
     </ul>
 
     <!-- SEARCH FORM -->

@@ -15,7 +15,9 @@ define(INCLUDE_CHECK,'true');
 ?>
 <?php 
 include('./igw_template/header.php'); ?>
-<?php if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) && ($activo['tipo']=="ADM")){ ?>
+<?php 
+if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) && ($activo['tipo']=="ADM")){  }else{ header('Location: index.php'); }
+if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) && ($activo['tipo']=="ADM")){ ?>
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <?php
