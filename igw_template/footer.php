@@ -45,6 +45,8 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
 <script src="vendor/almasaeed2010/adminlte/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- Toastr -->
 <script src="vendor/almasaeed2010/adminlte/plugins/toastr/toastr.min.js"></script>
+<!-- ChartJS -->
+<script src="vendor/almasaeed2010/adminlte/plugins/chart.js/Chart.min.js"></script>
 <?php
 if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) && ($activo['tipo']=="ADM")){
 ?>
@@ -244,6 +246,255 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
 </script>
 <!-- AdminLTE for demo purposes -->
 <script src="vendor/almasaeed2010/adminlte/dist/js/demo.js"></script>
+
+<!-- page script -->
+<script>
+  $(function () {
+    /* ChartJS
+     * -------
+     * Here we will create a few charts using ChartJS
+     */
+
+    <?php $data_stats=get_stats(); ?>
+
+    //-------------
+    //- PIE CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var donutData        = {
+      labels: [
+        <?php 
+        foreach($data_stats[2] as $keya=>$anio){
+          if(strstr($keya,'-')){ }else{  echo "'".$keya."',"; }
+        }
+        ?>
+      ],
+      datasets: [
+        {
+          data: [<?php 
+          foreach($data_stats[2] as $keya=>$anio){
+            if(strstr($keya,'-')){ }else{ echo "".(int)$anio.","; }
+          }
+          ?>],
+          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef'], //, '#3c8dbc', '#d2d6de'
+        }
+      ]
+    }
+    
+    
+    var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+    var pieData        = donutData;
+    var pieOptions     = {
+      maintainAspectRatio : false,
+      responsive : true,
+    }
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    var pieChart = new Chart(pieChartCanvas, {
+      type: 'pie',
+      data: pieData,
+      options: pieOptions      
+    })
+    
+    <?php
+    $color_stats=array(
+      "0" => "60,141,188",
+      "1" => "210, 214, 222",
+      "2" => "210, 114, 222",
+      "3" => "310, 114, 222",
+      "4" => "110, 114, 222",
+      "5" => "310, 214, 222",
+    );
+    ?>
+    
+    var areaChartData = {
+      labels  : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre','Noviembre','Diciembre'],
+      datasets: [
+       <?php 
+       $a=0;
+       foreach($data_stats[2] as $keya=>$anio){
+         if(strstr($keya,'-')){ }else{
+           
+            echo "{
+             label               : '".$keya."',
+             backgroundColor     : 'rgba(".$color_stats[$a].",0.9)',
+             borderColor         : 'rgba(".$color_stats[$a].",0.8)',
+             pointRadius          : false,
+             pointColor          : '#3b8bba',
+             pointStrokeColor    : 'rgba(".$color_stats[$a].",1)',
+             pointHighlightFill  : '#fff',
+             pointHighlightStroke: 'rgba(".$color_stats[$a].",1)',
+             data                : ["; 
+             //5, 20, 30, 19, 86, 27, 11, 20, 30, 19, 86, 27
+             for($i=1; $i<=12; $i++){
+               echo ''.$data_stats[3]["".$keya."-".str_pad($i,2,"0",STR_PAD_LEFT).""].',';
+             }
+            echo "]
+           },";
+           $a++;
+         }
+       }
+       ?>
+        /*{
+          label               : '2022',
+          backgroundColor     : 'rgba(60,141,188,0.9)',
+          borderColor         : 'rgba(60,141,188,0.8)',
+          pointRadius          : false,
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                : [5, 20, 30, 19, 86, 27, 11, 20, 30, 19, 86, 27]
+        },
+        {
+          label               : '2021',
+          backgroundColor     : 'rgba(210, 214, 222, 1)',
+          borderColor         : 'rgba(210, 214, 222, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : [45, 59, 80, 81, 56, 55, 65, 59, 80, 81, 56, 55]
+        },
+        {
+          label               : '2020',
+          backgroundColor     : 'rgba(210, 114, 222, 1)',
+          borderColor         : 'rgba(210, 114, 222, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(210, 114, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : [65, 59, 80, 81, 56, 55, 65, 59, 80, 81, 56, 55]
+        },*/
+      ]
+    }
+    //-------------
+    //- BAR CHART -
+    //-------------
+    var barChartCanvas = $('#barChart').get(0).getContext('2d')
+    var barChartData = jQuery.extend(true, {}, areaChartData)
+    var temp0 = areaChartData.datasets[0]
+    var temp1 = areaChartData.datasets[1]
+    var temp2 = areaChartData.datasets[2]
+    barChartData.datasets[0] = temp0
+    barChartData.datasets[1] = temp1
+    barChartData.datasets[2] = temp2
+
+    var barChartOptions = {
+      responsive              : false,
+      maintainAspectRatio     : false,
+      datasetFill             : false,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+
+    var barChart = new Chart(barChartCanvas, {
+      type: 'bar', 
+      data: barChartData,
+      options: barChartOptions
+    })
+    
+    
+    var areaChartDatah = {
+      labels  : ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09','10','11','12','13','14','15','16','17','18','19','20','21','22','23'],
+      datasets: [
+        <?php 
+         $a=0;
+         foreach($data_stats[2] as $keya=>$anio){
+           if(strstr($keya,'-')){ }else{
+             
+              echo "{
+               label               : '".$keya."',
+               backgroundColor     : 'rgba(".$color_stats[$a].",0.9)',
+               borderColor         : 'rgba(".$color_stats[$a].",0.8)',
+               pointRadius          : false,
+               pointColor          : '#3b8bba',
+               pointStrokeColor    : 'rgba(".$color_stats[$a].",1)',
+               pointHighlightFill  : '#fff',
+               pointHighlightStroke: 'rgba(".$color_stats[$a].",1)',
+               data                : ["; 
+               //5, 20, 30, 19, 86, 27, 11, 20, 30, 19, 86, 27
+               for($i=0; $i<=23; $i++){
+                 echo ''.$data_stats[4]["".$keya."-".str_pad($i,2,"0",STR_PAD_LEFT).""].',';
+               }
+              echo "]
+             },";
+             $a++;
+           }
+         }
+         ?>
+        /*{
+          label               : '2022',
+          backgroundColor     : 'rgba(60,141,188,0.9)',
+          borderColor         : 'rgba(60,141,188,0.8)',
+          pointRadius          : false,
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                : [5, 20, 30, 19, 86, 27, 11, 20, 30, 19, 86, 27, 5, 20, 30, 19, 86, 27, 11, 20, 30, 19, 86, 27]
+        },
+        {
+          label               : '2021',
+          backgroundColor     : 'rgba(210, 214, 222, 1)',
+          borderColor         : 'rgba(210, 214, 222, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : [45, 59, 80, 81, 56, 55, 65, 59, 80, 81, 56, 55,45, 59, 80, 81, 56, 55, 65, 59, 80, 81, 56, 55]
+        },
+        {
+          label               : '2020',
+          backgroundColor     : 'rgba(210, 114, 222, 1)',
+          borderColor         : 'rgba(210, 114, 222, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(210, 114, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : [65, 59, 80, 81, 56, 55, 65, 59, 80, 81, 56, 55,45, 59, 80, 81, 56, 55, 65, 59, 80, 81, 56, 55]
+        },*/
+      ]
+    }
+    //-------------
+    //- BAR CHART -
+    //-------------
+    var barChartCanvash = $('#barCharth').get(0).getContext('2d')
+    var barChartDatah = jQuery.extend(true, {}, areaChartDatah)
+    var temph0 = areaChartDatah.datasets[0]
+    var temph1 = areaChartDatah.datasets[1]
+    var temph2 = areaChartDatah.datasets[2]
+    barChartDatah.datasets[0] = temph0
+    barChartDatah.datasets[1] = temph1
+    barChartDatah.datasets[2] = temph2
+    
+    var barChartOptionsh = {
+      responsive              : false,
+      maintainAspectRatio     : false,
+      datasetFill             : false,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+    
+    var barCharth = new Chart(barChartCanvash, {
+      type: 'bar', 
+      data: barChartDatah,
+      options: barChartOptionsh
+    })
+
+    
+  })
+</script>
 <?php include('./igw_template/js_footer.php'); ?>
 <?php
 }

@@ -178,8 +178,6 @@ include('./igw_template/header.php'); ?>
 					</div></div></div>';
 			}
 				
-			
-			
 			?>
 			
         <div class="row">

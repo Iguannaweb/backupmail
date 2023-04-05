@@ -350,5 +350,36 @@ function new_password_generator($hash,$encode,$cost,$echo=0){
 	
 }
 
+function get_stats(){
+  $stats_query = DBSelect('igw_emails', 'FILE,UDATE',"",'','');
+  $count_stats=array();
+  
+  /*
+  1 - Correos
+  2 - Por años
+  3 - Por meses
+  */
+  while($row=mysqli_fetch_array($stats_query)){
+    $bloques = explode("/",str_replace('./',"",$row['FILE']));
+    
+    for($i=0; $i<count($bloques); $i++){
+      if(strstr($bloques[$i], "MSG_ID")){
+        
+      }elseif(strstr($bloques[$i], "mailbackup")){
+        
+      }else{
+        $count_stats[$i]["".$bloques[$i].""]++;
+        if($i>=2){ $count_stats[$i]["".$bloques[$i-1]."-".$bloques[$i].""]++; }
+        
+      }
+    }
+    $count_stats[4]["".date("H",$row['UDATE']).""]++;
+    $count_stats[4]["".$bloques[2]."-".date("H",$row['UDATE']).""]++;
+
+    
+  }
+  return $count_stats; 
+}
+
 
 ?>

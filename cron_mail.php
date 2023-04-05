@@ -86,7 +86,7 @@ if($_GET["tipo"]=="DRAFT"){
 							}
 							
 							if(file_exists($targetPathD.date('Y',$overview[0]->udate). $ds.date('m',$overview[0]->udate). $ds.'MSG_ID_'.$overview[0]->udate.'.eml')){
-								//imap_mail_move($inbox,$email_number,''.$c_s.'');
+								imap_mail_move($inbox,$email_number,''.$c_s.'');
 							}else{
 								if(file_put_contents($targetPathD.date('Y',$overview[0]->udate). $ds.date('m',$overview[0]->udate). $ds.'MSG_ID_'.$overview[0]->udate.'.eml', $headers . "\n" . $body)){
 				
@@ -100,9 +100,11 @@ if($_GET["tipo"]=="DRAFT"){
 									    'FOLDER' => clear('DRAFT')
 										);
 									if(DBInsert('igw_emails', $form_data_m[$i])){
-										//imap_mail_move($inbox,$email_number,''.$c_s.'');
+										imap_mail_move($inbox,$email_number,''.$c_s.'');
 									}
 										
+								}else{
+									echo ' - Error';
 								}
 							
 							}
@@ -370,7 +372,7 @@ else{
 		if($folder !== 'INBOX'){
 		    krsort($list);
 		}
-		//echo '<pre>';print_r($list);echo '</pre>';
+		echo '<pre>';print_r($list);echo '</pre>';
 	
 		$inboxmails = imap_search($inbox, ''.$correos["imap_search"].'');  //, SE_UID //SUBJECT "LA19S"
 		$check = imap_mailboxmsginfo($inbox);
@@ -405,6 +407,29 @@ else{
 					
 					if(file_exists($targetPathD.date('Y',$overview[0]->udate). $ds.date('m',$overview[0]->udate). $ds.'MSG_ID_'.$overview[0]->udate.'.eml')){
 						imap_mail_move($inbox,$email_number,''.$correos["imap_folder_archive"].'');
+						echo ' - Archivo existe';
+						$check=mysqli_fetch_array(DBSelect('igw_emails', 'UDATE', "WHERE `UDATE`=".clear($overview[0]->udate)."",'LIMIT0,1'));
+						if(empty($check["UDATE"])){
+							if(file_put_contents($targetPathD.date('Y',$overview[0]->udate). $ds.date('m',$overview[0]->udate). $ds.'MSG_ID_'.$overview[0]->udate.'.eml', $headers . "\n" . $body)){
+							
+								$form_data_m[$i] = array(
+									'MAIL' => clear($correos["user_mail"]),
+									'UID' => clear(imap_uid($inbox, $email_number)),
+									'FILE' => $targetPathD.date('Y',$overview[0]->udate). $ds.date('m',$overview[0]->udate). $ds.'MSG_ID_'.$overview[0]->udate.'.eml',
+									'MESSAGE_ID' => clear($overview[0]->message_id),
+									'UDATE' => clear($overview[0]->udate),
+									'SUBJECT' => clear(''.$overview[0]->subject.''),
+									'FOLDER' => clear('INBOX')
+									);
+								if(DBInsert('igw_emails', $form_data_m[$i])){
+									echo ' - Creado registro otra vez';
+									imap_mail_move($inbox,$email_number,''.$correos["imap_folder_archive"].'');
+								}
+									
+							}else{
+								echo ' - Error';
+							}
+						}
 					}else{
 						if(file_put_contents($targetPathD.date('Y',$overview[0]->udate). $ds.date('m',$overview[0]->udate). $ds.'MSG_ID_'.$overview[0]->udate.'.eml', $headers . "\n" . $body)){
 		
@@ -422,6 +447,8 @@ else{
 								imap_mail_move($inbox,$email_number,''.$correos["imap_folder_archive"].'');
 							}
 								
+						}else{
+							echo ' - Error';
 						}
 					
 					}
