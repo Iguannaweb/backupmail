@@ -218,7 +218,7 @@ Project Link: [https://github.com/Iguannaweb/backupmail](https://github.com/Igua
 ## Acknowledgements
 
 * [You can be in this list!](https://github.com/Iguannaweb/backupmail/issues)
-* [](...)
+* [Your awesome name!](...)
 
 
 ## Star History
