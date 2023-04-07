@@ -221,6 +221,11 @@ Project Link: [https://github.com/Iguannaweb/backupmail](https://github.com/Igua
 * [](...)
 
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Iguannaweb/backupmail&type=Date)](https://star-history.com/#Iguannaweb/backupmail&Date)
+
+
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
