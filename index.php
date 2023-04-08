@@ -12,7 +12,6 @@
  * Contact: info@iguannaweb.com                              *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 define('INCLUDE_CHECK','true');
-
 //TODO: Show trash label
 //ERR: Prevent add duplicate tags
 include('./igw_template/header.php'); 

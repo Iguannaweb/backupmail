@@ -28,6 +28,9 @@ $correos_config=array(
 		'imap_notes' => 'Imap_notes_folder',
 		'imap_sent' => 'Imap_sent_folder',
 		'imap_draft' => 'Imap_drafts_folder',
+		'imap_trash' => 'Imap_trash_folder',
+		'imap_spam' => 'Imap_spam_folder',
+		'oauth_token' => 'save_here_your_temp_oauth_accessToken'
 	)
 );
 ?>

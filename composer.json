@@ -4,6 +4,7 @@
     "require": {
         "almasaeed2010/adminlte": "~3.0",
         "vakata/jstree": "^3.3",
-        "php-mime-mail-parser/php-mime-mail-parser": "^6.0"
+        "php-mime-mail-parser/php-mime-mail-parser": "^6.0",
+        "javanile/php-imap2": "^0.1.10"
     }
 }
