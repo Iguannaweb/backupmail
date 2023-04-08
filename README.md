@@ -104,7 +104,7 @@ To get your own backup mail working, you need a server with PHP7 and extension M
 
 ### Install mailparse extension
 
-** Remember PHP compability **
+<strong>Remember PHP compability</strong><br>
 - Tested to PHP 7.4.33 
 
 #### Ubuntu, Debian & derivatives
