@@ -17,25 +17,15 @@ define(INCLUDE_CHECK,'true');
 include('./igw_template/header.php'); ?>
 <?php 
 if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) && ($activo['tipo']=="ADM")){  }else{ header('Location: index.php'); }
-if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) && ($activo['tipo']=="ADM")){ ?>
-<!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Tags</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Tags</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
+if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) && ($activo['tipo']=="ADM")){ 
+	//NEW: PAGE HEADER
+	$page_name=$lang_tag_page_name;
+	$parent_page_name=$lang_tag_parent_page_name;
+	$page_name_short=$lang_tag_page_name_short;
+	$parent_page_link='./index.php';
+	include('./igw_template/page-header.php'); 
+	?>
+
 
     <!-- Main content -->
     <section class="content">

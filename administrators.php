@@ -22,9 +22,9 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
   <div class="content-wrapper">
     <?php
 	   //NEW: PAGE HEADER
-	   $page_name='Admins configurations';
-	   $parent_page_name='Home';
-	   $page_name_short='Admins';
+	   $page_name=$lang_admin_page_name;
+	   $parent_page_name=$lang_admin_parent_page_name;
+	   $page_name_short=$lang_admin_page_name_short;
 	   $parent_page_link='./index.php';
 	   include('./igw_template/page-header.php');
 	   ?>

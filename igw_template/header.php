@@ -82,13 +82,16 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
         <a href="configuration.php" class="nav-link" title="<?php echo $lang_index_menu_account_title; ?>"><i class="fa fa-envelope"></i> <?php echo $lang_index_menu_account; ?></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a target="_blank" href="cron_mail.php" class="nav-link" title="<?php echo $lang_index_menu_cron_title; ?>"><i class="fas fa-tasks"></i> <?php echo $lang_index_menu_cron; ?></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
         <a href="tags.php" class="nav-link" title="<?php echo $lang_index_menu_tag_title; ?>"><i class="fas fa-tag"></i> <?php echo $lang_index_menu_tag; ?></a>
+      </li> 
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="autobot.php" class="nav-link" title="<?php echo $lang_index_menu_autobot_title; ?>"><i class="fas fa-robot"></i> <?php echo $lang_index_menu_autobot; ?></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="stats.php" class="nav-link" title="<?php echo $lang_index_menu_stat_title; ?>"><i class="fas fa-chart-bar"></i> <?php echo $lang_index_menu_stat; ?></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a target="_blank" href="cron_mail.php" class="nav-link" title="<?php echo $lang_index_menu_cron_title; ?>"><i class="fas fa-tasks"></i> <?php echo $lang_index_menu_cron; ?></a>
       </li>
     </ul>
 
@@ -204,12 +207,20 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
 		<li class="nav-item d-block d-sm-none">
 		  <a href="configuration.php" class="nav-link"><i class="fa fa-envelope"></i></a>
 		</li>
-		<li class="nav-item d-block d-sm-none">
-		  <a target="_blank" href="cron_mail.php" class="nav-link"><i class="fas fa-tasks"></i></a>
-		</li>
+		
 		<li class="nav-item d-block d-sm-none">
 		  <a href="tags.php" class="nav-link"><i class="fas fa-tag"></i></a>
 		</li>
+    <li class="nav-item d-block d-sm-none">
+      <a href="autobot.php" class="nav-link" title="<?php echo $lang_index_menu_autobot_title; ?>"><i class="fas fa-robot"></i></a>
+    </li>
+    <li class="nav-item d-block d-sm-none">
+      <a href="stats.php" class="nav-link" title="<?php echo $lang_index_menu_stat_title; ?>"><i class="fas fa-chart-bar"></i></a>
+    </li>
+    
+      <li class="nav-item d-none d-sm-block">
+        <a target="_blank" href="cron_mail.php" class="nav-link" role="button"><i class="fas fa-tasks"></i></a>
+      </li>
       <li class="nav-item d-none d-sm-block">
         <a class="nav-link" target="_blank" title="<?php echo $lang_index_menu_doc_title; ?>" href="https://iguannaweb.github.io/backupmail/" role="button"><i class="fas fa-book"></i></a>
       </li>

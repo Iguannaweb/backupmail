@@ -12,6 +12,7 @@
  * Contact: info@iguannaweb.com                              *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 define('INCLUDE_CHECK','true');
+
 //TODO: Show trash label
 //ERR: Prevent add duplicate tags
 include('./igw_template/header.php'); 
@@ -26,6 +27,7 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
 	?>	  
     	<!-- Main content -->
     	<section class="content">
+        <!-- Row -->
       	<div class="row">
 			<?php include('./igw_template/sidebar.php'); ?>
         	<?php include('./igw_includes/actions/list_mails.php'); ?>

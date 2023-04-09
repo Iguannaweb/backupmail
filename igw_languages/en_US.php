@@ -21,6 +21,9 @@ $lang_index_alt_logo="BackupMail";
 $lang_index_page_name='Inbox';
 $lang_index_parent_page_name='Home';
 $lang_index_page_name_short='Inbox';
+$lang_tag_page_name='Tags';
+$lang_tag_parent_page_name='Home';
+$lang_tag_page_name_short='Tags';
 
 //Top Menu
 $lang_index_menu_user='Users';
@@ -37,6 +40,8 @@ $lang_index_menu_logoff='Logoff';
 $lang_index_menu_logoff_title='Sign out from your account';
 $lang_index_menu_stat_title='Analytics for your mails';
 $lang_index_menu_stat='Stats';
+$lang_index_menu_autobot_title='Make filters and apply automátically tags or move emails to specific folders';
+$lang_index_menu_autobot='Autobot';
 
 //Sidebar
 $lang_sidebar_compose_btn='Compose';
@@ -62,6 +67,9 @@ $lang_content_title_search="Search...";
 $lang_content_footer_a="to";
 $lang_content_footer_of="of";
 $lang_content_footer_items="emails";
+$lang_content_footer_name="BackupMail";
+$lang_content_footer_name_title="BackupMail - Backup all your mails as eml files";
+$lang_content_footer_igw_copy="Brought to you by iguannaweb";
 
 
 

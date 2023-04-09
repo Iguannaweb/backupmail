@@ -30,5 +30,3 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 	</div>
   </div><!-- /.container-fluid -->
 </section>
-<?php
-?>

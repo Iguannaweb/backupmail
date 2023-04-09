@@ -23,10 +23,10 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
   <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      <?php echo '<a title="BackupMail - Backup all your mails as eml files" href="https://github.com/Iguannaweb/backupmail">BackupMail <img alt="GitHub milestone" src="https://img.shields.io/github/milestones/progress-percent/Iguannaweb/backupmail/1"></a>'; ?>
+      <?php echo '<a title="'.$lang_content_footer_name_title.'" href="https://github.com/Iguannaweb/backupmail">'.$lang_content_footer_name.' <img alt="GitHub milestone" src="https://img.shields.io/github/milestones/progress-percent/Iguannaweb/backupmail/1"></a>'; ?>
     </div>
     <!-- Default to the left -->
-    <strong> &copy; <?php echo date('Y');?> <a href="https://www.iguannaweb.com">Brought to you by iguannaweb</a>.</strong>
+    <strong> &copy; <?php echo date('Y');?> <a href="https://www.iguannaweb.com"><?php echo $lang_content_footer_igw_copy; ?></a>.</strong>
   </footer>
 </div>
 <!-- ./wrapper -->
