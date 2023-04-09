@@ -24,6 +24,9 @@ $lang_index_page_name_short='Inbox';
 $lang_tag_page_name='Tags';
 $lang_tag_parent_page_name='Home';
 $lang_tag_page_name_short='Tags';
+$lang_admin_page_name='Admins configurations';
+$lang_admin_parent_page_name='Home';
+$lang_admin_page_name_short='Admins';
 
 //Top Menu
 $lang_index_menu_user='Users';

@@ -1,3 +1,4 @@
 # Editor config 
 .nova/*
 vendor/*
+.DS_Store
