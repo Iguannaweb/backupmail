@@ -67,7 +67,10 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+![Alt](https://repobeats.axiom.co/api/embed/11e1ee6f30cc0fd47837864828cb8d1edde3a01e.svg "Repobeats analytics image")
 
+<!-- SCREENSHOTS OF THE PROJECT -->
+## Screenshots
 [![Temporal HOME PAGE screenshot][product-screenshot-1]](https://backupmail.iguannaweb.com/)
 
 This is just a temporal home page screenshot.

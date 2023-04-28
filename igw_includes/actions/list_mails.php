@@ -80,7 +80,7 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 	<div class="card-header">
 	  	<h3 class="card-title"><?php echo $lang_content_title_inbox; ?> 
 			<?php if(($_GET["c"]!="")){
-		    	echo '<span class="btn btn-info btn-xs m-r-2"><i class="fas fa-envelope"></i>'.$_GET["c"].'</span> ';
+		    	echo '<span class="btn btn-info btn-xs m-r-2"><i title="'.$_GET["c"].'" class="fas fa-envelope"></i> '.$_GET["c"].'</span> ';
 	  		} ?>
 		</h3>
 
@@ -221,7 +221,7 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 			<td>
 			<div class="email-checkbox ml-2">';
 			if(($_GET["c"]=="")){
-				echo '<div class="btn btn-info btn-xs m-r-2"><i class="fas fa-envelope" style="display: inline;"></i>'.$list["MAIL"].'</div> ';
+				echo '<div class="btn btn-info btn-xs m-r-2" title="'.$list["MAIL"].'"><i title="'.$list["MAIL"].'" class="fas fa-envelope" style="display: inline;"></i>'.$list["MAIL"].'</div> ';
 			}
 			
 			echo '<span class="email-tags">';
