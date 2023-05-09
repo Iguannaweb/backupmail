@@ -15,6 +15,9 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 ?>
 <?php
 $correonotificacion="your_mail@notification.com";
+$ClientID="XXXXXX";
+$ClientSecret="XXXXXX";
+$apikey="XXXXXX";
 
 $correos_config=array(
 	array(
