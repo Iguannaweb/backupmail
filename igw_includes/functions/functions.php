@@ -19,11 +19,10 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 function clear($input)
 {
     global $link;
-    if(get_magic_quotes_gpc())
-    {
+    
         //Remove slashes that were used to escape characters in post.
         $input = stripslashes($input);
-    }
+    
     //Remove ALL HTML tags to prevent XSS and abuse of the system.
     $input = @strip_tags($input);
     //Escape the string for insertion into a MySQL query, and return it.

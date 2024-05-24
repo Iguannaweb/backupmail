@@ -350,7 +350,10 @@ else{
 		echo 'Descargando correo de <strong>'.$correos["user_mail"].'</strong><br>';
 		$storeFolder = $principal.$ds.''.$correos["folder"].''; 
 		if(!file_exists($storeFolder)){ mkdir($storeFolder); }
-		if(!empty($correos["oauth_token"])){
+		//OAUTH GIVE UP
+		/*if(!empty($correos["oauth_token"])){
+			$token=unserialize(base64_decode(file_get_contents('./igw_includes/config/tokensg_'.str_replace(array("@","."),"_",$correos["user_mail"]).'.php')));
+			$correos["oauth_token"]=$token["access_token"];
 			$inbox = imap2_open(''.$correos["imap_connect"].''.$correos["imap_folder"].'', $correos["user_mail"], $correos["oauth_token"],OP_XOAUTH2) or die('Cannot connect: ' . imap2_last_error());
 			//echo '<pre>';print_r($inboxmails);echo '</pre>';
 			$list = imap2_list($inbox, ''.$correos["imap_connect"].'', "*");
@@ -373,7 +376,7 @@ else{
 				krsort($list);
 			}
 			
-			//echo '<pre>';print_r($list);echo '</pre>';
+			echo '<pre>';print_r($list);echo '</pre>';
 			
 			$inboxmails = imap2_search($inbox, ''.$correos["imap_search"].'');  //, SE_UID //SUBJECT "LA19S"
 			$check = imap2_mailboxmsginfo($inbox);
@@ -470,90 +473,70 @@ else{
 			imap2_close($inbox);
 			
 		}
-		else{
-			$inbox = imap_open(''.$correos["imap_connect"].''.$correos["imap_folder"].'', $correos["user_mail"], $correos["password_mail"]) or die('Cannot connect: ' . imap_last_error());
-			//echo '<pre>';print_r($inboxmails);echo '</pre>';
-			$list = imap_list($inbox, ''.$correos["imap_connect"].'', "*");
+		else{}*/
+		
+		$inbox = imap_open(''.$correos["imap_connect"].''.$correos["imap_folder"].'', $correos["user_mail"], $correos["password_mail"]) or die('Cannot connect: ' . imap_last_error());
+		//echo '<pre>';print_r($inboxmails);echo '</pre>';
+		$list = imap_list($inbox, ''.$correos["imap_connect"].'', "*");
+		
+		//remove  any } characters from the folder
+		if (preg_match("/}/i", $list[0])) {
+			$arr = explode('}', $list[0]);
+		}
+		
+		//also remove the ] if it exists, normally Gmail have them
+		if (preg_match("/]/i", $list[0])) {
+			$arr = explode(']/', $list[0]);
+		}
+		
+		//remove INBOX. from the folder name
+		$folder = str_replace('INBOX.', '', stripslashes($arr[1]));
+		
+		//check if inbox is first folder if not reorder array
+		if($folder !== 'INBOX'){
+			krsort($list);
+		}
+		
+		echo '<pre>';print_r($list);echo '</pre>';
+		
+		$inboxmails = imap_search($inbox, ''.$correos["imap_search"].'');  //, SE_UID //SUBJECT "LA19S"
+		$check = imap_mailboxmsginfo($inbox);
+		echo "Mensajes antes de mover: " . $check->Nmsgs . "<br />\n";
+		
+		if($inboxmails) {
+			$output = '';
 			
-			//remove  any } characters from the folder
-			if (preg_match("/}/i", $list[0])) {
-				$arr = explode('}', $list[0]);
-			}
-			
-			//also remove the ] if it exists, normally Gmail have them
-			if (preg_match("/]/i", $list[0])) {
-				$arr = explode(']/', $list[0]);
-			}
-			
-			//remove INBOX. from the folder name
-			$folder = str_replace('INBOX.', '', stripslashes($arr[1]));
-			
-			//check if inbox is first folder if not reorder array
-			if($folder !== 'INBOX'){
-				krsort($list);
-			}
-			
-			//echo '<pre>';print_r($list);echo '</pre>';
-			
-			$inboxmails = imap_search($inbox, ''.$correos["imap_search"].'');  //, SE_UID //SUBJECT "LA19S"
-			$check = imap_mailboxmsginfo($inbox);
-			echo "Mensajes antes de mover: " . $check->Nmsgs . "<br />\n";
-			
-			if($inboxmails) {
-				$output = '';
+			rsort($inboxmails);
+			$i=0;
+		
+			foreach($inboxmails as $email_number) {
 				
-				rsort($inboxmails);
-				$i=0;
-			
-				foreach($inboxmails as $email_number) {
+				 $overview = imap_fetch_overview($inbox,$email_number,0);
+				 $headers = imap_fetchheader($inbox, $email_number, FT_PREFETCHTEXT);
+				 $body = imap_body($inbox, $email_number,FT_PEEK);
+		
+					$randomstr[$i]=generateRandomString();
+					$randomstr2[$i]=generateRandomString();
+					$randomstr3[$i]=generateRandomString();
+					$randomstr4[$i]=generateRandomString();
+					$targetPathD = '.'. $ds. $storeFolder . $ds; 
+		
+					echo $targetPathD.date('Y',$overview[0]->udate). $ds.date('m',$overview[0]->udate). $ds.'MSG_ID_'.$overview[0]->udate.'.eml';
+					if(!file_exists($targetPathD.date('Y',$overview[0]->udate))){
+						mkdir($targetPathD.date('Y',$overview[0]->udate));
+					}
 					
-					 $overview = imap_fetch_overview($inbox,$email_number,0);
-					 $headers = imap_fetchheader($inbox, $email_number, FT_PREFETCHTEXT);
-					 $body = imap_body($inbox, $email_number,FT_PEEK);
-			
-						$randomstr[$i]=generateRandomString();
-						$randomstr2[$i]=generateRandomString();
-						$randomstr3[$i]=generateRandomString();
-						$randomstr4[$i]=generateRandomString();
-						$targetPathD = '.'. $ds. $storeFolder . $ds; 
-			
-						echo $targetPathD.date('Y',$overview[0]->udate). $ds.date('m',$overview[0]->udate). $ds.'MSG_ID_'.$overview[0]->udate.'.eml';
-						if(!file_exists($targetPathD.date('Y',$overview[0]->udate))){
-							mkdir($targetPathD.date('Y',$overview[0]->udate));
-						}
-						
-						if(!file_exists($targetPathD.date('Y',$overview[0]->udate). $ds.date('m',$overview[0]->udate))){
-							mkdir($targetPathD.date('Y',$overview[0]->udate). $ds.date('m',$overview[0]->udate));
-						}
-						
-						if(file_exists($targetPathD.date('Y',$overview[0]->udate). $ds.date('m',$overview[0]->udate). $ds.'MSG_ID_'.$overview[0]->udate.'.eml')){
-							imap_mail_move($inbox,$email_number,''.$correos["imap_folder_archive"].'');
-							echo ' - Archivo existe';
-							$check=mysqli_fetch_array(DBSelect('igw_emails', 'UDATE', "WHERE `UDATE`=".clear($overview[0]->udate)."",'LIMIT0,1'));
-							if(empty($check["UDATE"])){
-								if(file_put_contents($targetPathD.date('Y',$overview[0]->udate). $ds.date('m',$overview[0]->udate). $ds.'MSG_ID_'.$overview[0]->udate.'.eml', $headers . "\n" . $body)){
-								
-									$form_data_m[$i] = array(
-										'MAIL' => clear($correos["user_mail"]),
-										'UID' => clear(imap_uid($inbox, $email_number)),
-										'FILE' => $targetPathD.date('Y',$overview[0]->udate). $ds.date('m',$overview[0]->udate). $ds.'MSG_ID_'.$overview[0]->udate.'.eml',
-										'MESSAGE_ID' => clear($overview[0]->message_id),
-										'UDATE' => clear($overview[0]->udate),
-										'SUBJECT' => clear(''.$overview[0]->subject.''),
-										'FOLDER' => clear('INBOX')
-										);
-									if(DBInsert('igw_emails', $form_data_m[$i])){
-										echo ' - Creado registro otra vez';
-										imap_mail_move($inbox,$email_number,''.$correos["imap_folder_archive"].'');
-									}
-										
-								}else{
-									echo ' - Error';
-								}
-							}
-						}else{
+					if(!file_exists($targetPathD.date('Y',$overview[0]->udate). $ds.date('m',$overview[0]->udate))){
+						mkdir($targetPathD.date('Y',$overview[0]->udate). $ds.date('m',$overview[0]->udate));
+					}
+					
+					if(file_exists($targetPathD.date('Y',$overview[0]->udate). $ds.date('m',$overview[0]->udate). $ds.'MSG_ID_'.$overview[0]->udate.'.eml')){
+						imap_mail_move($inbox,$email_number,''.$correos["imap_folder_archive"].'');
+						echo ' - Archivo existe';
+						$check=mysqli_fetch_array(DBSelect('igw_emails', 'UDATE', "WHERE `UDATE`=".clear($overview[0]->udate)."",'LIMIT0,1'));
+						if(empty($check["UDATE"])){
 							if(file_put_contents($targetPathD.date('Y',$overview[0]->udate). $ds.date('m',$overview[0]->udate). $ds.'MSG_ID_'.$overview[0]->udate.'.eml', $headers . "\n" . $body)){
-			
+							
 								$form_data_m[$i] = array(
 									'MAIL' => clear($correos["user_mail"]),
 									'UID' => clear(imap_uid($inbox, $email_number)),
@@ -564,38 +547,58 @@ else{
 									'FOLDER' => clear('INBOX')
 									);
 								if(DBInsert('igw_emails', $form_data_m[$i])){
-									echo ' - Creado registro';
-									imap_mail_move($inbox,$email_number,''.$correos["imap_folder_archive"].'');
+									echo ' - Creado registro otra vez';
+									if($correos["archive_mail"]==1){
+										imap_mail_move($inbox,$email_number,''.$correos["imap_folder_archive"].'');
+									}
 								}
 									
 							}else{
 								echo ' - Error';
 							}
-						
 						}
-						echo '<br>';
+					}else{
+						if(file_put_contents($targetPathD.date('Y',$overview[0]->udate). $ds.date('m',$overview[0]->udate). $ds.'MSG_ID_'.$overview[0]->udate.'.eml', $headers . "\n" . $body)){
+		
+							$form_data_m[$i] = array(
+								'MAIL' => clear($correos["user_mail"]),
+								'UID' => clear(imap_uid($inbox, $email_number)),
+								'FILE' => $targetPathD.date('Y',$overview[0]->udate). $ds.date('m',$overview[0]->udate). $ds.'MSG_ID_'.$overview[0]->udate.'.eml',
+								'MESSAGE_ID' => clear($overview[0]->message_id),
+								'UDATE' => clear($overview[0]->udate),
+								'SUBJECT' => clear(''.$overview[0]->subject.''),
+								'FOLDER' => clear('INBOX')
+								);
+							if(DBInsert('igw_emails', $form_data_m[$i])){
+								echo ' - Creado registro';
+								if($correos["archive_mail"]==1){
+									imap_mail_move($inbox,$email_number,''.$correos["imap_folder_archive"].'');
+								}
+							}
+								
+						}else{
+							echo ' - Error';
+						}
 					
-					 $i++;
-				}
+					}
+					echo '<br>';
 				
-				imap_expunge($inbox);
-				
-			
-				$check = imap_mailboxmsginfo($inbox);
-				echo "Mensajes despu&eacute;s de mover: " . $check->Nmsgs . "<br />\n";
-				
-				imap_close($inbox);
-				
+				 $i++;
 			}
+			
+			imap_expunge($inbox);
+			
+		
+			$check = imap_mailboxmsginfo($inbox);
+			echo "Mensajes despu&eacute;s de mover: " . $check->Nmsgs . "<br />\n";
+			
 			imap_close($inbox);
 			
 		}
+		imap_close($inbox);
 		
 		
-		
-		
-		
-		
+
 	}
 
 }

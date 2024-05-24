@@ -52,10 +52,11 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
 		'imap_notes' => 'Imap_notes_folder', //folder to save notes
 		'imap_sent' => 'Imap_sent_folder', //Folder to save sents emails
 		'imap_draft' => 'Imap_drafts_folder', //Folder to save drafts emails
-    'imap_trash' => 'Imap_trash_folder', //Folder to save trash emails
-    'imap_spam' => 'Imap_spam_folder', //Folder to save spam emails
-    'oauth_token' => 'save_here_your_temp_oauth_accessToken' // accessToken for oauth 
-    
+        'imap_trash' => 'Imap_trash_folder', //Folder to save trash emails
+        'imap_spam' => 'Imap_spam_folder', //Folder to save spam emails
+        'oauth_token' => 'save_here_your_temp_oauth_accessToken', // accessToken for oauth 
+        'imap_extra_folders' => array('folder_1','folder_2','folder_3'),
+        'archive_mail' => '1/0'
 	)
 	</pre>
 	</section>

@@ -15,6 +15,10 @@ if(!defined('INCLUDE_CHECK')) die('No puedes acceder directamente');
 ?>
 <?php
 $correonotificacion="your_mail@notification.com";
+$cron_key="XXXXX";
+$base_url="https://XXXX";
+
+//WIP - It's better use APP Passwords with gmail accounts https://myaccount.google.com/apppasswords
 $ClientID="XXXXXX";
 $ClientSecret="XXXXXX";
 $apikey="XXXXXX";
@@ -33,7 +37,9 @@ $correos_config=array(
 		'imap_draft' => 'Imap_drafts_folder',
 		'imap_trash' => 'Imap_trash_folder',
 		'imap_spam' => 'Imap_spam_folder',
-		'oauth_token' => 'save_here_your_temp_oauth_accessToken'
+		'oauth_token' => '1/0', //keep it in 0
+		'imap_extra_folders' => array('folder_1','folder_2','folder_3'),
+		'archive_mail' => '1/0'
 	)
 );
 ?>

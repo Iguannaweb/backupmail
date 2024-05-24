@@ -2,3 +2,6 @@
 .nova/*
 vendor/*
 .DS_Store
+oauth_v2.php
+oauth.php
+igw_includes/config/tokensg*.php
