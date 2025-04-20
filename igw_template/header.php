@@ -217,7 +217,11 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
     <li class="nav-item d-block d-sm-none">
       <a href="stats.php" class="nav-link" title="<?php echo $lang_index_menu_stat_title; ?>"><i class="fas fa-chart-bar"></i></a>
     </li>
-    
+      <li class="nav-item d-none d-sm-block">
+        <!-- Menu Toggle Button -->
+        <a href="#" id="statusok" class="nav-link text-green " style="display: none;"><i class="fa fa-check"></i></a>
+        <a href="#" id="statusko" class="nav-link text-danger " style="display: none;"><i class="fa fa-flag-o"></i></a>
+      </li>
       <li class="nav-item d-none d-sm-block">
         <a target="_blank" href="cron_mail.php" class="nav-link" role="button"><i class="fas fa-tasks"></i></a>
       </li>

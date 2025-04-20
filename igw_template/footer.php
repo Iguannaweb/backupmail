@@ -499,5 +499,31 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
 <?php
 }
 ?>
+<script>
+$( document ).ready(function() {
+  setInterval(function(){ 
+      $.ajax({
+        type:"post",
+        url:"status.php",
+        datatype:"html",
+        success:function(data)
+        {
+          var statusses=JSON.parse(data);
+          console.log(statusses.respuesta);
+          if (statusses.respuesta == "OK" ) {
+            $("a#statusok").show();
+            $("a#statusko").hide();
+          } else if (statusses.respuesta == "KO" ) {
+            $("a#statusok").hide();
+            $("a#statusko").show();
+          }
+          
+          //do something with response data
+        }
+      });
+    }, 1000);//time in milliseconds 
+    
+  });
+</script>
 </body>
 </html>
