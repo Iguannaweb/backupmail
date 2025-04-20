@@ -46,6 +46,10 @@ $lang_index_menu_stat='Stats';
 $lang_index_menu_autobot_title='Make filters and apply automátically tags or move emails to specific folders';
 $lang_index_menu_autobot='Autobot';
 
+//Generic
+$lang_generic_ok='¡Felicidades!';
+$lang_generic_ko='¡Error!';
+
 //Sidebar
 $lang_sidebar_compose_btn='Compose';
 $lang_sidebar_title_emails='Inbox\'s Accounts';
@@ -75,7 +79,11 @@ $lang_content_footer_name_title="BackupMail - Backup all your mails as eml files
 $lang_content_footer_igw_copy="Brought to you by iguannaweb";
 
 
+//Administrators.php 
 
+$lang_admin_page_add_ok='Se ha creado la nueva cuenta de administrador.';
+$lang_admin_page_add_ko='Hubo un problema al crear la nueva cuenta de administrador.';
+$lang_admin_page_add_ko_pass='Por favor, revisa que las contraseñas sean iguales.';
 
 
 

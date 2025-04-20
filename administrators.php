@@ -69,29 +69,29 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
 						if(DBInsert('igw_adm', $form_data)){
 							echo '<div class="row"><div class="col-md-12"><div class="alert alert-success fade show">
 								  <span class="close" data-dismiss="alert">×</span>
-								  <strong>¡Felicidades!</strong>
-								  Se ha creado la nueva cuenta de administrador 
+								  <strong>'.$lang_generic_ok.'</strong>
+								  '.$lang_admin_page_add_ok.' 
 								</div></div></div>';
 						}else{
 							echo '<div class="row"><div class="col-md-12"><div class="alert alert-danger fade show">
 								  <span class="close" data-dismiss="alert">×</span>
-								  <strong>¡Error!</strong>
-								  Hubo un problema al crear la nueva cuenta de administrador. 
+								  <strong>'.$lang_generic_ko.'</strong>
+								  '.$lang_admin_page_add_ko.' 
 								</div></div></div>';
 						}
 				}else{
 					echo '<div class="row"><div class="col-md-12"><div class="alert alert-danger fade show">
 						  <span class="close" data-dismiss="alert">×</span>
-						  <strong>¡Error!</strong>
-						  Hubo un problema al crear la nueva cuenta de administrador. 
+						  <strong>'.$lang_generic_ko.'</strong>
+						  '.$lang_admin_page_add_ko.' 
 						</div></div></div>';
 				}
 				
 				}else{
 					echo '<div class="row"><div class="col-md-12"><div class="alert alert-danger fade show">
 						  <span class="close" data-dismiss="alert">×</span>
-						  <strong>¡Error!</strong>
-						  Hubo un problema al crear la nueva cuenta de administrador. Por favor, revisa que las contraseñas sean iguales.
+						  <strong>'.$lang_generic_ko.'</strong>
+						  '.$lang_admin_page_add_ko.' '.$lang_admin_page_add_ko_pass.'
 						</div></div></div>';
 				}
 					
@@ -142,13 +142,13 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
 					if(DBUpdate('igw_adm', $form_data,"WHERE id_member='".clear((int)$_POST["id"])."'")){
 						echo '<div class="row"><div class="col-md-12"><div class="alert alert-success fade show">
 							  <span class="close" data-dismiss="alert">×</span>
-							  <strong>¡Felicidades!</strong>
+							  <strong>'.$lang_admin_page_add_ok.'</strong>
 							  Se ha editado la cuenta correctamente 
 							</div></div></div>';
 					}else{
 						echo '<div class="row"><div class="col-md-12"><div class="alert alert-danger fade show">
 							  <span class="close" data-dismiss="alert">×</span>
-							  <strong>¡Error!</strong>
+							  <strong>'.$lang_generic_ko.'</strong>
 							  Hubo un problema al editar la cuenta. 
 							</div></div></div>';
 					}
@@ -157,7 +157,7 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
 				}else{
 					echo '<div class="row"><div class="col-md-12"><div class="alert alert-danger fade show">
 						  <span class="close" data-dismiss="alert">×</span>
-						  <strong>¡Error!</strong>
+						  <strong>'.$lang_generic_ko.'</strong>
 						  Hubo un problema al editar la cuenta. 
 						</div></div></div>';
 				}

@@ -245,7 +245,7 @@ if(isset($_SESSION['id']) && isset($activo['activo']) && ($activo['activo']==1) 
   
 </script>
 <!-- AdminLTE for demo purposes -->
-<script src="vendor/almasaeed2010/adminlte/dist/js/demo.js"></script>
+<!-- script src="vendor/almasaeed2010/adminlte/dist/js/demo.js"></script -->
 
 <!-- page script -->
 <script>
