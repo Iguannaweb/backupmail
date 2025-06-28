@@ -59,6 +59,10 @@ if(isset($content)){
         if($_GET["t"]=="text" || $display_remote_images === '1'){
                 echo ''.$content.'';
         }else{
+                $blocked_domains = get_blocked_image_sources($content, $allowed_image_urls);
+                if(!empty($blocked_domains)){
+                        echo '<div class="alert alert-warning fade show small">Remote images from '.implode(', ', $blocked_domains).' were blocked.</div>';
+                }
                 echo ''.remove_external_images($content, $allowed_image_urls).'';
         }
 }
