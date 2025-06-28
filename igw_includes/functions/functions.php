@@ -392,7 +392,7 @@ function remove_external_images($html, $allowed = array(), &$blocked_domains = a
     $src = $img->getAttribute('src');
     $allowed_flag = false;
     foreach($allowed as $allowed_url){
-      if(strpos($src, $allowed_url) === 0){
+      if(strpos($src, $allowed_url) !== false){
         $allowed_flag = true;
         break;
       }
