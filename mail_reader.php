@@ -48,11 +48,19 @@ $htmlEmbedded = $parser->getMessageBody('htmlEmbedded');
 // return the html version with the embedded contents like images
 
 if($_GET["t"]=="htmlplus"){
-	echo ''.$htmlEmbedded.'';
+        $content = $htmlEmbedded;
 }elseif($_GET["t"]=="html"){
-	echo ''.$html.'';
+        $content = $html;
 }elseif($_GET["t"]=="text"){
-	echo ''.nl2br($text).'';
+        $content = nl2br($text);
+}
+
+if(isset($content)){
+        if($_GET["t"]=="text" || $display_remote_images === '1'){
+                echo ''.$content.'';
+        }else{
+                echo ''.remove_external_images($content, $allowed_image_urls).'';
+        }
 }
 
 }

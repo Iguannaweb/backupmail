@@ -377,7 +377,31 @@ function get_stats(){
 
     
   }
-  return $count_stats; 
+  return $count_stats;
+}
+
+function remove_external_images($html, $allowed = array()){
+  $dom = new DOMDocument();
+  libxml_use_internal_errors(true);
+  $dom->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+  libxml_clear_errors();
+  $imgs = $dom->getElementsByTagName('img');
+  // Using while loop because live NodeList will change when removing nodes
+  for($i = $imgs->length - 1; $i >= 0; $i--){
+    $img = $imgs->item($i);
+    $src = $img->getAttribute('src');
+    $allowed_flag = false;
+    foreach($allowed as $allowed_url){
+      if(strpos($src, $allowed_url) === 0){
+        $allowed_flag = true;
+        break;
+      }
+    }
+    if(!$allowed_flag && preg_match('/^https?:\/\//i', $src)){
+      $img->parentNode->removeChild($img);
+    }
+  }
+  return $dom->saveHTML();
 }
 
 
