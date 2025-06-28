@@ -50,4 +50,13 @@ $display_remote_images = '0';
 // Array of allowed remote image base URLs. Leave empty to block all
 // external images when $display_remote_images is '0'.
 $allowed_image_urls = array();
+
+// Optionally add more allowed domains in allowed_image_urls.json
+$allowed_image_urls_file = __DIR__.'/allowed_image_urls.json';
+if(file_exists($allowed_image_urls_file)){
+    $json = json_decode(file_get_contents($allowed_image_urls_file), true);
+    if(is_array($json)){
+        $allowed_image_urls = array_unique(array_merge($allowed_image_urls, $json));
+    }
+}
 ?>

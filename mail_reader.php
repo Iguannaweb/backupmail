@@ -59,7 +59,15 @@ if(isset($content)){
         if($_GET["t"]=="text" || $display_remote_images === '1'){
                 echo ''.$content.'';
         }else{
-                echo ''.remove_external_images($content, $allowed_image_urls).'';
+                $blocked_domains = array();
+                echo ''.remove_external_images($content, $allowed_image_urls, $blocked_domains).'';
+                if(!empty($blocked_domains)){
+                        $links = array();
+                        foreach($blocked_domains as $dom){
+                                $links[] = '<a href="allow_image_url.php?domain='.urlencode($dom).'">'.$dom.'</a>';
+                        }
+                        echo '<div class="alert alert-warning fade show">Remote images were blocked from: '.implode(', ', $links).'</div>';
+                }
         }
 }
 

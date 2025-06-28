@@ -380,7 +380,7 @@ function get_stats(){
   return $count_stats;
 }
 
-function remove_external_images($html, $allowed = array()){
+function remove_external_images($html, $allowed = array(), &$blocked_domains = array()){
   $dom = new DOMDocument();
   libxml_use_internal_errors(true);
   $dom->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
@@ -398,6 +398,12 @@ function remove_external_images($html, $allowed = array()){
       }
     }
     if(!$allowed_flag && preg_match('/^https?:\/\//i', $src)){
+      $parsed = parse_url($src);
+      if($parsed && isset($parsed['host'])){
+        if(!in_array($parsed['host'], $blocked_domains)){
+          $blocked_domains[] = $parsed['host'];
+        }
+      }
       $img->parentNode->removeChild($img);
     }
   }
