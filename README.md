@@ -166,9 +166,10 @@ php composer.phar install
 
 1. First of all you need to protect the access to your domain. if it will be public. We recomend create a .htaccess/.htpassword files to add an extra layer of security. 
 2. Config one mail on the **mail.config.sample.php**, rename to **mail.config.php** and check the connection con ./cron_mail.php.
-3. Test the folder imap structure with **cron_mail_test.php**
-3. Start fetching your mails, navigate and tag them all!
-4. Create task or favorite your preferred mails.
+3. In that file you can set `$display_remote_images` to `0` to avoid loading external images when reading mails.
+4. Test the folder imap structure with **cron_mail_test.php**
+5. Start fetching your mails, navigate and tag them all!
+6. Create task or favorite your preferred mails.
 
 _For more examples, please refer to the [Documentation](https://backupmail.iguannaweb.com?go=docs)_
 

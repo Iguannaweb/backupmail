@@ -39,7 +39,15 @@ $correos_config=array(
 		'imap_spam' => 'Imap_spam_folder',
 		'oauth_token' => '1/0', //keep it in 0
 		'imap_extra_folders' => array('folder_1','folder_2','folder_3'),
-		'archive_mail' => '1/0'
-	)
+        'archive_mail' => '1/0'
+        )
 );
+
+// Display external images inside emails. Set to '1' to allow downloading
+// remote images or '0' to block them for privacy reasons.
+$display_remote_images = '0';
+
+// Array of allowed remote image base URLs. Leave empty to block all
+// external images when $display_remote_images is '0'.
+$allowed_image_urls = array();
 ?>
