@@ -66,8 +66,9 @@ if(isset($content)){
                         foreach($blocked_domains as $dom){
                                 $links[] = '<a href="allow_image_url.php?domain='.urlencode($dom).'">'.$dom.'</a>';
                         }
-                        echo '<div class="alert alert-warning fade show">Remote images were blocked from: '.implode(', ', $links).'</div>';
+                        echo '<div class="alert alert-warning fade show" style="padding: 15px !important; color: #1f2d3d !important; background-color: #ffc107 !important; border-color: #edb100 !important; border-radius: 6px !important; margin: 5px !important;">&raquo; Remote images were blocked from: '.implode(', ', $links).'</div>';
                 }
+
         }
 }
 

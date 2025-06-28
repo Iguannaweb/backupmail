@@ -175,6 +175,7 @@ php composer.phar install
 7. Start fetching your mails, navigate and tag them all!
 8. Create task or favorite your preferred mails.
 
+
 _For more examples, please refer to the [Documentation](https://backupmail.iguannaweb.com?go=docs)_
 
 <!-- CONFIG CRON -->
