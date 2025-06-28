@@ -59,11 +59,16 @@ if(isset($content)){
         if($_GET["t"]=="text" || $display_remote_images === '1'){
                 echo ''.$content.'';
         }else{
-                $blocked_domains = get_blocked_image_sources($content, $allowed_image_urls);
+                $blocked_domains = array();
+                echo ''.remove_external_images($content, $allowed_image_urls, $blocked_domains).'';
                 if(!empty($blocked_domains)){
-                        echo '<div class="alert alert-warning fade show small">Remote images from '.implode(', ', $blocked_domains).' were blocked.</div>';
+                        $links = array();
+                        foreach($blocked_domains as $dom){
+                                $links[] = '<a href="allow_image_url.php?domain='.urlencode($dom).'">'.$dom.'</a>';
+                        }
+                        echo '<div class="alert alert-warning fade show" style="padding: 15px !important; color: #1f2d3d !important; background-color: #ffc107 !important; border-color: #edb100 !important; border-radius: 6px !important; margin: 5px !important;">&raquo; Remote images were blocked from: '.implode(', ', $links).'</div>';
                 }
-                echo ''.remove_external_images($content, $allowed_image_urls).'';
+
         }
 }
 

@@ -166,10 +166,15 @@ php composer.phar install
 
 1. First of all you need to protect the access to your domain. if it will be public. We recomend create a .htaccess/.htpassword files to add an extra layer of security. 
 2. Config one mail on the **mail.config.sample.php**, rename to **mail.config.php** and check the connection con ./cron_mail.php.
-3. In that file you can set `$display_remote_images` to `0` to avoid loading external images when reading mails. When images are blocked, a small alert lists the domains that were removed.
-4. Test the folder imap structure with **cron_mail_test.php**
-5. Start fetching your mails, navigate and tag them all!
-6. Create task or favorite your preferred mails.
+3. In that file you can set `$display_remote_images` to `0` to avoid loading external images when reading mails.
+4. Copy `igw_includes/config/allowed_image_urls.sample.json` to
+   `allowed_image_urls.json` to enable the allow list. Edit this file to
+   manage additional remote image domains that will always be allowed.
+5. When viewing an email, blocked domains are shown in a warning message. Click the provided link to add a domain to the allow list.
+6. Test the folder imap structure with **cron_mail_test.php**
+7. Start fetching your mails, navigate and tag them all!
+8. Create task or favorite your preferred mails.
+
 
 _For more examples, please refer to the [Documentation](https://backupmail.iguannaweb.com?go=docs)_
 

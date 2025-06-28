@@ -380,36 +380,7 @@ function get_stats(){
   return $count_stats;
 }
 
-function get_blocked_image_sources($html, $allowed = array()){
-  $blocked = array();
-  $dom = new DOMDocument();
-  libxml_use_internal_errors(true);
-  $dom->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-  libxml_clear_errors();
-  $imgs = $dom->getElementsByTagName('img');
-  for($i = 0; $i < $imgs->length; $i++){
-    $img = $imgs->item($i);
-    $src = $img->getAttribute('src');
-    $allowed_flag = false;
-    foreach($allowed as $allowed_url){
-      if(strpos($src, $allowed_url) === 0){
-        $allowed_flag = true;
-        break;
-      }
-    }
-    if(!$allowed_flag && preg_match('/^https?:\/\//i', $src)){
-      $host = parse_url($src, PHP_URL_HOST);
-      if($host !== null && $host !== ''){
-        $blocked[] = $host;
-      }
-    }
-  }
-  $blocked = array_unique($blocked);
-  sort($blocked);
-  return $blocked;
-}
-
-function remove_external_images($html, $allowed = array()){
+function remove_external_images($html, $allowed = array(), &$blocked_domains = array()){
   $dom = new DOMDocument();
   libxml_use_internal_errors(true);
   $dom->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
@@ -427,6 +398,12 @@ function remove_external_images($html, $allowed = array()){
       }
     }
     if(!$allowed_flag && preg_match('/^https?:\/\//i', $src)){
+      $parsed = parse_url($src);
+      if($parsed && isset($parsed['host'])){
+        if(!in_array($parsed['host'], $blocked_domains)){
+          $blocked_domains[] = $parsed['host'];
+        }
+      }
       $img->parentNode->removeChild($img);
     }
   }
